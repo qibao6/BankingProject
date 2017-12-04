@@ -1,7 +1,11 @@
 package com.demo.model;
 
 import java.sql.Date;
-
+/**
+ * 用户基本表			sql_users
+ * @author LENOVO
+ *
+ */
 public class Users {
 	   private Integer usersId;// number primary key,--'用户id',
 	   private String userName;//  varchar2(32) ,-- '用户名',
