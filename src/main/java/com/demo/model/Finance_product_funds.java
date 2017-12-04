@@ -2,58 +2,63 @@ package com.demo.model;
 
 import java.sql.Date;
 
+/**
+ * 理财类基金产品		seq_finance_product_funds
+ * @author LENOVO
+ *
+ */
 public class Finance_product_funds {
-	private Integer finance_product_funds_id;
-	private String finance_product_funds_type;
-	private String finance_product_funds_name;
-	private Integer stauts;
-	private Integer period;
-	private Float floor_amount;
-	private Float year_rate;
-	private Integer subscribe_count;
-	private String product_topic;
-	private String product_factor;
-	private String product_strategy;
-	private String product_manager;
-	private Date create_date;
-	private Date update_date;
-	private String product_manager_name;
-	private String product_manager_pic;
-	private String product_manager_title;
-	private String product_manager_desc;
-	private String invest_points;
-	private Float amount;
-	private Float sold_amount;
-	private Integer buyer_count;
-	private Date start_date;
-	private Date end_date;
-	private String finance_product_funds_ratio;
-	private String contract;
-	private String bank_account;
 	
-	public Integer getFinance_product_funds_id() {
-		return finance_product_funds_id;
+	   private Integer financeProductFunds_id;
+	   private String financeProductFundsType;//产品类型
+	   private String financeProductFundsName;//名称
+	   private Integer status;//状态(0:未发布，1:募集中，2:已结束)
+	   private Integer period;//周期
+	   private Float floorAmount;//起投金额
+	   private Float yearRate;//年化率
+	   private Integer subscribeCount;//预约人数
+	   private String productTopic;//基金专题/关于基金
+	   private String productFactor;//产品要素
+	   private String productStrategy;//产品策略
+	   private String  productManager;//基金经理详细
+	   private Date createDate;//创建时间
+	   private Date updateDate;//修改时间
+	   private String productManagerName;//管理人名称
+	   private String productManagerPic;//管理人图片
+	   private String productManagerTitle;//管理人头衔
+	   private String productManagerDesc;//产品管理人介绍
+	   private String investPoints;//投资方向
+	   private Float amount;//募集金额
+	   private Float soldAmount;//已售金额
+	   private Float buyerCount;//购买人数
+	   private Date startDate;//开始时间
+	   private Date endDate;//结束时间
+	   private String financeProductFundsRatio;//返佣比例
+	   private String contract;//私募合同
+	   private String bankAccount;//银行账户（支行名称|银行账号|户名）
+	public Integer getFinanceProductFunds_id() {
+		return financeProductFunds_id;
 	}
-	public void setFinance_product_funds_id(Integer finance_product_funds_id) {
-		this.finance_product_funds_id = finance_product_funds_id;
+	public void setFinanceProductFunds_id(Integer financeProductFunds_id) {
+		this.financeProductFunds_id = financeProductFunds_id;
 	}
-	public String getFinance_product_funds_type() {
-		return finance_product_funds_type;
+	public String getFinanceProductFundsType() {
+		return financeProductFundsType;
 	}
-	public void setFinance_product_funds_type(String finance_product_funds_type) {
-		this.finance_product_funds_type = finance_product_funds_type;
+	public void setFinanceProductFundsType(String financeProductFundsType) {
+		this.financeProductFundsType = financeProductFundsType;
 	}
-	public String getFinance_product_funds_name() {
-		return finance_product_funds_name;
+	public String getFinanceProductFundsName() {
+		return financeProductFundsName;
 	}
-	public void setFinance_product_funds_name(String finance_product_funds_name) {
-		this.finance_product_funds_name = finance_product_funds_name;
+	public void setFinanceProductFundsName(String financeProductFundsName) {
+		this.financeProductFundsName = financeProductFundsName;
 	}
-	public Integer getStauts() {
-		return stauts;
+	public Integer getStatus() {
+		return status;
 	}
-	public void setStauts(Integer stauts) {
-		this.stauts = stauts;
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
 	public Integer getPeriod() {
 		return period;
@@ -61,89 +66,89 @@ public class Finance_product_funds {
 	public void setPeriod(Integer period) {
 		this.period = period;
 	}
-	public Float getFloor_amount() {
-		return floor_amount;
+	public Float getFloorAmount() {
+		return floorAmount;
 	}
-	public void setFloor_amount(Float floor_amount) {
-		this.floor_amount = floor_amount;
+	public void setFloorAmount(Float floorAmount) {
+		this.floorAmount = floorAmount;
 	}
-	public Float getYear_rate() {
-		return year_rate;
+	public Float getYearRate() {
+		return yearRate;
 	}
-	public void setYear_rate(Float year_rate) {
-		this.year_rate = year_rate;
+	public void setYearRate(Float yearRate) {
+		this.yearRate = yearRate;
 	}
-	public Integer getSubscribe_count() {
-		return subscribe_count;
+	public Integer getSubscribeCount() {
+		return subscribeCount;
 	}
-	public void setSubscribe_count(Integer subscribe_count) {
-		this.subscribe_count = subscribe_count;
+	public void setSubscribeCount(Integer subscribeCount) {
+		this.subscribeCount = subscribeCount;
 	}
-	public String getProduct_topic() {
-		return product_topic;
+	public String getProductTopic() {
+		return productTopic;
 	}
-	public void setProduct_topic(String product_topic) {
-		this.product_topic = product_topic;
+	public void setProductTopic(String productTopic) {
+		this.productTopic = productTopic;
 	}
-	public String getProduct_factor() {
-		return product_factor;
+	public String getProductFactor() {
+		return productFactor;
 	}
-	public void setProduct_factor(String product_factor) {
-		this.product_factor = product_factor;
+	public void setProductFactor(String productFactor) {
+		this.productFactor = productFactor;
 	}
-	public String getProduct_strategy() {
-		return product_strategy;
+	public String getProductStrategy() {
+		return productStrategy;
 	}
-	public void setProduct_strategy(String product_strategy) {
-		this.product_strategy = product_strategy;
+	public void setProductStrategy(String productStrategy) {
+		this.productStrategy = productStrategy;
 	}
-	public String getProduct_manager() {
-		return product_manager;
+	public String getProductManager() {
+		return productManager;
 	}
-	public void setProduct_manager(String product_manager) {
-		this.product_manager = product_manager;
+	public void setProductManager(String productManager) {
+		this.productManager = productManager;
 	}
-	public Date getCreate_date() {
-		return create_date;
+	public Date getCreateDate() {
+		return createDate;
 	}
-	public void setCreate_date(Date create_date) {
-		this.create_date = create_date;
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
-	public Date getUpdate_date() {
-		return update_date;
+	public Date getUpdateDate() {
+		return updateDate;
 	}
-	public void setUpdate_date(Date update_date) {
-		this.update_date = update_date;
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
 	}
-	public String getProduct_manager_name() {
-		return product_manager_name;
+	public String getProductManagerName() {
+		return productManagerName;
 	}
-	public void setProduct_manager_name(String product_manager_name) {
-		this.product_manager_name = product_manager_name;
+	public void setProductManagerName(String productManagerName) {
+		this.productManagerName = productManagerName;
 	}
-	public String getProduct_manager_pic() {
-		return product_manager_pic;
+	public String getProductManagerPic() {
+		return productManagerPic;
 	}
-	public void setProduct_manager_pic(String product_manager_pic) {
-		this.product_manager_pic = product_manager_pic;
+	public void setProductManagerPic(String productManagerPic) {
+		this.productManagerPic = productManagerPic;
 	}
-	public String getProduct_manager_title() {
-		return product_manager_title;
+	public String getProductManagerTitle() {
+		return productManagerTitle;
 	}
-	public void setProduct_manager_title(String product_manager_title) {
-		this.product_manager_title = product_manager_title;
+	public void setProductManagerTitle(String productManagerTitle) {
+		this.productManagerTitle = productManagerTitle;
 	}
-	public String getProduct_manager_desc() {
-		return product_manager_desc;
+	public String getProductManagerDesc() {
+		return productManagerDesc;
 	}
-	public void setProduct_manager_desc(String product_manager_desc) {
-		this.product_manager_desc = product_manager_desc;
+	public void setProductManagerDesc(String productManagerDesc) {
+		this.productManagerDesc = productManagerDesc;
 	}
-	public String getInvest_points() {
-		return invest_points;
+	public String getInvestPoints() {
+		return investPoints;
 	}
-	public void setInvest_points(String invest_points) {
-		this.invest_points = invest_points;
+	public void setInvestPoints(String investPoints) {
+		this.investPoints = investPoints;
 	}
 	public Float getAmount() {
 		return amount;
@@ -151,35 +156,35 @@ public class Finance_product_funds {
 	public void setAmount(Float amount) {
 		this.amount = amount;
 	}
-	public Float getSold_amount() {
-		return sold_amount;
+	public Float getSoldAmount() {
+		return soldAmount;
 	}
-	public void setSold_amount(Float sold_amount) {
-		this.sold_amount = sold_amount;
+	public void setSoldAmount(Float soldAmount) {
+		this.soldAmount = soldAmount;
 	}
-	public Integer getBuyer_count() {
-		return buyer_count;
+	public Float getBuyerCount() {
+		return buyerCount;
 	}
-	public void setBuyer_count(Integer buyer_count) {
-		this.buyer_count = buyer_count;
+	public void setBuyerCount(Float buyerCount) {
+		this.buyerCount = buyerCount;
 	}
-	public Date getStart_date() {
-		return start_date;
+	public Date getStartDate() {
+		return startDate;
 	}
-	public void setStart_date(Date start_date) {
-		this.start_date = start_date;
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
 	}
-	public Date getEnd_date() {
-		return end_date;
+	public Date getEndDate() {
+		return endDate;
 	}
-	public void setEnd_date(Date end_date) {
-		this.end_date = end_date;
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
-	public String getFinance_product_funds_ratio() {
-		return finance_product_funds_ratio;
+	public String getFinanceProductFundsRatio() {
+		return financeProductFundsRatio;
 	}
-	public void setFinance_product_funds_ratio(String finance_product_funds_ratio) {
-		this.finance_product_funds_ratio = finance_product_funds_ratio;
+	public void setFinanceProductFundsRatio(String financeProductFundsRatio) {
+		this.financeProductFundsRatio = financeProductFundsRatio;
 	}
 	public String getContract() {
 		return contract;
@@ -187,12 +192,10 @@ public class Finance_product_funds {
 	public void setContract(String contract) {
 		this.contract = contract;
 	}
-	public String getBank_account() {
-		return bank_account;
+	public String getBankAccount() {
+		return bankAccount;
 	}
-	public void setBank_account(String bank_account) {
-		this.bank_account = bank_account;
+	public void setBankAccount(String bankAccount) {
+		this.bankAccount = bankAccount;
 	}
-	
-	
 }

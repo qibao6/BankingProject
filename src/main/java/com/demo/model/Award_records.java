@@ -2,20 +2,24 @@ package com.demo.model;
 
 import java.sql.Date;
 
+/**
+ * 奖励记录表 seq_award_records
+ * @author LENOVO
+ *
+ */
 public class Award_records {
-	
-	private Integer award_records_id;
-	private Integer invitingid;
-	private Integer byinvitingid;
-	private Integer type;
-	private Double amount;
-	private Integer isAward;
-	private Date addTime;
-	public Integer getAward_records_id() {
-		return award_records_id;
+	private Integer awardRecords_id;
+	private Integer invitingid;//邀请人id
+	private Integer byinvitingid;//被邀请人id
+	private Integer awardRecordsType;//奖励类型（0：注册奖励，1：投资奖励）
+	private Float amount;//奖励金额
+	private Integer isaward;//奖励状态 0:未奖励  1：已奖励
+	private Date addtime;//添加时间
+	public Integer getAwardRecords_id() {
+		return awardRecords_id;
 	}
-	public void setAward_records_id(Integer award_records_id) {
-		this.award_records_id = award_records_id;
+	public void setAwardRecords_id(Integer awardRecords_id) {
+		this.awardRecords_id = awardRecords_id;
 	}
 	public Integer getInvitingid() {
 		return invitingid;
@@ -29,29 +33,30 @@ public class Award_records {
 	public void setByinvitingid(Integer byinvitingid) {
 		this.byinvitingid = byinvitingid;
 	}
-	public Integer getType() {
-		return type;
+	public Integer getAwardRecordsType() {
+		return awardRecordsType;
 	}
-	public void setType(Integer type) {
-		this.type = type;
+	public void setAwardRecordsType(Integer awardRecordsType) {
+		this.awardRecordsType = awardRecordsType;
 	}
-	public Double getAmount() {
+	public Float getAmount() {
 		return amount;
 	}
-	public void setAmount(Double amount) {
+	public void setAmount(Float amount) {
 		this.amount = amount;
 	}
-	public Integer getIsAward() {
-		return isAward;
+	public Integer getIsaward() {
+		return isaward;
 	}
-	public void setIsAward(Integer isAward) {
-		this.isAward = isAward;
+	public void setIsaward(Integer isaward) {
+		this.isaward = isaward;
 	}
-	public Date getAddTime() {
-		return addTime;
+	public Date getAddtime() {
+		return addtime;
 	}
-	public void setAddTime(Date addTime) {
-		this.addTime = addTime;
+	public void setAddtime(Date addtime) {
+		this.addtime = addtime;
 	}
+	
 	
 }

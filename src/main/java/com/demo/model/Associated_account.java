@@ -2,64 +2,62 @@ package com.demo.model;
 
 import java.sql.Date;
 
+/**
+ * 关联账号表（第三方登录信息表） seq_associated_account
+ * @author LENOVO
+ *
+ */
 public class Associated_account {
 	
-	private Integer id;
-	private Integer member_id;
-	private String type;
-	private String name;
-	private String identifying;
-	private Integer stauts;
-	private Date create_date;
-	private Date update_date;
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	public Integer getMember_id() {
-		return member_id;
-	}
-	public void setMember_id(Integer member_id) {
-		this.member_id = member_id;
-	}
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
+	private Integer  associatedAccount_id;
+	private Integer memberId;//会员id
+	private String associatedAccountType;//账号类型（微信，QQ）
+	private String associatedAccountName;//账号名称
+	private Integer status;
+	private Date createDate;//添加时间
+	private Date updateDate;//修改时间
 	
-	public String getIdentifying() {
-		return identifying;
-	}
-	public void setIdentifying(String identifying) {
-		this.identifying = identifying;
-	}
-	public Integer getStauts() {
-		return stauts;
-	}
-	public void setStauts(Integer stauts) {
-		this.stauts = stauts;
-	}
-	public Date getCreate_date() {
-		return create_date;
-	}
-	public void setCreate_date(Date create_date) {
-		this.create_date = create_date;
-	}
-	public Date getUpdate_date() {
-		return update_date;
-	}
-	public void setUpdate_date(Date update_date) {
-		this.update_date = update_date;
-	}
 	
+	public Integer getAssociatedAccount_id() {
+		return associatedAccount_id;
+	}
+	public void setAssociatedAccount_id(Integer associatedAccount_id) {
+		this.associatedAccount_id = associatedAccount_id;
+	}
+	public Integer getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(Integer memberId) {
+		this.memberId = memberId;
+	}
+	public String getAssociatedAccountType() {
+		return associatedAccountType;
+	}
+	public void setAssociatedAccountType(String associatedAccountType) {
+		this.associatedAccountType = associatedAccountType;
+	}
+	public String getAssociatedAccountName() {
+		return associatedAccountName;
+	}
+	public void setAssociatedAccountName(String associatedAccountName) {
+		this.associatedAccountName = associatedAccountName;
+	}
+	public Integer getStatus() {
+		return status;
+	}
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+	public Date getCreateDate() {
+		return createDate;
+	}
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
 }

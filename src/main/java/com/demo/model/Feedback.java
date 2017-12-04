@@ -2,35 +2,40 @@ package com.demo.model;
 
 import java.sql.Date;
 
+/**
+ * 
+ * 意见反馈	seq_feedback
+ * @author LENOVO
+ *
+ */
 public class Feedback {
-	
 	private Integer feedback_id;
-	private Integer member_id;
-	private String feedback_content;
-	private Date create_date;
+	private Integer memberId;//会员id
+	private String feedbackContent;//意见反馈内容
+	private Date createDate;//添加时间
+		   
 	public Integer getFeedback_id() {
 		return feedback_id;
 	}
 	public void setFeedback_id(Integer feedback_id) {
 		this.feedback_id = feedback_id;
 	}
-	public Integer getMember_id() {
-		return member_id;
+	public Integer getMemberId() {
+		return memberId;
 	}
-	public void setMember_id(Integer member_id) {
-		this.member_id = member_id;
+	public void setMemberId(Integer memberId) {
+		this.memberId = memberId;
 	}
-	public String getFeedback_content() {
-		return feedback_content;
+	public String getFeedbackContent() {
+		return feedbackContent;
 	}
-	public void setFeedback_content(String feedback_content) {
-		this.feedback_content = feedback_content;
+	public void setFeedbackContent(String feedbackContent) {
+		this.feedbackContent = feedbackContent;
 	}
-	public Date getCreate_date() {
-		return create_date;
+	public Date getCreateDate() {
+		return createDate;
 	}
-	public void setCreate_date(Date create_date) {
-		this.create_date = create_date;
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
-	
 }

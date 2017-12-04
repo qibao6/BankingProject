@@ -2,27 +2,31 @@ package com.demo.model;
 
 import java.sql.Date;
 
+/**
+ * 体验金信息	seq_bbin_info
+ * @author LENOVO
+ *
+ */
 public class Bbin_info {
-	
-	private Integer bbin_info_id;
-	private Integer member_id;
-	private Float amont;
-	private Integer stauts;
-	private Date create_data;
-	private Date update_date;
-	
-	
-	public Integer getBbin_info_id() {
-		return bbin_info_id;
+	  private Integer bbinInfo_id;
+	  private Integer memberId;//会员id
+	  private Float amont;//金额
+	  private Integer status;//状态(0：是)
+	  private Date createDate;//添加时间
+	  private Date updateDate;//修改时间
+	  
+	  
+	public Integer getBbinInfo_id() {
+		return bbinInfo_id;
 	}
-	public void setBbin_info_id(Integer bbin_info_id) {
-		this.bbin_info_id = bbin_info_id;
+	public void setBbinInfo_id(Integer bbinInfo_id) {
+		this.bbinInfo_id = bbinInfo_id;
 	}
-	public Integer getMember_id() {
-		return member_id;
+	public Integer getMemberId() {
+		return memberId;
 	}
-	public void setMember_id(Integer member_id) {
-		this.member_id = member_id;
+	public void setMemberId(Integer memberId) {
+		this.memberId = memberId;
 	}
 	public Float getAmont() {
 		return amont;
@@ -30,23 +34,25 @@ public class Bbin_info {
 	public void setAmont(Float amont) {
 		this.amont = amont;
 	}
-	public Integer getStauts() {
-		return stauts;
+	public Integer getStatus() {
+		return status;
 	}
-	public void setStauts(Integer stauts) {
-		this.stauts = stauts;
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
-	public Date getCreate_data() {
-		return create_data;
+	public Date getCreateDate() {
+		return createDate;
 	}
-	public void setCreate_data(Date create_data) {
-		this.create_data = create_data;
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
-	public Date getUpdate_date() {
-		return update_date;
+	public Date getUpdateDate() {
+		return updateDate;
 	}
-	public void setUpdate_date(Date update_date) {
-		this.update_date = update_date;
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
 	}
+	  
+	  
 	
 }
