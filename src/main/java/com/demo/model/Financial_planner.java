@@ -9,24 +9,23 @@ import java.sql.Date;
  */
 public class Financial_planner {
 	
-	   private Integer financial_planner_id;
-	   private Integer member_id;//会员id
-	   private String financial_planner_name;//真实姓名
+	   private Integer financialPlannerId;
+	   private Integer memberId;//会员id
+	   private String financialPlannerName;//真实姓名
 	   private String orgname;//机构名称
 	   private String  mycard;//我的名片
 	   private String address;//邮寄地址
 	   private Integer status;
-	   private Date create_date;//添加时间
-	   private Date update_date;//修改时间
-	   
-	public Integer getFinancial_planner_id() {
-		return financial_planner_id;
+	   private Date createDate;//添加时间
+	   private Date updateDate;//修改时间
+	public Integer getFinancialPlannerId() {
+		return financialPlannerId;
 	}
-	public Integer getMember_id() {
-		return member_id;
+	public Integer getMemberId() {
+		return memberId;
 	}
-	public String getFinancial_planner_name() {
-		return financial_planner_name;
+	public String getFinancialPlannerName() {
+		return financialPlannerName;
 	}
 	public String getOrgname() {
 		return orgname;
@@ -40,20 +39,20 @@ public class Financial_planner {
 	public Integer getStatus() {
 		return status;
 	}
-	public Date getCreate_date() {
-		return create_date;
+	public Date getCreateDate() {
+		return createDate;
 	}
-	public Date getUpdate_date() {
-		return update_date;
+	public Date getUpdateDate() {
+		return updateDate;
 	}
-	public void setFinancial_planner_id(Integer financial_planner_id) {
-		this.financial_planner_id = financial_planner_id;
+	public void setFinancialPlannerId(Integer financialPlannerId) {
+		this.financialPlannerId = financialPlannerId;
 	}
-	public void setMember_id(Integer member_id) {
-		this.member_id = member_id;
+	public void setMemberId(Integer memberId) {
+		this.memberId = memberId;
 	}
-	public void setFinancial_planner_name(String financial_planner_name) {
-		this.financial_planner_name = financial_planner_name;
+	public void setFinancialPlannerName(String financialPlannerName) {
+		this.financialPlannerName = financialPlannerName;
 	}
 	public void setOrgname(String orgname) {
 		this.orgname = orgname;
@@ -67,10 +66,10 @@ public class Financial_planner {
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
-	public void setCreate_date(Date create_date) {
-		this.create_date = create_date;
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
-	public void setUpdate_date(Date update_date) {
-		this.update_date = update_date;
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
 	}
 }

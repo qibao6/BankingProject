@@ -8,18 +8,21 @@ import java.sql.Date;
  *
  */
 public class Award_records {
-	private Integer awardRecords_id;
+	private Integer awardRecordsId;
 	private Integer invitingid;//邀请人id
 	private Integer byinvitingid;//被邀请人id
 	private Integer awardRecordsType;//奖励类型（0：注册奖励，1：投资奖励）
 	private Float amount;//奖励金额
 	private Integer isaward;//奖励状态 0:未奖励  1：已奖励
 	private Date addtime;//添加时间
-	public Integer getAwardRecords_id() {
-		return awardRecords_id;
+	
+	
+	
+	public Integer getAwardRecordsId() {
+		return awardRecordsId;
 	}
-	public void setAwardRecords_id(Integer awardRecords_id) {
-		this.awardRecords_id = awardRecords_id;
+	public void setAwardRecordsId(Integer awardRecordsId) {
+		this.awardRecordsId = awardRecordsId;
 	}
 	public Integer getInvitingid() {
 		return invitingid;

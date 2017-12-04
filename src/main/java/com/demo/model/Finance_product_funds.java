@@ -9,7 +9,7 @@ import java.sql.Date;
  */
 public class Finance_product_funds {
 	
-	   private Integer financeProductFunds_id;
+	   private Integer financeProductFundsId;
 	   private String financeProductFundsType;//产品类型
 	   private String financeProductFundsName;//名称
 	   private Integer status;//状态(0:未发布，1:募集中，2:已结束)
@@ -36,11 +36,14 @@ public class Finance_product_funds {
 	   private String financeProductFundsRatio;//返佣比例
 	   private String contract;//私募合同
 	   private String bankAccount;//银行账户（支行名称|银行账号|户名）
-	public Integer getFinanceProductFunds_id() {
-		return financeProductFunds_id;
+	
+	   
+	   
+	public Integer getFinanceProductFundsId() {
+		return financeProductFundsId;
 	}
-	public void setFinanceProductFunds_id(Integer financeProductFunds_id) {
-		this.financeProductFunds_id = financeProductFunds_id;
+	public void setFinanceProductFundsId(Integer financeProductFundsId) {
+		this.financeProductFundsId = financeProductFundsId;
 	}
 	public String getFinanceProductFundsType() {
 		return financeProductFundsType;

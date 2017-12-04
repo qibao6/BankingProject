@@ -8,7 +8,7 @@ import java.sql.Date;
  *
  */
 public class Bbin_info {
-	  private Integer bbinInfo_id;
+	  private Integer bbinInfoId;
 	  private Integer memberId;//会员id
 	  private Float amont;//金额
 	  private Integer status;//状态(0：是)
@@ -16,11 +16,12 @@ public class Bbin_info {
 	  private Date updateDate;//修改时间
 	  
 	  
-	public Integer getBbinInfo_id() {
-		return bbinInfo_id;
+	  
+	public Integer getBbinInfoId() {
+		return bbinInfoId;
 	}
-	public void setBbinInfo_id(Integer bbinInfo_id) {
-		this.bbinInfo_id = bbinInfo_id;
+	public void setBbinInfoId(Integer bbinInfoId) {
+		this.bbinInfoId = bbinInfoId;
 	}
 	public Integer getMemberId() {
 		return memberId;

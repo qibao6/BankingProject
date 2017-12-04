@@ -9,16 +9,17 @@ import java.sql.Date;
  *
  */
 public class Feedback {
-	private Integer feedback_id;
+	private Integer feedbackId;
 	private Integer memberId;//会员id
 	private String feedbackContent;//意见反馈内容
 	private Date createDate;//添加时间
 		   
-	public Integer getFeedback_id() {
-		return feedback_id;
+	
+	public Integer getFeedbackId() {
+		return feedbackId;
 	}
-	public void setFeedback_id(Integer feedback_id) {
-		this.feedback_id = feedback_id;
+	public void setFeedbackId(Integer feedbackId) {
+		this.feedbackId = feedbackId;
 	}
 	public Integer getMemberId() {
 		return memberId;

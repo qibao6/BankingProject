@@ -9,7 +9,7 @@ import java.sql.Date;
  */
 public class Associated_account {
 	
-	private Integer  associatedAccount_id;
+	private Integer  associatedAccountId;
 	private Integer memberId;//会员id
 	private String associatedAccountType;//账号类型（微信，QQ）
 	private String associatedAccountName;//账号名称
@@ -18,11 +18,11 @@ public class Associated_account {
 	private Date updateDate;//修改时间
 	
 	
-	public Integer getAssociatedAccount_id() {
-		return associatedAccount_id;
+	public Integer getAssociatedAccountId() {
+		return associatedAccountId;
 	}
-	public void setAssociatedAccount_id(Integer associatedAccount_id) {
-		this.associatedAccount_id = associatedAccount_id;
+	public void setAssociatedAccountId(Integer associatedAccountId) {
+		this.associatedAccountId = associatedAccountId;
 	}
 	public Integer getMemberId() {
 		return memberId;
