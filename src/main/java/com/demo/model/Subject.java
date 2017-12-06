@@ -1,11 +1,19 @@
 package com.demo.model;
 
 import java.sql.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 /**
  * 		sql_subject
  * @author LENOVO
  *
  */
+
+@Entity
 public class Subject {
 	   private Integer subjectId;// number primary key,
 	   private String serialNumber;//  varchar2(50) ,-- '流水号',
@@ -37,7 +45,11 @@ public class Subject {
 	   private String projectDetails;//  CLOB,-- '项目详情',
 	   private String safetyControl;//  CLOB,--'安全保障',
 	   private Integer experStatus;//  number-- '体验金是否可以购买（0：否，1：是）',
+	
 	   
+	@Id
+	@SequenceGenerator(name="abc",sequenceName="sql_subject",allocationSize=1)
+	@GeneratedValue(generator="abc",strategy=GenerationType.SEQUENCE)
 	public Integer getSubjectId() {
 		return subjectId;
 	}

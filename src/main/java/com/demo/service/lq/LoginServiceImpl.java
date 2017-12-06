@@ -10,4 +10,5 @@ public class LoginServiceImpl implements LoginService {
 	
 	@Autowired
 	LoginRepository loginRepository;
+
 }

@@ -1,12 +1,19 @@
 package com.demo.model;
 
 import java.sql.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 /**
  * 角色表			sql_user_role
  * @author LENOVO
  *
  */
-public class User_role {
+@Entity(name="user_role")
+public class UserRole {
 	   private Integer userRoleId;// number primary key,--'主键',
 	   private String cname;//  varchar2(32) ,-- '中文名',
 	   private String ename;//  varchar2(32) ,-- '英文名',
@@ -19,7 +26,9 @@ public class User_role {
 	   private Integer sourceId;//  number,
 	   private Integer delFlag;//  number
 	   
-	   
+	@Id
+	@SequenceGenerator(name="userrole",sequenceName="sql_user_role",allocationSize=1)
+	@GeneratedValue(generator="userrole",strategy=GenerationType.SEQUENCE)
 	public Integer getUserRoleId() {
 		return userRoleId;
 	}

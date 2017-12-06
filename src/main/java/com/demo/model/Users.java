@@ -1,11 +1,24 @@
 package com.demo.model;
 
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
 /**
  * 用户基本表			sql_users
  * @author LENOVO
  *
  */
+@Entity
 public class Users {
 	   private Integer usersId;// number primary key,--'用户id',
 	   private String userName;//  varchar2(32) ,-- '用户名',
@@ -19,7 +32,22 @@ public class Users {
 	   private Date createDate;//  date,-- '创建时间',
 	   private Date updateDate;//  date-- '修改时间',
 	   
+	   private Set<UserRole> userRole = new HashSet<>();
+	
 	   
+	@ManyToMany(cascade=CascadeType.ALL)
+	@JoinTable(name="TEACHER_student",
+		       joinColumns=@JoinColumn(name="users_id"),
+		       inverseJoinColumns=@JoinColumn(name="user_role_id"))
+	public Set<UserRole> getUserRole() {
+		return userRole;
+	}
+	public void setUserRole(Set<UserRole> userRole) {
+		this.userRole = userRole;
+	}
+	@Id
+	@SequenceGenerator(name="users",sequenceName="sql_users",allocationSize=1)
+	@GeneratedValue(generator="users",strategy=GenerationType.SEQUENCE)
 	public Integer getUsersId() {
 		return usersId;
 	}
