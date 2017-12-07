@@ -119,7 +119,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="<%= basePath%>resources/js/adminlogin.js"></script>
 <script language="JavaScript">
 $(function(){
-	var b = "/winplus";
+	var b = "/BankingProject";
 	login(b);
 });
 
