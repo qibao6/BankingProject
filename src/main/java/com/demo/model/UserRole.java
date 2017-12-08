@@ -3,10 +3,7 @@ package com.demo.model;
 import java.sql.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 /**
  * 角色表			sql_user_role
  * @author LENOVO
@@ -27,8 +24,6 @@ public class UserRole {
 	   private Integer delFlag;//  number
 	   
 	@Id
-	@SequenceGenerator(name="userrole",sequenceName="sql_user_role",allocationSize=1)
-	@GeneratedValue(generator="userrole",strategy=GenerationType.SEQUENCE)
 	public Integer getUserRoleId() {
 		return userRoleId;
 	}

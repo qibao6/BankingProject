@@ -18,7 +18,7 @@ import javax.persistence.SequenceGenerator;
  * @author LENOVO
  *
  */
-@Entity
+@Entity(name="users")
 public class Users {
 	   private Integer usersId;// number primary key,--'用户id',
 	   private String userName;//  varchar2(32) ,-- '用户名',

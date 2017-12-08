@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("Backstage")
-public class LoginHandler {
+public class LoginHandlers {
 	
 	@RequestMapping("login")
 	public String login(){
