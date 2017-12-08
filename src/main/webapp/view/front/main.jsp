@@ -16,28 +16,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 <meta name="keywords" content="盈+，盈，社区金融，O2O社区金融，社区金融O2O，O2O，互联网+社区金融，O2O连锁，社区门店，首家社区金融，社区金融服务，综合金融，互联网金融，体验中心，普惠金融，金融创新，社区化，普惠化，全渠道化，互联网线上平台，O2O交易，全国首家，盈十，金融衍生品，固收类理财，私募基金，股权基金，股指期货，玩转股指，商品期货，国际期货，外盘，A50，沪深300，中证500，上证50" />
 <meta name="description" content="盈+——全国首家互联网金融交流体验中心，与您共盈，给财富做加法。" />
-<link href="<%=basePath%>/resources/web/images/icon.ico" type="image/x-icon" rel="shortcut icon">
+<link href="<%=basePath%>resources/web/images/icon.ico" type="image/x-icon" rel="shortcut icon">
 
-<link href="<%=basePath%>/resources/web/font/iconfont.css" rel="stylesheet" type="text/css" />
-<link href="<%=basePath%>/resources/web/css/common.css" rel="stylesheet">
-<link href="<%=basePath%>/resources/web/css/jw.css" rel="stylesheet">
+<link href="<%=basePath%>resources/web/font/iconfont.css" rel="stylesheet" type="text/css" />
+<link href="<%=basePath%>resources/web/css/common.css" rel="stylesheet">
+<link href="<%=basePath%>resources/web/css/jw.css" rel="stylesheet">
 
-<script src="<%=basePath%>/resources/web/js/jquery.js"></script>
-<script type="text/javascript" src="<%=basePath%>/resources/web/layer/layer.js"></script>
-<script src="<%=basePath%>/resources/web/echart/dist/echarts.js"></script></head>
+<script src="<%=basePath%>resources/web/js/jquery.js"></script>
+<script type="text/javascript" src="<%=basePath%>resources/web/layer/layer.js"></script>
+<script src="<%=basePath%>resources/web/echart/dist/echarts.js"></script></head>
 <body>
 
 <div class="logo container">
     <div class="row">
         <div class="logoImg">
-            <a href="http://www.ying158.com/home"><img src="<%=basePath%>/resources/web/images/logo2.png" onmouseover="this.src = '<%=basePath%>/resources/resources/web/images/logo1.png'" onmouseout="this.src = '<%=basePath%>/resources/resources/web/images/logo2.png'"></a>
+            <a href="http://www.ying158.com/home"><img src="<%=basePath%>resources/web/images/logo2.png" onmouseover="this.src = '<%=basePath%>/resources/resources/web/images/logo1.png'" onmouseout="this.src = '<%=basePath%>resources/resources/web/images/logo2.png'"></a>
         </div>
         <div class="telInfo">
-            <img src="<%=basePath%>/resources/web/images/400Icon.png" onmousemove="this.src = '<%=basePath%>/resources/web/images/400IconActive.png'" onmouseout="	this.src = '<%=basePath%>/resources/resources/web/images/400Icon.png'">
+            <img src="<%=basePath%>resources/web/images/400Icon.png" onmousemove="this.src = '<%=basePath%>resources/web/images/400IconActive.png'" onmouseout="	this.src = '<%=basePath%>resources/resources/web/images/400Icon.png'">
             <div class="detail">
 
-                        <a style="font-size:18px;float:right;margin-top:5px;color:#917739;" href="<%=basePath%>/resources/web/login">登录</a>
-                        <a style="font-size:18px;float:right;margin-right:15px;margin-top:5px;color:#917739;" href="<%=basePath%>/resources/web/regis">注册</a>
+                        <a style="font-size:18px;float:right;margin-top:5px;color:#917739;" href="<%=basePath%>web/login" target="myiframe">登录</a>
+                        <a style="font-size:18px;float:right;margin-right:15px;margin-top:5px;color:#917739;" href="<%=basePath%>resources/web/regis">注册</a>
                 <br>4000-999-158
             </div>
         </div>
@@ -48,7 +48,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="row">
             <ul class="topNav">
                 <li>
-                    <a class="item first" href="http://www.ying158.com/home">
+                    <a class="item first" href="<%=basePath%>view/front/first.jsp">
                         首页
                     </a>
                 </li>
@@ -58,17 +58,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </a>
                 </li>
                 <li  class="item">
-                    <a class="item" href="<%=basePath%>/resources/subject">
+                    <a class="item" href="<%=basePath%>resources/subject">
                         产品中心
                     </a>
                 </li>
                 <li>
-                    <a class="item" href="http://www.ying158.com/Home/NewsCenter">
+                    <a class="item" href="<%=basePath%>subject/subindex">
                         新闻中心
                     </a>
                 </li>
                 <li>
-                    <a class="item" href="<%=basePath%>/resources/mobileappdownload">
+                    <a class="item" href="<%=basePath%>resources/mobileappdownload">
                       下载中心
                     </a>
                 </li>
@@ -107,66 +107,27 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="proMain">
     	<div class="hwpzNav">
     		<ul>
-    			<li class="first"><a class="active" href="<%=basePath%>/resources/subject">固收类理财</a></li>
-    			<li class="second"><a href="<%=basePath%>/resources/finance">私募基金</a></li>
-    			<li class="three"><a href="<%=basePath%>/resources/oversea">海外配置</a></li>
-    			<li class="four"><a href="<%=basePath%>/resources/finance">股权基金</a></li>
+    			<li class="first"><a class="active" href="<%=basePath%>subject/subindex" target="myiframe">固收类理财</a></li>
+    			<li class="second"><a href="<%=basePath%>finance/financelist" target="myiframe">私募基金</a></li>
+    			<li class="three"><a href="<%=basePath%>subject/oversea" target="myiframe">海外配置</a></li>
+    			<li class="four"><a href="<%=basePath%>finance/financelist" target="myiframe">股权基金</a></li>
     		</ul>
     	</div>
-        <div class="sdShaix">
-        	<ul>
-            	<li class="first">标的类型：</li>
-               		<li><a href="<%=basePath%>/resources/subject?cid=11&type=11&yearRate=21&period=31&status=41" id="11">全部</a></li>
-               		<li><a href="<%=basePath%>/resources/subject?cid=12&type=11&yearRate=21&period=31&status=41" id="12">固收类理财</a></li>
-               		<li><a href="<%=basePath%>/resources/subject?cid=13&type=11&yearRate=21&period=31&status=41" id="13">车盈宝</a></li>
-            </ul>
-        	<ul>
-            	<li class="first">年化收益：</li>
-               		<li><a href="<%=basePath%>/resources/subject?cid=21&type=11&yearRate=21&period=31&status=41" id="21">全部</a></li>
-               		<li><a href="<%=basePath%>/resources/subject?cid=22&type=11&yearRate=21&period=31&status=41" id="22">6.0%</a></li>
-               		<li><a href="<%=basePath%>/resources/subject?cid=23&type=11&yearRate=21&period=31&status=41" id="23">7.0%</a></li>
-               		<li><a href="<%=basePath%>/resources/subject?cid=24&type=11&yearRate=21&period=31&status=41" id="24">7.5%</a></li>
-               		<li><a href="<%=basePath%>/resources/subject?cid=25&type=11&yearRate=21&period=31&status=41" id="25">8.0%</a></li>
-               		<li><a href="<%=basePath%>/resources/subject?cid=25&type=11&yearRate=21&period=31&status=41" id="25">8.0%以上</a></li>
-            </ul>
-        	<ul>
-            	<li class="first">项目期限：</li>
-               		<li><a href="<%=basePath%>/resources/subject?cid=31&type=11&yearRate=21&period=31&status=41" id="31">全部</a></li>
-               		<li><a href="<%=basePath%>/resources/subject?cid=32&type=11&yearRate=21&period=31&status=41" id="32">15天以下</a></li>
-               		<li><a href="<%=basePath%>/resources/subject?cid=33&type=11&yearRate=21&period=31&status=41" id="33">15-30天</a></li>
-               		<li><a href="<%=basePath%>/resources/subject?cid=34&type=11&yearRate=21&period=31&status=41" id="34">30-180天</a></li>
-               		<li><a href="<%=basePath%>/resources/subject?cid=35&type=11&yearRate=21&period=31&status=41" id="35">180-365天</a></li>
-               		<li><a href="<%=basePath%>/resources/subject?cid=36&type=11&yearRate=21&period=31&status=41" id="36">一年以上</a></li>
-            </ul>
-        	<ul>
-            	<li class="first">标的状态：</li>
-               		<li><a href="<%=basePath%>/resources/subject?cid=41&type=11&yearRate=21&period=31&status=41" id="41">全部</a></li>
-               		<li><a href="<%=basePath%>/resources/subject?cid=42&type=11&yearRate=21&period=31&status=41" id="42">投标中</a></li>
-               		<li><a href="<%=basePath%>/resources/subject?cid=43&type=11&yearRate=21&period=31&status=41" id="43">还款中</a></li>
-               		<li><a href="<%=basePath%>/resources/subject?cid=44&type=11&yearRate=21&period=31&status=41" id="44">已完成</a></li>
-            </ul>
-        </div>
+       
 
 <meta name="keywords" content="盈+，盈，社区金融，O2O社区金融，社区金融O2O，O2O，互联网+社区金融，O2O连锁，社区门店，首家社区金融，社区金融服务，综合金融，互联网金融，体验中心，普惠金融，金融创新，社区化，普惠化，全渠道化，互联网线上平台，O2O交易，全国首家，盈十，金融衍生品，固收类理财，私募基金，股权基金，股指期货，玩转股指，商品期货，国际期货，外盘，A50，沪深300，中证500，上证50" />
 <meta name="description" content="盈+——全国首家互联网金融交流体验中心，与您共盈，给财富做加法。" />
-<link href="<%=basePath%>/resources/web/images/icon.ico" type="image/x-icon" rel="shortcut icon">
-
+<link href="<%=basePath%>resources/web/images/icon.ico" type="image/x-icon" rel="shortcut icon">
+<!--  
 <div>
-	<iframe name="myiframe" src="subject/subindex" width="970px" height="500px"></iframe>
+	<iframe name="myiframe" src="<%=basePath%>subject/subindex" width="970px" height="500px"></iframe>
 </div>
-<div class="llpage">
-		<div class="in">
-			
-				<a class="prev_page">上页</a>
-			
-			
-					<a class="now" >1</a>
-			
-			
-				<a class="next_page" rel="next">下页</a>
-		</div>
-	</div>
+-->
+<div>
+	<iframe name="myiframe" frameborder="0" src="<%=basePath%>subject/subindex" width="100%" height="800px"></iframe>
 </div>
+
+
 <script type="text/javascript">
 	function getJsonInfo(url) {
 		$.get(url, 'json', function(data) {
@@ -176,7 +137,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	}
 		require.config({
             paths: {
-                echarts: '<%=basePath%>/resources/web/echart/dist/'
+                echarts: '<%=basePath%>resources/web/echart/dist/'
             }
         });
 		require(
@@ -253,7 +214,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta charset="UTF-8">
     <div class="security">
         <div class="item">
-            <img src="<%=basePath%>/resources/web/images/indexSecurity1.png">
+            <img src="<%=basePath%>resources/web/images/indexSecurity1.png">
             <div class="detail">
                 资金银行监管
                 <div class="desc">
@@ -262,7 +223,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
         </div>
         <div class="item">
-            <img src="<%=basePath%>/resources/web/images/indexSecurity2.png">
+            <img src="<%=basePath%>resources/web/images/indexSecurity2.png">
             <div class="detail">
                 交易证监会监管
                 <div class="desc">
@@ -271,7 +232,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
         </div>
         <div class="item">
-            <img src="<%=basePath%>/resources/web/images/indexSecurity3.png">
+            <img src="<%=basePath%>resources/web/images/indexSecurity3.png">
             <div class="detail">
                 风控盈+监管
                 <div class="desc">
@@ -287,18 +248,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div class="title" style=" padding-left:10px; font-weight:normal; font-size:20px; color:#ccc;">
                         主要合作机构
                     </div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.picc.com/"><img onmouseover="this.src = '<%=basePath%>/resources/web/images/hzhb/1_on.png'" onmouseout="this.src = '<%=basePath%>/resources/resources/web/images/hzhb/1.jpg'" src="<%=basePath%>/resources/resources/web/images/hzhb/1.jpg" /></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.fuioupay.com/"><img onmouseover="this.src = '<%=basePath%>/resources/web/images/hzhb/2_on.png'" onmouseout="    this.src = '<%=basePath%>/resources/resources/web/images/hzhb/2.jpg'" src="<%=basePath%>/resources/resources/web/images/hzhb/2.jpg" /></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.nanhua.net/"><img onmouseover="this.src = '<%=basePath%>/resources/web/images/hzhb/3_on.png'" onmouseout="    this.src = '<%=basePath%>/resources/resources/web/images/hzhb/3.jpg'" src="<%=basePath%>/resources/resources/web/images/hzhb/3.jpg" /></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.zttrust.com.cn/stations/526623d20a/index.php/5268e6b50a"><img onmouseover="this.src = '<%=basePath%>/resources/web/images/hzhb/4_on.png'" onmouseout="    this.src = '<%=basePath%>/resources/resources/web/images/hzhb/4.jpg'" src="<%=basePath%>/resources/resources/web/images/hzhb/4.jpg" /></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://sc.hkex.com.hk/TuniS/www.hkex.com.hk/eng/index.htm/"><img onmouseover="this.src = '<%=basePath%>/resources/resources/web/images/hzhb/5_on.png'" onmouseout="    this.src = '<%=basePath%>/resources/resources/web/images/hzhb/5.jpg'" src="<%=basePath%>/resources/resources/web/images/hzhb/5.jpg" /></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.cmegroup.com/cn-s/"><img onmouseover="this.src = '<%=basePath%>/resources/web/images/hzhb/6_on.png'" onmouseout="    this.src = '<%=basePath%>/resources/resources/web/images/hzhb/6.jpg'" src="<%=basePath%>/resources/resources/web/images/hzhb/6.jpg" /></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.sgx.com/wps/portal/sgxweb_ch/home/!ut/p/a1/04_Sj9CPykssy0xPLMnMz0vMAfGjzOKNHB1NPAycDSz9wwzMDTxD_Z2Cg8PCDANdjYEKIoEKDHAARwNC-sP1o8BK8JhQkBthkO6oqAgAzDYPQQ!!/dl5/d5/L2dBISEvZ0FBIS9nQSEh/"><img onmouseover="this.src = '<%=basePath%>/resources/resources/web/images/hzhb/7_on.png'" onmouseout="    this.src = '<%=basePath%>/resources/resources/web/images/hzhb/7.jpg'" src="<%=basePath%>/resources/resources/web/images/hzhb/7.jpg" /></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.neeq.com.cn/index/"><img onmouseover="this.src = '<%=basePath%>/resources/web/images/hzhb/8_on.png'" onmouseout="    this.src = '<%=basePath%>/resources/resources/web/images/hzhb/8.jpg'" src="<%=basePath%>/resources/resources/web/images/hzhb/8.jpg" /></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.cmbchina.com/"><img onmouseover="this.src = '<%=basePath%>/resources/web/images/hzhb/9_on.png'" onmouseout="    this.src = '<%=basePath%>/resources/resources/web/images/hzhb/9.jpg'" src="<%=basePath%>/resources/resources/web/images/hzhb/9.jpg" /></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.bankcomm.com/BankCommSite/default.shtml"><img onmouseover="this.src = '<%=basePath%>/resources/web/images/hzhb/10_on.png'" onmouseout="this.src = '<%=basePath%>/resources/resources/web/images/hzhb/10.jpg'" src="<%=basePath%>/resources/resources/web/images/hzhb/10.jpg" /></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.ccb.com/cn/home/index.html"><img onmouseover="this.src = '<%=basePath%>/resources/web/images/hzhb/11_on.png'" onmouseout="    this.src = '<%=basePath%>/resources/resources/web/images/hzhb/11.jpg'" src="<%=basePath%>/resources/resources/web/images/hzhb/11.jpg" /></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.icbc.com.cn/icbc/"><img onmouseover="this.src = '<%=basePath%>/resources/web/images/hzhb/12_on.png'" onmouseout="    this.src = '<%=basePath%>/resources/resources/web/images/hzhb/12.jpg'" src="<%=basePath%>/resources/resources/web/images/hzhb/12.jpg" /></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.picc.com/"><img onmouseover="this.src = '<%=basePath%>resources/web/images/hzhb/1_on.png'" onmouseout="this.src = '<%=basePath%>resources/web/images/hzhb/1.jpg'" src="<%=basePath%>resources/web/images/hzhb/1.jpg" /></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.fuioupay.com/"><img onmouseover="this.src = '<%=basePath%>resources/web/images/hzhb/2_on.png'" onmouseout="    this.src = '<%=basePath%>resources/web/images/hzhb/2.jpg'" src="<%=basePath%>resources/web/images/hzhb/2.jpg" /></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.nanhua.net/"><img onmouseover="this.src = '<%=basePath%>resources/web/images/hzhb/3_on.png'" onmouseout="    this.src = '<%=basePath%>resources/web/images/hzhb/3.jpg'" src="<%=basePath%>resources/web/images/hzhb/3.jpg" /></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.zttrust.com.cn/stations/526623d20a/index.php/5268e6b50a"><img onmouseover="this.src = '<%=basePath%>resources/web/images/hzhb/4_on.png'" onmouseout="    this.src = '<%=basePath%>resources/web/images/hzhb/4.jpg'" src="<%=basePath%>resources/web/images/hzhb/4.jpg" /></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://sc.hkex.com.hk/TuniS/www.hkex.com.hk/eng/index.htm/"><img onmouseover="this.src = '<%=basePath%>resources/web/images/hzhb/5_on.png'" onmouseout="    this.src = '<%=basePath%>resources/web/images/hzhb/5.jpg'" src="<%=basePath%>resources/web/images/hzhb/5.jpg" /></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.cmegroup.com/cn-s/"><img onmouseover="this.src = '<%=basePath%>resources/web/images/hzhb/6_on.png'" onmouseout="    this.src = '<%=basePath%>resources/web/images/hzhb/6.jpg'" src="<%=basePath%>resources/web/images/hzhb/6.jpg" /></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.sgx.com/wps/portal/sgxweb_ch/home/!ut/p/a1/04_Sj9CPykssy0xPLMnMz0vMAfGjzOKNHB1NPAycDSz9wwzMDTxD_Z2Cg8PCDANdjYEKIoEKDHAARwNC-sP1o8BK8JhQkBthkO6oqAgAzDYPQQ!!/dl5/d5/L2dBISEvZ0FBIS9nQSEh/"><img onmouseover="this.src = '<%=basePath%>resources/web/images/hzhb/7_on.png'" onmouseout="    this.src = '<%=basePath%>resources/web/images/hzhb/7.jpg'" src="<%=basePath%>resources/web/images/hzhb/7.jpg" /></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.neeq.com.cn/index/"><img onmouseover="this.src = '<%=basePath%>resources/web/images/hzhb/8_on.png'" onmouseout="    this.src = '<%=basePath%>resources/web/images/hzhb/8.jpg'" src="<%=basePath%>resources/web/images/hzhb/8.jpg" /></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.cmbchina.com/"><img onmouseover="this.src = '<%=basePath%>resources/web/images/hzhb/9_on.png'" onmouseout="    this.src = '<%=basePath%>resources/web/images/hzhb/9.jpg'" src="<%=basePath%>resources/web/images/hzhb/9.jpg" /></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.bankcomm.com/BankCommSite/default.shtml"><img onmouseover="this.src = '<%=basePath%>resources/web/images/hzhb/10_on.png'" onmouseout="this.src = '<%=basePath%>resources/web/images/hzhb/10.jpg'" src="<%=basePath%>resources/web/images/hzhb/10.jpg" /></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.ccb.com/cn/home/index.html"><img onmouseover="this.src = '<%=basePath%>resources/web/images/hzhb/11_on.png'" onmouseout="    this.src = '<%=basePath%>resources/web/images/hzhb/11.jpg'" src="<%=basePath%>resources/web/images/hzhb/11.jpg" /></a></div>
+                    <div class="hzhb_item"><a target="_blank" href="http://www.icbc.com.cn/icbc/"><img onmouseover="this.src = '<%=basePath%>resources/web/images/hzhb/12_on.png'" onmouseout="    this.src = '<%=basePath%>resources/web/images/hzhb/12.jpg'" src="<%=basePath%>resources/web/images/hzhb/12.jpg" /></a></div>
                 </div>
 
                 <div class="ft_item ft_item_sns">
@@ -312,7 +273,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 </div>nh
                                 <div class="tips_bd">
                                     <em class="arrow0"></em>
-                                    <img src="<%=basePath%>/resources/web/images/yj.jpg" alt="微信公共平台">
+                                    <img src="<%=basePath%>resources/web/images/yj.jpg" alt="微信公共平台">
                                 </div>
                             </div>
                         </li>
@@ -335,7 +296,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                           联系我们
                         </div>
                         <div class="contactInfo" style="padding-left:30px;">
-                            <a style="display:inline-block; height:50px; width:50px; text-align:center; " target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=508886246&amp;site=qq&amp;menu=yes"><img src="<%=basePath%>;s/resources/web/images/qqIcon.png" onmouseover="$(this).css('height', '52px');" onmouseout="    $(this).css('height', '48px');" /></a>
+                            <a style="display:inline-block; height:50px; width:50px; text-align:center; " target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=508886246&amp;site=qq&amp;menu=yes"><img src="<%=basePath%>resources/web/images/qqIcon.png" onmouseover="$(this).css('height', '52px');" onmouseout="    $(this).css('height', '48px');" /></a>
                             <span class="kefu">在线客服</span><span class="time">08:30 - 21:00</span>
                         </div>
                     </div>
