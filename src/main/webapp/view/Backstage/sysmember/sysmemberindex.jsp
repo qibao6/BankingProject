@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 String path = request.getContextPath();
@@ -62,20 +63,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                           <td>注册时间</td>
                           <td>操作</td>
                           </tr>
-                          <tr class="text-center">
-                            <td>1</td>
-                            <td>13074607845</td>
-                            <td>：d d</td>
-                            <td>张丽珍</td>
-                            <td>
-                            		330126***4322
-                            	</td>
-                            <td>W3MN2C</td>
-                            <td>2016-03-08 14:20:11</td>
+                          
+                          <c:forEach items="${mlist}" var="m">
+                           <tr class="text-center">
+                            <td>${m.memberId}</td>
+                            <td>${m.mobilePhone}</td>
+                            <td>${m.names}</td>
+                            <td>${m.memberName}</td>
+                            <td>${m.memberIdentity}</td>
+                            <td>${m.invitationcode}</td>
+                            <td>${m.createDate}</td>
                             <td>
                             	<a class="btn btn-primary btn-sm" href="<%= basePath%>sysmember/memberInfo?id=121">账号详情</a>
                             </td>
                           </tr>
+                          </c:forEach>
+                         
                         </table>
 	
 	

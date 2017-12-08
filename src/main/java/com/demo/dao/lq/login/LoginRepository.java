@@ -1,4 +1,4 @@
-package com.demo.dao.lq;
+package com.demo.dao.lq.login;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

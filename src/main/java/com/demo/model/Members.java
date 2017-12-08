@@ -2,11 +2,15 @@ package com.demo.model;
 
 import java.sql.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  * 用户基本表 		seq_members
  * @author LENOVO
  *
  */
+@Entity(name="MEMBERS")
 public class Members {
 	
 	   private Integer memberId;//用户id
@@ -23,13 +27,23 @@ public class Members {
 	   private String weiBoAccount;//微博账号关联
 	   private String weixinAccount;//微信账号关联
 	   private Integer headid;//头像图片
-	   private String invitationCode;//邀请码
+	   private String invitationcode;//邀请码
 	   private String withdrawPassword;//提款密码
 	   private String qqAccount;//QQ账号关联
 	   private String invitedCode;//被邀请码
 	   private String qqNumber;//QQ号码
+	   
+	   
+	@Id
+	
 	public Integer getMemberId() {
 		return memberId;
+	}
+	public String getInvitationcode() {
+		return invitationcode;
+	}
+	public void setInvitationcode(String invitationcode) {
+		this.invitationcode = invitationcode;
 	}
 	public String getMemberName() {
 		return memberName;
@@ -70,9 +84,7 @@ public class Members {
 	public Integer getHeadid() {
 		return headid;
 	}
-	public String getInvitationCode() {
-		return invitationCode;
-	}
+	
 	public String getWithdrawPassword() {
 		return withdrawPassword;
 	}
@@ -127,9 +139,7 @@ public class Members {
 	public void setHeadid(Integer headid) {
 		this.headid = headid;
 	}
-	public void setInvitationCode(String invitationCode) {
-		this.invitationCode = invitationCode;
-	}
+	
 	public void setWithdrawPassword(String withdrawPassword) {
 		this.withdrawPassword = withdrawPassword;
 	}
