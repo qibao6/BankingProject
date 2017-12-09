@@ -2,12 +2,16 @@ package com.demo.model;
 
 import java.sql.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  * seq_financial_planner
  * @author LENOVO
  *
  */
-public class Financial_planner {
+@Entity(name="financial_planner")
+public class FinancialPlanner {
 	
 	   private Integer financialPlannerId;
 	   private Integer memberId;//会员id
@@ -18,6 +22,8 @@ public class Financial_planner {
 	   private Integer status;
 	   private Date createDate;//添加时间
 	   private Date updateDate;//修改时间
+	   
+	@Id
 	public Integer getFinancialPlannerId() {
 		return financialPlannerId;
 	}

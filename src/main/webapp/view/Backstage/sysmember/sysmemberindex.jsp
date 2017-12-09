@@ -74,7 +74,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <td>${m.invitationcode}</td>
                             <td>${m.createDate}</td>
                             <td>
-                            	<a class="btn btn-primary btn-sm" href="<%= basePath%>sysmember/memberInfo?id=121">账号详情</a>
+                            	<a class="btn btn-primary btn-sm" href="<%= basePath%>sysmember/memberInfo?memberId=${m.memberId}">账号详情</a>
                             </td>
                           </tr>
                           </c:forEach>

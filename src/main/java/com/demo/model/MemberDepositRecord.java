@@ -2,12 +2,16 @@ package com.demo.model;
 
 import java.sql.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  * 充值记录表		seq_member_deposit_record
  * @author LENOVO
  *
  */
-public class Member_deposit_record {
+@Entity
+public class MemberDepositRecord {
 	   private Integer memberDepositRecordId;
 	   private String serialNumber;//流水号
 	   private Integer memberId;//用户id
@@ -19,6 +23,7 @@ public class Member_deposit_record {
 	   private Date createDate;
 	   private Date updateDate;
 	   
+	@Id  
 	public Integer getMemberDepositRecordId() {
 		return memberDepositRecordId;
 	}
