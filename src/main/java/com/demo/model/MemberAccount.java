@@ -2,12 +2,16 @@ package com.demo.model;
 
 import java.sql.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  * 		seq_member_account
  * @author LENOVO
  *
  */
-public class Member_account {
+@Entity(name="member_account")
+public class MemberAccount {
 	
 	
 	   private Integer memberAccountId;
@@ -22,7 +26,7 @@ public class Member_account {
 	   private Integer delflag;//
 	   private Float bbinAmount;//体验金
 	   
-	   
+	@Id
 	public Integer getMemberAccountId() {
 		return memberAccountId;
 	}

@@ -1,9 +1,5 @@
 package com.demo.dao.lq.login;
 
-import java.util.List;
-
-import com.demo.model.Members;
-
 public interface UserLoginDao {
 	
 	/**

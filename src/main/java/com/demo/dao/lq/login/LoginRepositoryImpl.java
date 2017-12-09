@@ -1,12 +1,8 @@
 package com.demo.dao.lq.login;
 
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-
-import com.demo.model.Members;
 
 
 public class LoginRepositoryImpl implements UserLoginDao {
