@@ -58,7 +58,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </a>
                 </li>
                 <li  class="item">
-                    <a class="item" href="<%=basePath%>resources/subject">
+                    <a class="item" href="<%=basePath%>subject/subindex" target="myiframe">
                         产品中心
                     </a>
                 </li>

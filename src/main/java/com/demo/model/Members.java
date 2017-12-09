@@ -10,7 +10,7 @@ import javax.persistence.Id;
  * @author LENOVO
  *
  */
-@Entity(name="MEMBERS")
+@Entity
 public class Members {
 	
 	   private Integer memberId;//用户id
