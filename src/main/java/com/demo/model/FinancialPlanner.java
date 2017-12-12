@@ -4,17 +4,20 @@ import java.sql.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  * seq_financial_planner
  * @author LENOVO
  *
  */
-@Entity(name="financial_planner")
+@Entity
 public class FinancialPlanner {
 	
 	   private Integer financialPlannerId;
-	   private Integer memberId;//会员id
+	   private Members members;
+	   //private Integer memberId;//会员id
 	   private String financialPlannerName;//真实姓名
 	   private String orgname;//机构名称
 	   private String  mycard;//我的名片
@@ -23,13 +26,24 @@ public class FinancialPlanner {
 	   private Date createDate;//添加时间
 	   private Date updateDate;//修改时间
 	   
+	  
+	
+	   
+	@ManyToOne
+	@JoinColumn(name="member_id")
+	public Members getMembers() {
+		return members;
+	}
+
+	public void setMembers(Members members) {
+		this.members = members;
+	}
+
 	@Id
 	public Integer getFinancialPlannerId() {
 		return financialPlannerId;
 	}
-	public Integer getMemberId() {
-		return memberId;
-	}
+	
 	public String getFinancialPlannerName() {
 		return financialPlannerName;
 	}
@@ -54,9 +68,7 @@ public class FinancialPlanner {
 	public void setFinancialPlannerId(Integer financialPlannerId) {
 		this.financialPlannerId = financialPlannerId;
 	}
-	public void setMemberId(Integer memberId) {
-		this.memberId = memberId;
-	}
+	
 	public void setFinancialPlannerName(String financialPlannerName) {
 		this.financialPlannerName = financialPlannerName;
 	}

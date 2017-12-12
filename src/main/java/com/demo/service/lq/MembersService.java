@@ -4,7 +4,10 @@ import java.util.List;
 
 import com.demo.model.FinancialPlanner;
 import com.demo.model.MemberAccount;
+import com.demo.model.MemberBankcards;
 import com.demo.model.MemberDepositRecord;
+import com.demo.model.MemberTradeRecord;
+import com.demo.model.MemberWithdrawRecord;
 import com.demo.model.Members;
 
 public interface MembersService {
@@ -44,4 +47,37 @@ public interface MembersService {
 	 * @return
 	 */
 	List<MemberDepositRecord>  memberDepositRecord(Integer memberId);
+	/**
+	 * 钱包记录
+	 * @param memberId
+	 * @return
+	 */
+	List<MemberTradeRecord>  memberTradeRecord(Integer memberId);
+	/**
+	 * 提现记录
+	 * @param memberId
+	 * @return
+	 */
+	List<MemberWithdrawRecord>  memberWithdrawRecord(Integer memberId);
+	
+	/**
+	 * 理财师审核查询
+	 * @return
+	 */
+	List<FinancialPlanner> fplist();
+	/**
+	 * 理财师审核
+	 * @param financialPlannerId
+	 */
+	void updateStatus(Integer status,Integer financialPlannerId);
+	/**
+	 * 绑卡管理
+	 * @return
+	 */
+	List<MemberBankcards> memberBankcards();
+	/**
+	 * 充值管理
+	 * @return
+	 */
+	//List<MemberDepositRecord>  memberDepositRecords1();
 }
