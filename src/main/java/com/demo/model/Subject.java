@@ -1,12 +1,11 @@
 package com.demo.model;
 
-import java.sql.Date;
+
+
+import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 /**
  * 		sql_subject
  * @author LENOVO
@@ -19,7 +18,7 @@ public class Subject {
 	   private String serialNumber;//  varchar2(50) ,-- '流水号',
 	   private String serialNo;//  varchar2(50) ,-- '合同号',
 	   private String subjectName;//  varchar2(500) ,-- '标的名称',
-	   private String subjectType;//   CLOB,-- '标的类型',
+	   private Integer subjectType;//   CLOB,-- '标的类型',
 	   private Integer status;// number,-- '标的状态',
 	   private Float floorAmount;//   binary_float,-- '起投金额',
 	   private Float amount;// binary_float,-- '标的金额',
@@ -28,9 +27,9 @@ public class Subject {
 	   private Integer period;//  number,-- '标的周期',
 	   private String purpose;//  varchar2(500) ,-- '借款目的',
 	   private Date raiseStart;//  date ,-- '募集开始',
-	   private Date raise_end;//  date,-- '募集结束',
-	   private Integer refund_way;//  number,-- '还款方式',
-	   private Integer safeGuard_way;// number ,-- '保障方式',
+	   private Date raiseEnd;//  date,-- '募集结束',
+	   private Integer refundWay;//  number,-- '还款方式',
+	   private Integer safeguardWay;// number ,-- '保障方式',
 	   private Date startDate;//  date,-- '标的开始日期',
 	   private Date endDate;//  date,-- '标的结束日期',
 	   private String year_rate;//  decimal(16,4) ,-- '年化率',NUMBER(16,4):7.0000
@@ -48,8 +47,7 @@ public class Subject {
 	
 	   
 	@Id
-	@SequenceGenerator(name="abc",sequenceName="sql_subject",allocationSize=1)
-	@GeneratedValue(generator="abc",strategy=GenerationType.SEQUENCE)
+	
 	public Integer getSubjectId() {
 		return subjectId;
 	}
@@ -59,11 +57,11 @@ public class Subject {
 	public String getSerialNo() {
 		return serialNo;
 	}
-	public String getSubjectName() {
-		return subjectName;
-	}
-	public String getSubjectType() {
+	public Integer getSubjectType() {
 		return subjectType;
+	}
+	public void setSubjectType(Integer subjectType) {
+		this.subjectType = subjectType;
 	}
 	public Integer getStatus() {
 		return status;
@@ -89,15 +87,7 @@ public class Subject {
 	public Date getRaiseStart() {
 		return raiseStart;
 	}
-	public Date getRaise_end() {
-		return raise_end;
-	}
-	public Integer getRefund_way() {
-		return refund_way;
-	}
-	public Integer getSafeGuard_way() {
-		return safeGuard_way;
-	}
+	
 	public Date getStartDate() {
 		return startDate;
 	}
@@ -149,11 +139,12 @@ public class Subject {
 	public void setSerialNo(String serialNo) {
 		this.serialNo = serialNo;
 	}
+
+	public String getSubjectName() {
+		return subjectName;
+	}
 	public void setSubjectName(String subjectName) {
 		this.subjectName = subjectName;
-	}
-	public void setSubjectType(String subjectType) {
-		this.subjectType = subjectType;
 	}
 	public void setStatus(Integer status) {
 		this.status = status;
@@ -179,15 +170,7 @@ public class Subject {
 	public void setRaiseStart(Date raiseStart) {
 		this.raiseStart = raiseStart;
 	}
-	public void setRaise_end(Date raise_end) {
-		this.raise_end = raise_end;
-	}
-	public void setRefund_way(Integer refund_way) {
-		this.refund_way = refund_way;
-	}
-	public void setSafeGuard_way(Integer safeGuard_way) {
-		this.safeGuard_way = safeGuard_way;
-	}
+
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
@@ -230,4 +213,25 @@ public class Subject {
 	public void setExperStatus(Integer experStatus) {
 		this.experStatus = experStatus;
 	}
+	public Date getRaiseEnd() {
+		return raiseEnd;
+	}
+	public void setRaiseEnd(Date raiseEnd) {
+		this.raiseEnd = raiseEnd;
+	}
+	public Integer getRefundWay() {
+		return refundWay;
+	}
+	public void setRefundWay(Integer refundWay) {
+		this.refundWay = refundWay;
+	}
+	public Integer getSafeguardWay() {
+		return safeguardWay;
+	}
+	public void setSafeguardWay(Integer safeguardWay) {
+		this.safeguardWay = safeguardWay;
+	}
+	
+	
+	
 }

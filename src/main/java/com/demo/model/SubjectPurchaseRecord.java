@@ -1,12 +1,16 @@
 package com.demo.model;
 
 import java.sql.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
 /**
  * 标的购买		sql_subject_purchase_record
  * @author LENOVO
  *
  */
-public class Subject_purchase_record {
+@Entity
+public class SubjectPurchaseRecord {
 	
 	   private Integer sprId;//  number primary key,
 	   private String serialNumber;//  varchar2(50) ,-- '流水号',
@@ -23,7 +27,7 @@ public class Subject_purchase_record {
 	   private Integer lastProfitDay;//  number,-- '最后计息日',
 	   private String bonusInfo;//  varchar2(200) -- '红包金额信息（app端实际投资额度+红包额度）',
 	
-	   
+	@Id
 	public Integer getSprId() {
 		return sprId;
 	}

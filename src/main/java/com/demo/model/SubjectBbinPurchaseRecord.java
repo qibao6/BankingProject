@@ -1,12 +1,16 @@
 package com.demo.model;
 
 import java.sql.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
 /**
  * 体验金购买标的		sql_sbpr
  * @author LENOVO
  *
  */
-public class Subject_bbin_purchase_record {
+@Entity
+public class SubjectBbinPurchaseRecord {
 	   private Integer sbpr_id;// number primary key,
 	   private String serial_number;//  varchar2(50) ,-- '流水号',
 	   private Float amount;//   binary_float,-- '购买金额',
@@ -21,7 +25,7 @@ public class Subject_bbin_purchase_record {
 	   private Integer pay_interest_times;//  number,
 	   private Integer last_profit_day;//  number--'最后计息日',
 	   
-	   
+	@Id
 	public Integer getSbpr_id() {
 		return sbpr_id;
 	}

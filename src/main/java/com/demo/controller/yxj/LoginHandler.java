@@ -57,4 +57,9 @@ public class LoginHandler {
 	public String logins(){
 		return "front/viplist";
 	}
+	
+	@RequestMapping("regis") 
+	public String regis(){
+		return "front/regis";
+	}
 }

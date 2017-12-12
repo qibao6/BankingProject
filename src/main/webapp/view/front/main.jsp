@@ -36,8 +36,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <img src="<%=basePath%>resources/web/images/400Icon.png" onmousemove="this.src = '<%=basePath%>resources/web/images/400IconActive.png'" onmouseout="	this.src = '<%=basePath%>resources/resources/web/images/400Icon.png'">
             <div class="detail">
 
-                        <a style="font-size:18px;float:right;margin-top:5px;color:#917739;" href="<%=basePath%>web/login" target="myiframe">登录</a>
-                        <a style="font-size:18px;float:right;margin-right:15px;margin-top:5px;color:#917739;" href="<%=basePath%>resources/web/regis">注册</a>
+                        <a style="font-size:18px;float:right;margin-top:5px;color:#917739;" href="<%=basePath%>web/login" target="twoiframe">登录</a>
+                        <a style="font-size:18px;float:right;margin-right:15px;margin-top:5px;color:#917739;" href="<%=basePath%>web/regis" target="twoiframe">注册</a>
                 <br>4000-999-158
             </div>
         </div>
@@ -48,7 +48,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="row">
             <ul class="topNav">
                 <li>
-                    <a class="item first" href="<%=basePath%>view/front/first.jsp">
+                    <a class="item first" href="http://www.ying158.com/home">
                         首页
                     </a>
                 </li>
@@ -63,12 +63,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </a>
                 </li>
                 <li>
-                    <a class="item" href="<%=basePath%>subject/subindex">
+                    <a class="item" href="http://www.ying158.com/Home/NewsCenter">
                         新闻中心
                     </a>
                 </li>
                 <li>
-                    <a class="item" href="<%=basePath%>resources/mobileappdownload">
+                    <a class="item" href="/winplus/mobileappdownload">
                       下载中心
                     </a>
                 </li>
@@ -124,7 +124,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
 -->
 <div>
-	<iframe name="myiframe" frameborder="0" src="<%=basePath%>subject/subindex" width="100%" height="800px"></iframe>
+	<iframe name="myiframe" frameborder="0" src="<%=basePath%>subject/subindex" width="100%" height="800px">
+	<iframe frameborder="0" width="100%" height="800px" name="twoiframe">
+	
+	</iframe>
+	
+	</iframe>
 </div>
 
 
