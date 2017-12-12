@@ -147,6 +147,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<th width="15%">提现卡号</th>
 			<th width="15%">提现时间</th>
 		</tr>
+		<c:forEach items="${wr}" var="wr">
+		<tr>
+			<td width="5%">${wr.mwrId}</td>
+			<td width="15%">${wr.serialNumber}</td>
+			<td width="15%">${wr.amount}</td>
+			<td width="15%">
+			<c:if test="${wr.status==0}"><font color="yellow">待审核</font></c:if>
+			<c:if test="${wr.status==1}"><font color="blue">已打款</font></c:if>
+			<c:if test="${wr.status==2}"><font color="green">打款中</font></c:if>
+			<c:if test="${wr.status==3}"><font color="red">打款失败</font></c:if>
+			</td>
+			<td width="15%">${wr.bankName}</td>
+			<td width="15%">${wr.bankCard}</td>
+			<td width="15%">${wr.createDate}</td>
+		</tr>
+		</c:forEach>
 		
 	</table>
 </div>
@@ -180,7 +196,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<td width="5%">${mds.memberDepositRecordId}</td>
 			<td width="15%">${mds.serialNumber}</td>
 			<td width="15%">${mds.amount}</td>
-			<td width="15%">${mds.status==0?"待付款":"付款完成"}</td>
+			<td width="15%">
+			<c:if test="${mds.status==0}"><font color="red">待付款</font></c:if>
+			<c:if test="${mds.status==1}"><font color="blue">付款完成</font></c:if>
+			</td>
 			<td width="15%">${mds.payChannelName}</td>
 			<td width="15%">${mds.payChannelOrderNo}</td>
 			<td width="15%">${mds.createDate}</td>
@@ -213,7 +232,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<th width="15%">交易名称</th>
 			<th width="15%">交易时间</th>
 		</tr>
-		
+		<c:forEach items="${tr}" var="tr">
+		<tr>
+			<td width="5%">${tr.mtrId}</td>
+			<td width="15%">${tr.tradeNo}</td>
+			<td width="15%">${tr.amount}</td>
+			<td width="15%">
+			<c:if test="${tr.tradeStatus==0}"><font color="red">待付款</font></c:if>
+			<c:if test="${tr.tradeStatus==2}"><font color="blue">已付款</font></c:if>
+			</td>
+			<td width="15%">${tr.tradeType}</td>
+			<td width="15%">${tr.tradeName}</td>
+			<td width="15%">${tr.createDate}</td>
+		</tr>
+		</c:forEach>
 	</table>
 </div>
 <script type="text/javascript">

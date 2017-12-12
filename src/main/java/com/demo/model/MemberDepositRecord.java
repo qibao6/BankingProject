@@ -14,7 +14,8 @@ import javax.persistence.Id;
 public class MemberDepositRecord {
 	   private Integer memberDepositRecordId;
 	   private String serialNumber;//流水号
-	   private Integer memberId;//用户id
+	   private Integer memberId;//会员id
+	  // private Members members;//用户id
 	   private Float amount;//金额
 	   private Integer status;//状态(0:待付款;1:完成)
 	   private String payChannelName;//充值渠道名称
@@ -23,6 +24,22 @@ public class MemberDepositRecord {
 	   private Date createDate;
 	   private Date updateDate;
 	   
+	   
+	/*@ManyToOne
+	@JoinColumn(name="member_id")   
+	public Members getMembers() {
+		return members;
+	}
+	public void setMembers(Members members) {
+		this.members = members;
+	}*/
+	
+	public Integer getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(Integer memberId) {
+		this.memberId = memberId;
+	}
 	@Id  
 	public Integer getMemberDepositRecordId() {
 		return memberDepositRecordId;
@@ -30,9 +47,7 @@ public class MemberDepositRecord {
 	public String getSerialNumber() {
 		return serialNumber;
 	}
-	public Integer getMemberId() {
-		return memberId;
-	}
+	
 	public Float getAmount() {
 		return amount;
 	}
@@ -60,9 +75,7 @@ public class MemberDepositRecord {
 	public void setSerialNumber(String serialNumber) {
 		this.serialNumber = serialNumber;
 	}
-	public void setMemberId(Integer memberId) {
-		this.memberId = memberId;
-	}
+	
 	public void setAmount(Float amount) {
 		this.amount = amount;
 	}

@@ -1,12 +1,16 @@
 package com.demo.model;
 
 import java.sql.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
 /**
  * 交易记录表		sql_member_trade_record
  * @author LENOVO
  *
  */
-public class Member_trade_record {
+@Entity
+public class MemberTradeRecord {
 	
 	   private Integer mtrId;//  number primary key,
 	   private Integer memberId;//  number,--'用户id',
@@ -23,7 +27,7 @@ public class Member_trade_record {
 	   private Date createDate;//  date,
 	   private Date updateDate;//  date
 	   
-	   
+	@Id
 	public Integer getMtrId() {
 		return mtrId;
 	}

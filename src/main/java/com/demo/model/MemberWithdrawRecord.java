@@ -2,12 +2,16 @@ package com.demo.model;
 
 import java.sql.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  * 提现记录表 		sql_member_withdraw_record
  * @author LENOVO
  *
  */
-public class Member_withdraw_record {
+@Entity
+public class MemberWithdrawRecord {
 	
 	   private Integer mwrId;// number primary key,
 	   private String serialNumber;//  varchar2(50) ,-- '流水号',
@@ -22,7 +26,7 @@ public class Member_withdraw_record {
 	   private Date createDate;//  date,
 	   private Date updateDate;//  date
 	   
-	   
+	@Id
 	public Integer getMwrId() {
 		return mwrId;
 	}

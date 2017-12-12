@@ -2,30 +2,47 @@ package com.demo.model;
 
 import java.sql.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import org.springframework.data.jpa.repository.Query;
+
 /**
  * 		seq_member_bankcards
  * @author LENOVO
  *
  */
-public class Member_bankcards {
+@Entity
+public class MemberBankcards {
 	
 	   private Integer memberBankcardsId;
 	   private String memberBankcardsType;//银行卡类型
-	   private Integer memberId;//用户id
+	   private Members members;//用户id
+	 //  private Integer memberId;
 	   private String cardNo;//卡号
 	   private Integer delflag;//是否删除（0：正常使用，2：被删除）
 	   private Date createDate;
 	   private Date updateDate;
 	   private String cardaddress;//开户银行所在地
-	   
+	
+	
+	@ManyToOne
+	@JoinColumn(name="member_id")
+	public Members getMembers() {
+		return members;
+	}
+	public void setMembers(Members members) {
+		this.members = members;
+	}
+	
+	@Id
 	public Integer getMemberBankcardsId() {
 		return memberBankcardsId;
 	}
 	public String getMemberBankcardsType() {
 		return memberBankcardsType;
-	}
-	public Integer getMemberId() {
-		return memberId;
 	}
 	public String getCardNo() {
 		return cardNo;
@@ -47,9 +64,6 @@ public class Member_bankcards {
 	}
 	public void setMemberBankcardsType(String memberBankcardsType) {
 		this.memberBankcardsType = memberBankcardsType;
-	}
-	public void setMemberId(Integer memberId) {
-		this.memberId = memberId;
 	}
 	public void setCardNo(String cardNo) {
 		this.cardNo = cardNo;
