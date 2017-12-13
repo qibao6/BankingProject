@@ -41,8 +41,8 @@ public class Subject {
 	   private String borrowername;//  varchar2(100) ,-- '借款人姓名',
 	   private Integer borrowerid;//  number,--'借款人id',
 	   private Integer bought;//  number,--'已购人数',
-	   private String projectDetails;//  CLOB,-- '项目详情',
-	   private String safetyControl;//  CLOB,--'安全保障',
+	   private String projectdetails;//  CLOB,-- '项目详情',
+	   private String safetycontrol;//  CLOB,--'安全保障',
 	   private Integer experStatus;//  number-- '体验金是否可以购买（0：否，1：是）',
 	
 	   
@@ -121,12 +121,8 @@ public class Subject {
 	public Integer getBought() {
 		return bought;
 	}
-	public String getProjectDetails() {
-		return projectDetails;
-	}
-	public String getSafetyControl() {
-		return safetyControl;
-	}
+	
+	
 	public Integer getExperStatus() {
 		return experStatus;
 	}
@@ -204,11 +200,13 @@ public class Subject {
 	public void setBought(Integer bought) {
 		this.bought = bought;
 	}
-	public void setProjectDetails(String projectDetails) {
-		this.projectDetails = projectDetails;
+	
+	
+	public String getProjectdetails() {
+		return projectdetails;
 	}
-	public void setSafetyControl(String safetyControl) {
-		this.safetyControl = safetyControl;
+	public void setProjectdetails(String projectdetails) {
+		this.projectdetails = projectdetails;
 	}
 	public void setExperStatus(Integer experStatus) {
 		this.experStatus = experStatus;
@@ -230,6 +228,12 @@ public class Subject {
 	}
 	public void setSafeguardWay(Integer safeguardWay) {
 		this.safeguardWay = safeguardWay;
+	}
+	public String getSafetycontrol() {
+		return safetycontrol;
+	}
+	public void setSafetycontrol(String safetycontrol) {
+		this.safetycontrol = safetycontrol;
 	}
 	
 	
