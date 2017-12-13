@@ -31,7 +31,7 @@ public class LoginHandler {
 	}
 
 
-	//登录成功后，跳到会员中心界面
+	//登录成功后
 	@RequestMapping("success") 
 	@ResponseBody
 	public Map<String,Object> success(HttpServletRequest request,HttpServletResponse response){
@@ -47,7 +47,7 @@ public class LoginHandler {
 			//map.put("islogin", 1);
 			return map;
 		}
-		//request.getSession().setAttribute("logins", list);
+		request.getSession().setAttribute("members", members);
 		map.put("code", 0);
 		
 		return map;

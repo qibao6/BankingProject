@@ -25,6 +25,8 @@ public class SubjectHandler {
 		System.out.println("==============================");
 				List<Object[]> sublist=subjectService.findsubindex();
 				map.put("sublist", sublist);
+				
+				
 		return "front/subjectlist";
 	}
 
@@ -64,6 +66,7 @@ public class SubjectHandler {
 	//固收类理财购买
 	@RequestMapping("purchase/{subjectId}")
 	public String purchase(Map<String,Object> map,@PathVariable Integer subjectId){
+		System.out.println("再见面时，谈笑风生不动情");
 		Subject subject=subjectService.getByid(subjectId);
 		map.put("subject",subject);
 //		List<Object[]> sublist=subjectService.findsubindex();
