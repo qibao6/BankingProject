@@ -39,7 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <img src="<%=basePath%>resources/web/images/400Icon.png" onmousemove="this.src = '<%=basePath%>resources/web/images/400IconActive.png'" onmouseout="	this.src = '<%=basePath%>resources/web/images/400Icon.png'">
             <div class="detail">
 
-                    	<div style="font-size:16px;float:right;margin-top:5px;color:#917739;">  欢迎尚镜,<a href="<%=basePath%>account/touZiList">[会员中心]</a>,<a href="<%=basePath%>web/logout">[退出]</a></div>
+                    	<div style="font-size:16px;float:right;margin-top:5px;color:#917739;">  欢迎${members.names },<a href="<%=basePath%>account/touZiList">[会员中心]</a>,<a href="<%=basePath%>web/logout">[退出]</a></div>
                 <br>4000-999-158
             </div>
         </div>
@@ -113,7 +113,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <td align="left" valign="middle" class="info">
             <a href="<%=basePath%>account/security">
                 <div class="img"><img src="<%=basePath%>resources/web/images/userPic.jpg"></div>
-                <h2>尚镜，<span>您好!</span></h2>
+                <h2>${members.names }，<span>您好!</span></h2>
             </a>
             <div class="safe">账户安全&nbsp;&nbsp;<span class="scroll"><em style="width:100%"></em></span></div>
             <ul class="listIco iconfont">

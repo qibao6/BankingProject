@@ -154,7 +154,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
         </div>
     </div>
-<script type="text/javascript" src="<%=basePath%>resources/web/js/login.js"></script>
+<script type="text/javascript" src="<%=basePath%>view/front/login.js"></script>
 <script type="text/javascript">
 $(function(){
 	var b = "<%=basePath%>";

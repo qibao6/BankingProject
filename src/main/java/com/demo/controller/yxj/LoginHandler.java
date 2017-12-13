@@ -47,15 +47,10 @@ public class LoginHandler {
 			//map.put("islogin", 1);
 			return map;
 		}
-		//request.getSession().setAttribute("logins", list);
+		request.getSession().setAttribute("members", members);
 		map.put("code", 0);
 		
 		return map;
-	}
-	
-	@RequestMapping("logins") 
-	public String logins(){
-		return "front/viplist";
 	}
 	
 	@RequestMapping("regis") 
