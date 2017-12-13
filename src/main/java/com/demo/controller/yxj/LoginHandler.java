@@ -53,11 +53,6 @@ public class LoginHandler {
 		return map;
 	}
 	
-	@RequestMapping("logins") 
-	public String logins(){
-		return "front/viplist";
-	}
-	
 	@RequestMapping("regis") 
 	public String regis(){
 		return "front/regis";
