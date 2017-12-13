@@ -76,12 +76,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <td>
                             <c:if test="${m.delflag==0}"><font color="blue">正常</font></c:if>
 							<c:if test="${m.delflag==1}"><font color="red">被删除</font></c:if>
-                            	
-                            		<!--<span style="color:blue;">正常</span>  -->
                             </td>
                             <td>${m.createDate}</td>
                             <td>
-                            		<a href="<%= basePath%>sysmember/unBankCard/96" class="btn btn-primary btn-sm" onclick="return confirm('你确定要解绑？')">解绑银行卡</a>
+                             <c:if test="${m.delflag==0}"><a href="<%= basePath%>sysmember/unBankCard?memberBankcardsId=${m.memberBankcardsId}" class="btn btn-primary btn-sm" onclick="return confirm('你确定要解绑？')">解绑银行卡</a></c:if>
+                           	<c:if test="${m.delflag==1}">已解绑</c:if>
+                            		
                             </td>
                           </tr>
                          </c:forEach>

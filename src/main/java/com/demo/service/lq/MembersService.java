@@ -79,5 +79,11 @@ public interface MembersService {
 	 * 充值管理
 	 * @return
 	 */
-	//List<MemberDepositRecord>  memberDepositRecords1();
+	List<MemberDepositRecord>  findAllMDR();
+	/**
+	 * 解绑银行卡
+	 * @param delflag
+	 * @param memberBankcardsId
+	 */
+	void updateDelflag(Integer delflag,Integer memberBankcardsId);
 }

@@ -4,18 +4,21 @@ import java.sql.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  * 		seq_member_account
  * @author LENOVO
  *
  */
-@Entity(name="member_account")
+@Entity
 public class MemberAccount {
 	
 	
 	   private Integer memberAccountId;
-	   private Integer memberId;//用户id
+	   private Members members;//用户id
+	   //private Integer memberId;
 	   private Float useableBalance;//可用余额
 	   private Float imusealeBalance;//冻结余额
 	   private Float totalProfit;//累计收益
@@ -25,13 +28,20 @@ public class MemberAccount {
 	   private Float investAmount;//投资总额
 	   private Integer delflag;//
 	   private Float bbinAmount;//体验金
+	
+	   @ManyToOne
+	   @JoinColumn(name="member_id")
+		public Members getMembers() {
+			return members;
+		}
+
+		public void setMembers(Members members) {
+			this.members = members;
+		}
 	   
 	@Id
 	public Integer getMemberAccountId() {
 		return memberAccountId;
-	}
-	public Integer getMemberId() {
-		return memberId;
 	}
 	public Float getUseableBalance() {
 		return useableBalance;
@@ -62,9 +72,6 @@ public class MemberAccount {
 	}
 	public void setMemberAccountId(Integer memberAccountId) {
 		this.memberAccountId = memberAccountId;
-	}
-	public void setMemberId(Integer memberId) {
-		this.memberId = memberId;
 	}
 	public void setUseableBalance(Float useableBalance) {
 		this.useableBalance = useableBalance;

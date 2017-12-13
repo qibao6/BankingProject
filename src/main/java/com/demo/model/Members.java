@@ -35,7 +35,6 @@ public class Members {
 	   
 	   
 	@Id
-	
 	public Integer getMemberId() {
 		return memberId;
 	}
