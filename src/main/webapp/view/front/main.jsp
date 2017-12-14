@@ -135,7 +135,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<iframe name="myiframe" frameborder="0" scrolling="no"
 				src="<%=basePath%>subject/subindex" width="100%" height="1100px">
 				
-
 			</iframe>
 		</div>
 
@@ -341,7 +340,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="tips_hd">
 									<em class="ico_sns ico_weixin"></em> <span class="txt">微信公众号</span>
 								</div>
-								nh
 								<div class="tips_bd">
 									<em class="arrow0"></em> <img
 										src="<%=basePath%>resources/web/images/yj.jpg" alt="微信公共平台">
