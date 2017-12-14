@@ -23,17 +23,16 @@ public class HyzxHandler {
 	public String logins(HttpServletRequest request,Map<String, Object> map){
 		Members members=(Members) request.getSession().getAttribute("members");
 		map.put("members", members);
-		MemberAccount memberAccount=mAccountService.findById(members.getMemberId());
-		map.put("memberAccount", memberAccount);
 		return "front/viplist";
 	}
 	
-//	@RequestMapping(value="main",method=RequestMethod.GET)
-//	public String huiyuan(HttpServletRequest request,Map<String, Object> map) {
-//		Members members=(Members) request.getSession().getAttribute("members");
-//		map.put("members", members);
-//		System.out.println(members.getNames());
-//		return null;
-//		
-//	}
+	@RequestMapping(value="main",method=RequestMethod.GET)
+	public String huiyuan(HttpServletRequest request,Map<String, Object> map) {
+		Members members=(Members) request.getSession().getAttribute("members");
+		map.put("members", members);
+		MemberAccount memberAccount=mAccountService.findById(members.getMemberId());
+		map.put("memberAccount", memberAccount);
+		return "hyzx/main";
+		
+	}
 }
