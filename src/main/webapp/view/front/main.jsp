@@ -1,6 +1,7 @@
-<%@page import="com.demo.model.Users"%>
+ <%@page import="com.demo.model.Users"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 String path = request.getContextPath();
@@ -47,19 +48,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<img src="<%=basePath%>resources/web/images/400Icon.png"
 					onmousemove="this.src = '<%=basePath%>resources/web/images/400IconActive.png'"
 					onmouseout="	this.src = '<%=basePath%>resources/web/images/400Icon.png'">
-					
-					
-							<div class="detail">
-					<a
-						style="font-size: 18px; float: right; margin-top: 5px; color: #917739;"
-						href="<%=basePath%>web/login" target="twoiframe">登录</a> <a
-						style="font-size: 18px; float: right; margin-right: 15px; margin-top: 5px; color: #917739;"
-						href="<%=basePath%>web/regis" target="twoiframe">注册</a> <br>4000-999-158
-				</div>
 				
+				
+						<div class="detail">
+					
+						<c:if test="${members==null}">
+							<a
+						style="font-size: 18px; float: right; margin-top: 5px; color: #917739;"
+						href="<%=basePath%>web/login" target="myiframe">登录</a> <a
+						style="font-size: 18px; float: right; margin-right: 15px; margin-top: 5px; color: #917739;"
+						href="<%=basePath%>web/regis" target="myiframe">注册</a> <br>4000-999-158
+						</c:if>
+						<c:if test="${members!=null}">
+						
+
+                    	<div style="font-size:16px;float:right;margin-top:5px;color:#917739;">  欢迎${members.names },<a href="<%=basePath%>hyzx/logins" target="myiframe">[会员中心]</a>,<a href="<%=basePath%>web/logout" target="myiframe">[退出]</a></div>
+                <br>4000-999-158
+						
+						
+						</c:if>
+							
 							
 						
-			
+						
+					
+							
+					
+				</div>
 			</div>
 		</div>
 	</div>
@@ -72,7 +87,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<li><a class="item" href="http://www.ying158.com/home/kcenter">
 							网上体验中心 </a></li>
 					<li class="item"><a class="item"
-						href="<%=basePath%>subject/subindex" target="myiframe"> 产品中心 </a>
+						href="<%=basePath%>view/front/main.jsp"> 产品中心 </a>
 					</li>
 					<li><a class="item"
 						href="http://www.ying158.com/Home/NewsCenter"> 新闻中心 </a></li>
@@ -92,7 +107,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript">
+	<script type="text/javascript"><div class="sdbanner probanner"></div>
     $(function(){
         function showIn(url){
             var info="<div class='mydig'><div class='bg'></div><div class='imgbox'><a href="+url+"></a></div></div>";
@@ -107,20 +122,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     });
 
 </script>
-	<div class="sdbanner probanner"></div>
-	<div class="proMain">
-		<div class="hwpzNav">
-			<ul>
-				<li class="first"><a class="active"
-					href="<%=basePath%>subject/subindex" target="myiframe">固收类理财</a></li>
-				<li class="second"><a href="<%=basePath%>finance/financelist"
-					target="myiframe">私募基金</a></li>
-				<li class="three"><a href="<%=basePath%>subject/oversea"
-					target="myiframe">海外配置</a></li>
-				<li class="four"><a href="<%=basePath%>finance/financelist"
-					target="myiframe">股权基金</a></li>
-			</ul>
-		</div>
+
 
 
 		<meta name="keywords"
@@ -128,17 +130,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<meta name="description" content="盈+——全国首家互联网金融交流体验中心，与您共盈，给财富做加法。" />
 		<link href="<%=basePath%>resources/web/images/icon.ico"
 			type="image/x-icon" rel="shortcut icon">
-		<!--  
-<div>
-	<iframe name="myiframe" src="<%=basePath%>subject/subindex" width="970px" height="500px"></iframe>
-</div>
--->
+	
 		<div>
-			<iframe name="myiframe" frameborder="0"
-				src="<%=basePath%>subject/subindex" width="100%" height="800px">
-				<iframe frameborder="0" width="100%" height="800px" name="twoiframe">
-
-				</iframe>
+			<iframe name="myiframe" frameborder="0" scrolling="no"
+				src="<%=basePath%>subject/subindex" width="100%" height="1100px">
+				
 
 			</iframe>
 		</div>

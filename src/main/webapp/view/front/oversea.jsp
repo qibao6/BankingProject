@@ -27,7 +27,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="<%=basePath%>resources/web/layer/layer.js"></script>
 <script src="<%=basePath%>resources/web/echart/dist/echarts.js"></script></head>
 <body>
-
+	<div class="sdbanner probanner"></div>
+	<div class="proMain">
+		<div class="hwpzNav">
+			<ul>
+				<li class="first"><a class="active"
+					href="<%=basePath%>subject/subindex" target="myiframe">固收类理财</a></li>
+				<li class="second"><a href="<%=basePath%>finance/financelist"
+					target="myiframe">私募基金</a></li>
+				<li class="three"><a href="<%=basePath%>subject/oversea"
+					target="myiframe">海外配置</a></li>
+				<li class="four"><a href="<%=basePath%>finance/financelist"
+					target="myiframe">股权基金</a></li>
+			</ul>
+		</div>
 
 <script type="text/javascript">
     $(function(){

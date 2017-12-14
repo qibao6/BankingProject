@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 String path = request.getContextPath();
@@ -25,73 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="<%=basePath%>resources/web/js/jquery.js"></script>
 <script type="text/javascript" src="<%=basePath%>resources/web/layer/layer.js"></script>
 <script src="<%=basePath%>resources/web/echart/dist/echarts.js"></script></head>
-<div class="logo container">
-    <div class="row">
-        <div class="logoImg">
-            <a href="http://www.ying158.com/home"><img src="<%=basePath%>resources/web/images/logo2.png" onmouseover="this.src = '<%=basePath%>/resources/resources/web/images/logo1.png'" onmouseout="this.src = '<%=basePath%>resources/resources/web/images/logo2.png'"></a>
-        </div>
-        <div class="telInfo">
-            <img src="<%=basePath%>resources/web/images/400Icon.png" onmousemove="this.src = '<%=basePath%>resources/web/images/400IconActive.png'" onmouseout="	this.src = '<%=basePath%>resources/resources/web/images/400Icon.png'">
-            <div class="detail">
 
-                        <a style="font-size:18px;float:right;margin-top:5px;color:#917739;" href="<%=basePath%>web/login" target="twoiframe">登录</a>
-                        <a style="font-size:18px;float:right;margin-right:15px;margin-top:5px;color:#917739;" href="<%=basePath%>web/regis" target="twoiframe">注册</a>
-                <br>4000-999-158
-            </div>
-        </div>
-    </div>
-</div>
-<div class="jwNav">
-    <div class="container">
-        <div class="row">
-            <ul class="topNav">
-                <li>
-                    <a class="item first" href="http://www.ying158.com/home">
-                        首页
-                    </a>
-                </li>
-                <li>
-                    <a class="item" href="http://www.ying158.com/home/kcenter">
-                        网上体验中心
-                    </a>
-                </li>
-                <li  class="item">
-                    <a class="item" href="<%=basePath%>subject/subindex" target="myiframe">
-                        产品中心
-                    </a>
-                </li>
-                <li>
-                    <a class="item" href="http://www.ying158.com/Home/NewsCenter">
-                        新闻中心
-                    </a>
-                </li>
-                <li>
-                    <a class="item" href="/winplus/mobileappdownload">
-                      下载中心
-                    </a>
-                </li>
-                <li>
-                    <a class="item " href="http://www.ying158.com/Home/Help">
-                        盈+商学院
-                    </a>
-                </li>
-                <li>
-                    <a class="item" href="http://ying158.com/UserGuide/TradingSoftware">
-                        投研中心
-                    </a>
-                </li>
-                <li>
-                    <a class="item last" href="http://pro.ying158.com/account/trades/profit/records">
-                        我的加法库
-                    </a>
-                </li>
-
-
-
-            </ul>
-        </div>
-    </div>
-</div>
 <script type="text/javascript">
     $(function(){
         function showIn(url){
@@ -101,15 +36,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     });
 
-</script> <div class="sdbanner probanner"></div>
+</script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
-
+<div class="sdbanner probanner"></div>
 <div class="proMain">
     <div class="conTit">
-        <span><a style="color:#9d8440;" href="<%=basePath%>view/front/main.jsp">其他标的</a></span>
+        <span><a style="color:#9d8440;" href="<%=basePath%>subject/subindex" target="myiframe">其他标的</a></span>
         <h2><em>￥</em>${subject.subjectName}</h2>
     </div>
     <table class="conTable" width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -135,10 +70,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <p>已投金额(元)</p>
                     <div class="li4" style=""><span id="checkmoney" style="color: red;"></span></div>
                     <div class="tit">
-                    	<span class="fr">
+                    <c:if test="${members==null}">
+                    <span class="fr">
                             <a style="color:#2695d5" class="unlogin" href="<%=basePath%>web/login" target="twoiframe">登录</a>后可见
 						</span>
+						</c:if>
+						<c:if test="${members!=null}">
+						<span class="fr">
+                        157.61元&nbsp;&nbsp;<a href="/winplus/account/deposit">充值&nbsp;&nbsp;&nbsp;</a>
+						</span>
+						</c:if>
+                    	
                         <h2>账户余额</h2>
+                        
                         <div id="count">预期所得收益<i
                                 data-num="0.001151"
                                 id="num">0</i>元
@@ -243,12 +187,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         var bbinAll = $("#bbinAll");
         var addMoney = $("#addMoney");
         var mytext = $("#mytext");
-        var exists = false;
+        var exists = ${members};
         var authBankCard=false;
         
             $(".submit").click(function () {
 
-                if (exists == false) {
+                if (exists == null) {
                     $("#checkmoney").html("请先登陆!");
                     $(".li4").show(100);
                     return false;

@@ -15,11 +15,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.demo.model.Members;
 import com.demo.service.yxj.LoginServices;
+import com.demo.service.yxj.SubjectService;
 
 @Controller
 @RequestMapping("web")
 public class LoginHandler {
 
+	@Autowired
+	SubjectService subjectService;
 	@Autowired
 	LoginServices loginService;
 
@@ -49,12 +52,20 @@ public class LoginHandler {
 		}
 		request.getSession().setAttribute("members", members);
 		map.put("code", 0);
-		
+
 		return map;
 	}
-	
+
 	@RequestMapping("regis") 
 	public String regis(){
 		return "front/regis";
+	}
+
+	@RequestMapping("logout") 
+	public String logout(Map<String,Object> map){
+		
+
+
+		return "redirect:/subject/subindex";
 	}
 }
