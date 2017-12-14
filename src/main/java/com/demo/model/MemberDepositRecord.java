@@ -4,6 +4,8 @@ import java.sql.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  * 充值记录表		seq_member_deposit_record
@@ -14,8 +16,7 @@ import javax.persistence.Id;
 public class MemberDepositRecord {
 	   private Integer memberDepositRecordId;
 	   private String serialNumber;//流水号
-	   private Integer memberId;//会员id
-	  // private Members members;//用户id
+	   private Members members;//用户id
 	   private Float amount;//金额
 	   private Integer status;//状态(0:待付款;1:完成)
 	   private String payChannelName;//充值渠道名称
@@ -25,20 +26,13 @@ public class MemberDepositRecord {
 	   private Date updateDate;
 	   
 	   
-	/*@ManyToOne
-	@JoinColumn(name="member_id")   
+	@ManyToOne
+	@JoinColumn(name="member_id") 
 	public Members getMembers() {
 		return members;
 	}
 	public void setMembers(Members members) {
 		this.members = members;
-	}*/
-	
-	public Integer getMemberId() {
-		return memberId;
-	}
-	public void setMemberId(Integer memberId) {
-		this.memberId = memberId;
 	}
 	@Id  
 	public Integer getMemberDepositRecordId() {

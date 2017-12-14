@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+<%@taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 String path = request.getContextPath();
@@ -72,7 +73,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <td>${m.memberName}</td>
                             <td>${m.memberIdentity}</td>
                             <td>${m.invitationcode}</td>
-                            <td>${m.createDate}</td>
+                            <td><f:formatDate value="${m.createDate}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
                             <td>
                             	<a class="btn btn-primary btn-sm" href="<%= basePath%>sysmember/memberInfo?memberId=${m.memberId}">账号详情</a>
                             </td>

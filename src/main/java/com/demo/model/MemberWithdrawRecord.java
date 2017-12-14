@@ -4,6 +4,8 @@ import java.sql.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  * 提现记录表 		sql_member_withdraw_record
@@ -15,7 +17,7 @@ public class MemberWithdrawRecord {
 	
 	   private Integer mwrId;// number primary key,
 	   private String serialNumber;//  varchar2(50) ,-- '流水号',
-	   private Integer memberId;//  number,--'用户id',
+	   private Members members;//  number,--'用户id',
 	   private Float amount;//  binary_float ,-- '提现金额',
 	   private String bankName;//  varchar2(20) ,-- '银行名称',
 	   private String bankCard;//  varchar2(50) ,-- '卡号',
@@ -25,16 +27,22 @@ public class MemberWithdrawRecord {
 	   private String channelName;//  varchar2(200) ,-- '打款通道（富友,贝付）',
 	   private Date createDate;//  date,
 	   private Date updateDate;//  date
-	   
+	 
+	   @ManyToOne
+	   @JoinColumn(name="member_id")
+		public Members getMembers() {
+			return members;
+		}
+
+		public void setMembers(Members members) {
+			this.members = members;
+		}
 	@Id
 	public Integer getMwrId() {
 		return mwrId;
 	}
 	public String getSerialNumber() {
 		return serialNumber;
-	}
-	public Integer getMemberId() {
-		return memberId;
 	}
 	public Float getAmount() {
 		return amount;
@@ -68,9 +76,6 @@ public class MemberWithdrawRecord {
 	}
 	public void setSerialNumber(String serialNumber) {
 		this.serialNumber = serialNumber;
-	}
-	public void setMemberId(Integer memberId) {
-		this.memberId = memberId;
 	}
 	public void setAmount(Float amount) {
 		this.amount = amount;
