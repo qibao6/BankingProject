@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 /**
  * 		seq_member_account
  * @author LENOVO
+ *用户资金信息表（冻结资金在购买后要加）
  *
  */
 @Entity

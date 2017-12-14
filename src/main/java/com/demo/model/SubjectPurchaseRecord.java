@@ -7,7 +7,7 @@ import javax.persistence.Id;
 /**
  * 标的购买		sql_subject_purchase_record
  * @author LENOVO
- *
+ *购买记录表
  */
 @Entity
 public class SubjectPurchaseRecord {

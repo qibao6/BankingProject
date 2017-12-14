@@ -72,7 +72,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div class="tit">
                     <c:if test="${members==null}">
                     <span class="fr">
-                            <a style="color:#2695d5" class="unlogin" href="<%=basePath%>web/login" target="twoiframe">登录</a>后可见
+                            <a style="color:#2695d5" class="unlogin" href="<%=basePath%>web/login" target="myiframe">登录</a>后可见
 						</span>
 						</c:if>
 						<c:if test="${members!=null}">
@@ -95,6 +95,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <p class="preBox">
                         <input type="checkbox" id="registerRule" class="registerRule" checked="checked"><span
                             class="fl">同意<a href="/winplus/web/syxy" target="_black">《产品协议》</a></span>
+                            <c:if test="${members!=null}">
+                            <button id="redPacket">使用红包</button>
+                            </c:if>
                     </p>
                     <button class="submit">确认抢购</button>
                 </div>
@@ -171,6 +174,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript">
 
     $(function () {
+    	var members=document.get
         $(".tbConBox .tab a").click(function () {
             if (!$(this).hasClass("select")) {
                 var num = $(this).index();
@@ -187,16 +191,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         var bbinAll = $("#bbinAll");
         var addMoney = $("#addMoney");
         var mytext = $("#mytext");
-        var exists = ${members};
+        var exists = false;
+      
         var authBankCard=false;
         
             $(".submit").click(function () {
-
-                if (exists == null) {
+            	
+            	
+	
+                if (exists == false) {
                     $("#checkmoney").html("请先登陆!");
                     $(".li4").show(100);
                     return false;
                 }
+               
             });
 
 

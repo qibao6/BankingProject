@@ -5,7 +5,7 @@ import java.sql.Date;
 /**
  * 标的订单			sql_subject_order_record
  * @author LENOVO
- *
+ *订单信息表
  */
 public class Subject_order_record {
 	
