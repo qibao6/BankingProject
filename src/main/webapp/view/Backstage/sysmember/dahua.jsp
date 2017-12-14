@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 String path = request.getContextPath();
@@ -77,7 +78,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <c:if test="${m.delflag==0}"><font color="blue">正常</font></c:if>
 							<c:if test="${m.delflag==1}"><font color="red">被删除</font></c:if>
                             </td>
-                            <td>${m.createDate}</td>
+                            <td><f:formatDate value="${m.createDate}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
                             <td>
                              <c:if test="${m.delflag==0}"><a href="<%= basePath%>sysmember/unBankCard?memberBankcardsId=${m.memberBankcardsId}" class="btn btn-primary btn-sm" onclick="return confirm('你确定要解绑？')">解绑银行卡</a></c:if>
                            	<c:if test="${m.delflag==1}">已解绑</c:if>

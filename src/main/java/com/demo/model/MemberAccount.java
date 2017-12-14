@@ -18,7 +18,6 @@ public class MemberAccount {
 	
 	   private Integer memberAccountId;
 	   private Members members;//用户id
-	   //private Integer memberId;
 	   private Float useableBalance;//可用余额
 	   private Float imusealeBalance;//冻结余额
 	   private Float totalProfit;//累计收益
@@ -26,7 +25,7 @@ public class MemberAccount {
 	   private Date updateDate;//修改时间
 	   private Float bonusAmount;//红包金额
 	   private Float investAmount;//投资总额
-	   private Integer delflag;//
+	   private Integer delflag;//注册奖励状态（0：注册未奖励 1：注册已奖励）
 	   private Float bbinAmount;//体验金
 	
 	   @ManyToOne

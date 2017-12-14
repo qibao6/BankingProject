@@ -78,5 +78,11 @@ public class SysmemberindexHandler {
 		membersService.updateDelflag(delflag, memberBankcardsId);
 		return "redirect:/sysmember/dahua";
 	}
+
+	@RequestMapping("inviteRewards")
+	public String inviteRewards(Integer memberBankcardsId){
+		
+		return "/Backstage/sysmember/inviteRewards";
+	}
 	
 }
