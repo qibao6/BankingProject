@@ -2,12 +2,16 @@ package com.demo.model;
 
 import java.sql.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  * 奖励记录表 seq_award_records
  * @author LENOVO
  *
  */
-public class Award_records {
+@Entity
+public class AwardRecords {
 	private Integer awardRecordsId;
 	private Integer invitingid;//邀请人id
 	private Integer byinvitingid;//被邀请人id
@@ -17,7 +21,7 @@ public class Award_records {
 	private Date addtime;//添加时间
 	
 	
-	
+	@Id
 	public Integer getAwardRecordsId() {
 		return awardRecordsId;
 	}

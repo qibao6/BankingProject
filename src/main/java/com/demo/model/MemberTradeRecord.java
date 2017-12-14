@@ -4,6 +4,8 @@ import java.sql.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 /**
  * 交易记录表		sql_member_trade_record
  * @author LENOVO
@@ -13,7 +15,7 @@ import javax.persistence.Id;
 public class MemberTradeRecord {
 	
 	   private Integer mtrId;//  number primary key,
-	   private Integer memberId;//  number,--'用户id',
+	   private Members members;//  number,--'用户id',
 	   private String tradeNo;//  varchar2(50),-- '交易号',
 	   private String tradeName;//  varchar2(100),--'交易名称',
 	   private String counterpart;//  varchar2(100),-- '交易对方',
@@ -27,12 +29,18 @@ public class MemberTradeRecord {
 	   private Date createDate;//  date,
 	   private Date updateDate;//  date
 	   
+	   @ManyToOne
+	   @JoinColumn(name="member_id")
+		public Members getMembers() {
+			return members;
+		}
+
+		public void setMembers(Members members) {
+			this.members = members;
+		}
 	@Id
 	public Integer getMtrId() {
 		return mtrId;
-	}
-	public Integer getMemberId() {
-		return memberId;
 	}
 	public String getTradeNo() {
 		return tradeNo;
@@ -81,9 +89,6 @@ public class MemberTradeRecord {
 	}
 	public void setMtrId(Integer mtrId) {
 		this.mtrId = mtrId;
-	}
-	public void setMemberId(Integer memberId) {
-		this.memberId = memberId;
 	}
 	public void setTradeNo(String tradeNo) {
 		this.tradeNo = tradeNo;

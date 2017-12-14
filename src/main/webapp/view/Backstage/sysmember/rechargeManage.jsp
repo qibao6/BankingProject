@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 String path = request.getContextPath();
@@ -92,13 +93,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <td>${c.members.mobilePhone}</td>
                 <td>${c.amount}</td>
                 <td>
-                        <span style="color: red;">充值失败</span>
+                  <c:if test="${c.status==0}"><font color="red">充值失败</font></c:if>
+				  <c:if test="${c.status==1}"><font color="blue">充值成功</font></c:if>
                 </td>
                 <td>${c.payChannelName}</td>
                 <td>${c.payChannelOrderNo}</td>
-                <td>${c.createDate}</td>
+                <td><f:formatDate value="${c.createDate}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
                 <td>
-                            <a class="btn btn-primary btn-sm" href="<%=basePath%>sysmember/updateRecharge/201603080224543349">更新订单</a>
+                            <a class="btn btn-primary btn-sm" href="<%=basePath%>sysmember/rechargeManage">更新订单</a>
                 </td>
             </tr>
             </c:forEach>

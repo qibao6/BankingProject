@@ -1,5 +1,7 @@
 package com.demo.dao.lq.login;
 
+import java.util.List;
+
 public interface UserLoginDao {
 	
 	/**
@@ -8,5 +10,8 @@ public interface UserLoginDao {
 	 * @return
 	 */
 	Object[] login(String userName);
+	
+	
+	List<Object> inviteRewardsAll();
 	
 }

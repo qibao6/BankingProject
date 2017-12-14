@@ -31,7 +31,7 @@ public class LoginHandler {
 	}
 
 
-	//登录成功后，跳到会员中心界面
+	//登录成功后
 	@RequestMapping("success") 
 	@ResponseBody
 	public Map<String,Object> success(HttpServletRequest request,HttpServletResponse response){

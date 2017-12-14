@@ -24,18 +24,17 @@ public class Members {
 	   private String memberIdentity;//身份
 	   private Date createDate;//创建时间
 	   private Date updateDate;//修改时间
-	   private String weiBoAccount;//微博账号关联
-	   private String weixinAccount;//微信账号关联
+	   private String weiboaccount;//微博账号关联
+	   private String weixinaccount;//微信账号关联
 	   private Integer headid;//头像图片
 	   private String invitationcode;//邀请码
 	   private String withdrawPassword;//提款密码
-	   private String qqAccount;//QQ账号关联
-	   private String invitedCode;//被邀请码
-	   private String qqNumber;//QQ号码
+	   private String qqaccount;//QQ账号关联
+	   private String invitedcode;//被邀请码
+	   private String qqnumber;//QQ号码
 	   
 	   
 	@Id
-	
 	public Integer getMemberId() {
 		return memberId;
 	}
@@ -75,12 +74,7 @@ public class Members {
 	public Date getUpdateDate() {
 		return updateDate;
 	}
-	public String getWeiBoAccount() {
-		return weiBoAccount;
-	}
-	public String getWeixinAccount() {
-		return weixinAccount;
-	}
+	
 	public Integer getHeadid() {
 		return headid;
 	}
@@ -88,15 +82,14 @@ public class Members {
 	public String getWithdrawPassword() {
 		return withdrawPassword;
 	}
-	public String getQqAccount() {
-		return qqAccount;
+	
+	public String getInvitedcode() {
+		return invitedcode;
 	}
-	public String getInvitedCode() {
-		return invitedCode;
+	public void setInvitedcode(String invitedcode) {
+		this.invitedcode = invitedcode;
 	}
-	public String getQqNumber() {
-		return qqNumber;
-	}
+
 	public void setMemberId(Integer memberId) {
 		this.memberId = memberId;
 	}
@@ -130,11 +123,18 @@ public class Members {
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
 	}
-	public void setWeiBoAccount(String weiBoAccount) {
-		this.weiBoAccount = weiBoAccount;
+	public String getWeiboaccount() {
+		return weiboaccount;
 	}
-	public void setWeixinAccount(String weixinAccount) {
-		this.weixinAccount = weixinAccount;
+	public void setWeiboaccount(String weiboaccount) {
+		this.weiboaccount = weiboaccount;
+	}
+	public String getWeixinaccount() {
+		return weixinaccount;
+	}
+	
+	public void setWeixinaccount(String weixinaccount) {
+		this.weixinaccount = weixinaccount;
 	}
 	public void setHeadid(Integer headid) {
 		this.headid = headid;
@@ -143,13 +143,16 @@ public class Members {
 	public void setWithdrawPassword(String withdrawPassword) {
 		this.withdrawPassword = withdrawPassword;
 	}
-	public void setQqAccount(String qqAccount) {
-		this.qqAccount = qqAccount;
+	public String getQqaccount() {
+		return qqaccount;
 	}
-	public void setInvitedCode(String invitedCode) {
-		this.invitedCode = invitedCode;
+	public void setQqaccount(String qqaccount) {
+		this.qqaccount = qqaccount;
 	}
-	public void setQqNumber(String qqNumber) {
-		this.qqNumber = qqNumber;
+	public String getQqnumber() {
+		return qqnumber;
+	}
+	public void setQqnumber(String qqnumber) {
+		this.qqnumber = qqnumber;
 	}
 }

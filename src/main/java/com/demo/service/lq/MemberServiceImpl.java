@@ -24,6 +24,8 @@ import com.demo.model.Members;
 @Service
 public class MemberServiceImpl implements MembersService {
 	
+	Members m = new Members();
+	
 	@Autowired
 	MembersRepository membersRepository;
 	
@@ -56,30 +58,29 @@ public class MemberServiceImpl implements MembersService {
 	}
 
 	@Override
-	public MemberAccount meberAccount(Integer memberId) {
-		return memberAccountRepository.findOne(memberId);
-	}
-
-	@Override
 	public FinancialPlanner financialPlanner(Integer memberId) {
-		return financialPlannerRepository.findOne(memberId);
+		m.setMemberId(memberId);
+		return financialPlannerRepository.findFinancialPlannerBymembers(m);
 	}
 
 	@Override
 	public List<MemberDepositRecord> memberDepositRecord(Integer memberId) {
-		List<MemberDepositRecord> dlist= memberDepositRecordRepository.memberDepositRecord(memberId);
+		m.setMemberId(memberId);
+		List<MemberDepositRecord> dlist= memberDepositRecordRepository.findMemberDepositRecordBymembers(m);
 		return dlist;
 	}
 
 	@Override
 	public List<MemberTradeRecord> memberTradeRecord(Integer memberId) {
-		List<MemberTradeRecord> trlist = memberTradeRecordRepository.memberTradeRecord(memberId);
+		m.setMemberId(memberId);
+		List<MemberTradeRecord> trlist = memberTradeRecordRepository.findMemberTradeRecordBymembers(m);
 		return trlist;
 	}
 
 	@Override
 	public List<MemberWithdrawRecord> memberWithdrawRecord(Integer memberId) {
-		List<MemberWithdrawRecord> wrlist = memberWithdrawRecordRepository.memberWithdrawRecord(memberId);
+		m.setMemberId(memberId);
+		List<MemberWithdrawRecord> wrlist = memberWithdrawRecordRepository.findMemberWithdrawRecordBymembers(m);
 		return wrlist;
 	}
 
@@ -99,11 +100,21 @@ public class MemberServiceImpl implements MembersService {
 		return memberBankcardsRepository.findAll();
 	}
 
-	/*@Override
-	public List<MemberDepositRecord> memberDepositRecords1() {
+	@Override
+	public List<MemberDepositRecord> findAllMDR() {
 		List<MemberDepositRecord> dlist = memberDepositRecordRepository.findAll();
 		return dlist;
-	}*/
-	
-	
+	}
+
+	@Override
+	public MemberAccount meberAccount(Integer memberId) {
+		m.setMemberId(memberId);
+		return memberAccountRepository.findMemberAccountBymembers(m);
+	}
+
+	@Override
+	@Transactional
+	public void updateDelflag(Integer delflag, Integer memberBankcardsId) {
+		memberBankcardsRepository.updateDelflag(delflag, memberBankcardsId);
+	}
 }

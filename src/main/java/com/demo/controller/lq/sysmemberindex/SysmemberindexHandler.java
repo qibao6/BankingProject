@@ -35,7 +35,7 @@ public class SysmemberindexHandler {
 		MemberAccount memberAccount = membersService.meberAccount(memberId);
 		FinancialPlanner financialPlanner = membersService.financialPlanner(memberId);
 		List<MemberDepositRecord> memberDepositRecord = membersService.memberDepositRecord(memberId);
-		List<MemberTradeRecord> memberTradeRecords = membersService.memberTradeRecord(memberId);
+		List<MemberTradeRecord> memberTradeRecords =membersService.memberTradeRecord(memberId);
 		List<MemberWithdrawRecord> memberWithdrawRecord=membersService.memberWithdrawRecord(memberId);
 		map.put("m", members);
 		map.put("ma", memberAccount);
@@ -64,11 +64,25 @@ public class SysmemberindexHandler {
 		map.put("mb", mblist);
 		return "/Backstage/sysmember/dahua";
 	}
-	/*@RequestMapping("rechargeManage")
+	
+	@RequestMapping("rechargeManage")
 	public String rechargeManage(Map<String,Object> map){
-		List<MemberDepositRecord> listd = membersService.memberDepositRecords1();
+		List<MemberDepositRecord> listd = membersService.findAllMDR();
 		map.put("listd", listd);
 		return "/Backstage/sysmember/rechargeManage";
-	}*/
+	}
+	
+	@RequestMapping("unBankCard")
+	public String unBankCard(Integer memberBankcardsId){
+		Integer delflag = 1;
+		membersService.updateDelflag(delflag, memberBankcardsId);
+		return "redirect:/sysmember/dahua";
+	}
+
+	@RequestMapping("inviteRewards")
+	public String inviteRewards(Integer memberBankcardsId){
+		
+		return "/Backstage/sysmember/inviteRewards";
+	}
 	
 }

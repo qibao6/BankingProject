@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 String path = request.getContextPath();
@@ -48,11 +49,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<th>邀请码</th>	
 			<td>${m.invitationcode}</td>	 	
 			<th>被邀请码</th>	
-			<td>${m.invitedCode}</td>	 	
+			<td>${m.invitedcode}</td>	 	
 	 	</tr>
 	 	<tr>
 			<th>添加时间</th>	
-			<td>${m.createDate}</td>	
+			<td><f:formatDate value="${m.createDate}" pattern="yyyy-MM-dd hh:mm:ss"/></td>	
 			<td>&nbsp;</td>	
 			<td>&nbsp;</td>	 	
 	 	</tr>
@@ -160,7 +161,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</td>
 			<td width="15%">${wr.bankName}</td>
 			<td width="15%">${wr.bankCard}</td>
-			<td width="15%">${wr.createDate}</td>
+			<td width="15%"><f:formatDate value="${wr.updateDate}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
 		</tr>
 		</c:forEach>
 		
@@ -202,7 +203,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</td>
 			<td width="15%">${mds.payChannelName}</td>
 			<td width="15%">${mds.payChannelOrderNo}</td>
-			<td width="15%">${mds.createDate}</td>
+			<td width="15%"><f:formatDate value="${mds.updateDate}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
 		</tr>
 		</c:forEach>
 	</table>
@@ -243,7 +244,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</td>
 			<td width="15%">${tr.tradeType}</td>
 			<td width="15%">${tr.tradeName}</td>
-			<td width="15%">${tr.createDate}</td>
+			<td width="15%"><f:formatDate value="${tr.updateDate}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
 		</tr>
 		</c:forEach>
 	</table>
