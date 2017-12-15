@@ -45,76 +45,9 @@ function setIframeHeight(iframe) {
 	};
 </script>
 <body>
-
-<div class="logo container">
-    <div class="row">
-        <div class="logoImg">
-            <a href="http://www.ying158.com/home"><img src="<%=basePath%>resources/web/images/logo2.png" onmouseover="this.src = '<%=basePath%>resources/web/images/logo1.png'" onmouseout="this.src = '<%=basePath%>resources/web/images/logo2.png'"></a>
-        </div>
-        <div class="telInfo">
-            <img src="<%=basePath%>resources/web/images/400Icon.png" onmousemove="this.src = '<%=basePath%>resources/web/images/400IconActive.png'" onmouseout="	this.src = '<%=basePath%>resources/web/images/400Icon.png'">
-            <div class="detail">
-
-                    	<div style="font-size:16px;float:right;margin-top:5px;color:#917739;">  欢迎${members.names },<a href="<%=basePath%>account/touZiList">[会员中心]</a>,<a href="<%=basePath%>web/logout">[退出]</a></div>
-                <br>4000-999-158
-            </div>
-        </div>
-    </div>
-</div>
-<div class="jwNav">
-    <div class="container">
-        <div class="row">
-            <ul class="topNav">
-                <li>
-                    <a class="item first" href="http://www.ying158.com/home">
-                        首页
-                    </a>
-                </li>
-                <li>
-                    <a class="item" href="http://www.ying158.com/home/kcenter">
-                        网上体验中心
-                    </a>
-                </li>
-                <li  class="item">
-                    <a class="item" href="<%=basePath%>subject/subindex">
-                        产品中心
-                    </a>
-                </li>
-                <li>
-                    <a class="item" href="http://www.ying158.com/Home/NewsCenter">
-                        新闻中心
-                    </a>
-                </li>
-                <li>
-                    <a class="item" href="<%=basePath%>mobileappdownload">
-                      下载中心
-                    </a>
-                </li>
-                <li>
-                    <a class="item " href="http://www.ying158.com/Home/Help">
-                        盈+商学院
-                    </a>
-                </li>
-                <li>
-                    <a class="item" href="http://ying158.com/UserGuide/TradingSoftware">
-                        投研中心
-                    </a>
-                </li>
-                <li>
-                    <a class="item last" href="http://pro.ying158.com/account/trades/profit/records">
-                        我的加法库
-                    </a>
-                </li>
-
-
-
-            </ul>
-        </div>
-    </div>
-</div>
-<iframe width="100%" id="external-frame" name="rightkj" frameborder=0 src="<%=basePath%>hyzx/main"></iframe>
-<%-- <script type="text/javascript">
+<script type="text/javascript">
     $(function(){
+    	/* parent.location.href=parent.location.href; */
         function showIn(url){
             var info="<div class='mydig'><div class='bg'></div><div class='imgbox'><a href="+url+"></a></div></div>";
             $('body').append(info);
@@ -122,120 +55,66 @@ function setIframeHeight(iframe) {
             if (1!=null&&1==0){
                 showIn("<%=basePath%>account/bbinInfo/getBbinInfo");
             }
-
     });
 
-</script> --%>
-<meta charset="UTF-8">
-    <div class="security">
-        <div class="item">
-            <img src="<%=basePath%>resources/web/images/indexSecurity1.png">
-            <div class="detail">
-                资金银行监管
-                <div class="desc">
-                    平台资金由第三方银行监管
-                </div>
-            </div>
-        </div>
-        <div class="item">
-            <img src="<%=basePath%>resources/web/images/indexSecurity2.png">
-            <div class="detail">
-                交易证监会监管
-                <div class="desc">
-                    投资交易由证监会监管
-                </div>
-            </div>
-        </div>
-        <div class="item">
-            <img src="<%=basePath%>resources/web/images/indexSecurity3.png">
-            <div class="detail">
-                风控盈+监管
-                <div class="desc">
-                    盈+全自动风控系统为您保驾护航
-                </div>
-            </div>
+</script>
+<table height="160" class="peopleInfo" width="970" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td align="left" valign="middle" class="info">
+            <a href="<%=basePath%>account/security">
+                <div class="img"><img src="<%=basePath%>resources/web/images/userPic.jpg"></div>
+                <h2>${members.names }，<span>您好!</span></h2>
+            </a>
+            <div class="safe">账户安全&nbsp;&nbsp;<span class="scroll"><em style="width:100%"></em></span></div>
+            <ul class="listIco iconfont">
+                <li class="active"><a href="#1">&#xe61c;</a><em>&#xe61b;</em></li>
+                <li class="active"><a href="#1">&#xe61d;</a><em>&#xe61b;</em></li>
+                <!-- <li class=""><a href="#1">&#xe61f;</a><em>&#xe61b;</em></li> -->
+                <li class="active"><a href="#1">&#xe61a;</a><em>&#xe61b;</em></li>                                
+                <li class="active"><a href="#1">&#xe61e;</a><em>&#xe61b;</em></li>
+            </ul>
+        </td>
+        <td align="right">
+            <a href="<%=basePath%>web/logout" class="loginOut"><span class="iconfont">&#xe618;</span>安全退出</a>
+        </td>
+    </tr>
+</table>
+<div class="countBox">
+    <ul>
+        <li><h2>${memberAccount.useableBalance}</h2><p>账户可用余额(元)<a href="javascript:;" class="iconfont">&#xe619;<span>账户可用余额</span><i></i></a></p></li>
+        <li><h2><f:formatNumber>${memberAccount.useableBalance+memberAccount.investAmount+memberAccount.totalProfit}</f:formatNumber></h2><p>账户总资产(元)<a href="javascript:;" class="iconfont">&#xe619;<span>可用余额+投资金额+累计收益</span><i></i></a></p></li>
+        <li><h2 style="color:#9d8440">${memberAccount.investAmount}</h2><p>投资金额(元)<a href="javascript:;" class="iconfont">&#xe619;<span>投资中资金</span><i></i></a></p></li>
+        <li><h2 style="color:#9d8440">${memberAccount.totalProfit}</h2><p>累计收益(元)<a href="javascript:;" class="iconfont">&#xe619;<span>累计收益</span><i></i></a></p></li>
+        <li><h2 style="color:#9d8440">${memberAccount.imusealeBalance}</h2><p>冻结金额(元)<a href="javascript:;" class="iconfont">&#xe619;<span>提现冻结金额</span><i></i></a></p></li>
+    </ul>
+    <a href="<%=basePath%>account/deposit" class="cz">充值</a>
+    <a href="<%=basePath%>account/withdraw" class="tk">提款</a>
+</div>    
+<div class="proMain clearfix">
+<div class="adminLeft">
+    <h2>我的投资</h2>
+    <ul>
+        <li><a id="member_center_menu_invests" href="<%=basePath%>account/touZiList" target="rightkj"><em class="iconfont red">&#xe602;</em>投资记录</a></li>
+        <li><a id="member_center_menu_profit_record" href="<%=basePath%>view/hyzx/shouyi.jsp" target="rightkj"><em class="iconfont red">&#xe616;</em>收益记录</a></li>
+        <li><a id="member_center_menu_deposit_record" href="<%=basePath%>account/deposit/records" target="rightkj"><em class="iconfont red">&#xe616;</em>充值记录</a></li>
+        <li><a id="member_center_menu_withdraw_record" href="<%=basePath%>account/withdraw/records" target="rightkj"><em class="iconfont red">&#xe616;</em>提款记录</a></li>
+        <li><a id="member_center_menu_bbinInfo_record" href="<%=basePath%>account/bbinInfo/records" target="rightkj"><em class="iconfont red">&#xe616;</em>体验金记录</a></li>
+    </ul>
+    <h2>我的账户</h2>
+    <ul>
+        <li><a id="member_center_menu_deposit" href="<%=basePath%>account/deposit" target="rightkj"><em class="iconfont">&#xe614;</em>账户充值</a></li>
+        <li><a id="member_center_menu_security" href="<%=basePath%>account/security" target="rightkj"><em class="iconfont">&#xe612;</em>安全信息</a></li>
+        <li><a id="member_center_menu_withdraw" href="<%=basePath%>account/withdraw" target="rightkj"><em class="iconfont">&#xe612;</em>我要提款</a></li>
+        <li><a id="member_center_menu_financial" href="<%=basePath%>account/financial" target="rightkj"><em class="iconfont">&#xe612;</em>我是理财师</a></li>
+    </ul>
+</div>
+<script>
+  var menu_item="member_center_menu_profit_record";
+ $("#"+menu_item).addClass("select");
+</script>
+        <div class="admin-right">
+        	<iframe width="95%" height="600px" id="kuangjia" name="rightkj" frameborder=0 scrolling=auto src="<%=basePath%>view/hyzx/shouyi.jsp"></iframe>
         </div>
     </div>
-	<div class="foot">
-		<div class="container">
-            <div class="row">
-                <div class="hzhb_box">
-                    <div class="title" style=" padding-left:10px; font-weight:normal; font-size:20px; color:#ccc;">
-                        主要合作机构
-                    </div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.picc.com/"><img onmouseover="this.src = '<%=basePath%>resources/web/images/hzhb/1_on.png'" onmouseout="this.src = '<%=basePath%>resources/web/images/hzhb/1.jpg'" src="<%=basePath%>resources/web/images/hzhb/1.jpg" /></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.fuioupay.com/"><img onmouseover="this.src = '<%=basePath%>resources/web/images/hzhb/2_on.png'" onmouseout="    this.src = '<%=basePath%>resources/web/images/hzhb/2.jpg'" src="<%=basePath%>resources/web/images/hzhb/2.jpg" /></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.nanhua.net/"><img onmouseover="this.src = '<%=basePath%>resources/web/images/hzhb/3_on.png'" onmouseout="    this.src = '<%=basePath%>resources/web/images/hzhb/3.jpg'" src="<%=basePath%>resources/web/images/hzhb/3.jpg" /></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.zttrust.com.cn/stations/526623d20a/index.php/5268e6b50a"><img onmouseover="this.src = '<%=basePath%>resources/web/images/hzhb/4_on.png'" onmouseout="    this.src = '<%=basePath%>resources/web/images/hzhb/4.jpg'" src="<%=basePath%>resources/web/images/hzhb/4.jpg" /></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://sc.hkex.com.hk/TuniS/www.hkex.com.hk/eng/index.htm/"><img onmouseover="this.src = '<%=basePath%>resources/web/images/hzhb/5_on.png'" onmouseout="    this.src = '<%=basePath%>resources/web/images/hzhb/5.jpg'" src="<%=basePath%>resources/web/images/hzhb/5.jpg" /></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.cmegroup.com/cn-s/"><img onmouseover="this.src = '<%=basePath%>resources/web/images/hzhb/6_on.png'" onmouseout="    this.src = '<%=basePath%>resources/web/images/hzhb/6.jpg'" src="<%=basePath%>resources/web/images/hzhb/6.jpg" /></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.sgx.com/wps/portal/sgxweb_ch/home/!ut/p/a1/04_Sj9CPykssy0xPLMnMz0vMAfGjzOKNHB1NPAycDSz9wwzMDTxD_Z2Cg8PCDANdjYEKIoEKDHAARwNC-sP1o8BK8JhQkBthkO6oqAgAzDYPQQ!!/dl5/d5/L2dBISEvZ0FBIS9nQSEh/"><img onmouseover="this.src = '<%=basePath%>resources/web/images/hzhb/7_on.png'" onmouseout="    this.src = '<%=basePath%>resources/web/images/hzhb/7.jpg'" src="<%=basePath%>resources/web/images/hzhb/7.jpg" /></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.neeq.com.cn/index/"><img onmouseover="this.src = '<%=basePath%>resources/web/images/hzhb/8_on.png'" onmouseout="    this.src = '<%=basePath%>resources/web/images/hzhb/8.jpg'" src="<%=basePath%>resources/web/images/hzhb/8.jpg" /></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.cmbchina.com/"><img onmouseover="this.src = '<%=basePath%>resources/web/images/hzhb/9_on.png'" onmouseout="    this.src = '<%=basePath%>resources/web/images/hzhb/9.jpg'" src="<%=basePath%>resources/web/images/hzhb/9.jpg" /></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.bankcomm.com/BankCommSite/default.shtml"><img onmouseover="this.src = '<%=basePath%>resources/web/images/hzhb/10_on.png'" onmouseout="this.src = '<%=basePath%>resources/web/images/hzhb/10.jpg'" src="<%=basePath%>resources/web/images/hzhb/10.jpg" /></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.ccb.com/cn/home/index.html"><img onmouseover="this.src = '<%=basePath%>resources/web/images/hzhb/11_on.png'" onmouseout="    this.src = '<%=basePath%>resources/web/images/hzhb/11.jpg'" src="<%=basePath%>resources/web/images/hzhb/11.jpg" /></a></div>
-                    <div class="hzhb_item"><a target="_blank" href="http://www.icbc.com.cn/icbc/"><img onmouseover="this.src = '<%=basePath%>resources/web/images/hzhb/12_on.png'" onmouseout="    this.src = '<%=basePath%>resources/web/images/hzhb/12.jpg'" src="<%=basePath%>resources/web/images/hzhb/12.jpg" /></a></div>
-                </div>
-
-                <div class="ft_item ft_item_sns">
-                    <div class="ft_item_tit">关注我们</div>
-                    <ul style=" margin-bottom:0px;" class="ft_sns_list clearfix">
-                        <li>
-                            <div class="wx_tips j_tips">
-                                <div class="tips_hd">
-                                    <em class="ico_sns ico_weixin"></em>
-                                    <span class="txt">微信公众号</span>
-                                </div>
-                                <div class="tips_bd">
-                                    <em class="arrow"></em>
-                                    <img src="<%=basePath%>resources/web/images/yj.jpg" alt="微信公共平台">
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="" target="_blank" rel="nofollow">
-                                <em class="ico_sns ico_sinawb"></em>
-                                <span class="txt">新浪微博</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" target="_blank" rel="nofollow">
-                                <em class="ico_sns ico_txwb"></em>
-                                <span class="txt">腾讯微博</span>
-                            </a>
-                        </li>
-                    </ul>
-
-                    <div class="contactUs">
-                       <div class="title" style=" padding-left:10px; font-weight:normal; font-size:20px; color:#ccc;">
-                          联系我们
-                        </div>
-                        <div class="contactInfo" style="padding-left:30px;">
-                            <a style="display:inline-block; height:50px; width:50px; text-align:center; " target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=508886246&amp;site=qq&amp;menu=yes"><img src="<%=basePath%>resources/web/images/qqIcon.png" onmouseover="$(this).css('height', '52px');" onmouseout="    $(this).css('height', '48px');" /></a>
-                            <span class="kefu">在线客服</span><span class="time">08:30 - 21:00</span>
-                        </div>
-                    </div>
-
-                </div>
-
-			</div>
-		</div>
-	</div>
-	<div class="foot3">
-		<div class="container">
-			<div class="row">
-				Copyright © 2010 - 2015 www.ying158.com All Rights Reserverd 杭州吉威投资管理有限公司 版权所有<br>
-				浙ICP备14030807号-3 杭州市江干区钱江新城迪凯银座19F 4000-999-158
-			</div>
-		</div>
-	</div>
-<script>
-    var _hmt = _hmt || [];
-    (function() {
-        var hm = document.createElement("script");
-        hm.src = "//hm.baidu.com/hm.js?06cf97732baac1a65bed8ae95f2384aa";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
-</script></body>
+</body>
 </html>

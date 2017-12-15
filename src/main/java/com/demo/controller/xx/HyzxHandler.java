@@ -23,6 +23,8 @@ public class HyzxHandler {
 	public String logins(HttpServletRequest request,Map<String, Object> map){
 		Members members=(Members) request.getSession().getAttribute("members");
 		map.put("members", members);
+		MemberAccount memberAccount=mAccountService.findById(members.getMemberId());
+		map.put("memberAccount", memberAccount);
 		return "front/viplist";
 	}
 	
