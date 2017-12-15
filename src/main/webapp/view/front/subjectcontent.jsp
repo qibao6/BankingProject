@@ -174,7 +174,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript">
 
     $(function () {
-    	var members=document.get
+    
+    	//var members=document.getElementsByName("members");
         $(".tbConBox .tab a").click(function () {
             if (!$(this).hasClass("select")) {
                 var num = $(this).index();
@@ -198,17 +199,88 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             $(".submit").click(function () {
             	
             	
+            	 var members="<%=session.getAttribute("members")%>";
+            		//alert(members.mobilephone);
+            		if(exists==false){
+            			
+            			$("#checkmoney").html("请先登陆!");
+            			$(".li4").show(100);
+            			return false;
+            		}
+            	
 	
-                if (exists == false) {
-                    $("#checkmoney").html("请先登陆!");
-                    $(".li4").show(100);
-                    return false;
-                }
-               
-            });
+              //  if (exists == true) {
+                   // $("#checkmoney").html("请先登陆!");
+                   // $(".li4").show(100);
+                   // return false;
+               // }
+                //if(authBankCard==false){
+                 	//$("#checkmoney").html("请先绑定银行卡，<a href='/winplus/account/security/memberBankcardView'>绑卡</a>");
+                   //  $(".li4").show(100);
+                 //	return false;
+                // }
+                // var value = $(":input[name=totalFee]").val();
+                // if (value == null || value == '') {
+                    // $("#checkmoney").html("金额不能为空");
+                    // $(".li4").show(100);
+                    // return false;
+               //  }
+                // value = parseInt(value);
+                // if (value
+                      //   <100) {
+                    // $("#checkmoney").html("起投金额在100以上");
+                    // $(".li4").show(100);
+                    // return false;
+                // }
+                // var bonusFee = 0;
+                // var bbinStatus = 0;
+                 //if (!(bbinAll.hasClass("active"))) {//未选中体验金
+                  //   var acountval = $("#account").val();
+                   //  if (acountval != -1) {
+                     //    if ((acountval - value) < 0) {
+                            // $("#checkmoney").html("账号余额不足，请充值");
+                            // $(".li4").show(100);
+                            // return false;
+                        // }
+                    // }
+                    // if (redPacket.hasClass("active")) {//选中红包
+                       //  bonusFee =0;
+                     //}
+              //   } else {
+                   //  bbinStatus = 1;
+                // }
+
+                 $.ajax({
+                     type: "POST", // 用POST方式传输
+                     dataType: "json", // 数据格式:JSON
+                     async: true,
+                     url: '/winplus/subjectPur/order', // 目标地址
+                     data: {
+                         subjectId:1638,
+                         totalFee: value,
+                         bonusFee: bonusFee,
+                         bbinStatus: bbinStatus
+                     },
+                     success: function (msg) {
+                         if (msg.code == 0) {
+                             window.location.href = "/winplus/subjectPur/orderView?tradeNo=" + msg.msg + "&bbinStatus=" + bbinStatus;
+                         } else {
+                             $("#checkmoney").html(msg.msg);
+                             $(".li4").show(100);
+                         }
+                     }
+                 });
+
+             });
 
 
     });
+
+
+    
+
+
+ 
 
 </script>
 

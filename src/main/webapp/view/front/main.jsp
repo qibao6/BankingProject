@@ -55,14 +55,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<c:if test="${members==null}">
 							<a
 						style="font-size: 18px; float: right; margin-top: 5px; color: #917739;"
-						href="<%=basePath%>web/login" target="myiframe">登录</a> <a
+						href="<%=basePath%>web/login">登录</a> <a
 						style="font-size: 18px; float: right; margin-right: 15px; margin-top: 5px; color: #917739;"
 						href="<%=basePath%>web/regis" target="myiframe">注册</a> <br>4000-999-158
 						</c:if>
 						<c:if test="${members!=null}">
 						
 
-                    	<div style="font-size:16px;float:right;margin-top:5px;color:#917739;">  欢迎${members.names },<a href="<%=basePath%>hyzx/logins" target="myiframe">[会员中心]</a>,<a href="<%=basePath%>web/logout" target="myiframe">[退出]</a></div>
+                    	<div style="font-size:16px;float:right;margin-top:5px;color:#917739;">  欢迎${members.names },<a href="<%=basePath%>hyzx/logins">[会员中心]</a>,<a href="<%=basePath%>web/logout" target="myiframe">[退出]</a></div>
                 <br>4000-999-158
 						
 						
@@ -87,7 +87,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<li><a class="item" href="http://www.ying158.com/home/kcenter">
 							网上体验中心 </a></li>
 					<li class="item"><a class="item"
-						href="<%=basePath%>view/front/main.jsp"> 产品中心 </a>
+						href="<%=basePath%>subject/subindex" target="myiframe"> 产品中心 </a>
 					</li>
 					<li><a class="item"
 						href="http://www.ying158.com/Home/NewsCenter"> 新闻中心 </a></li>
@@ -341,7 +341,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="tips_hd">
 									<em class="ico_sns ico_weixin"></em> <span class="txt">微信公众号</span>
 								</div>
-								nh
+								
 								<div class="tips_bd">
 									<em class="arrow0"></em> <img
 										src="<%=basePath%>resources/web/images/yj.jpg" alt="微信公共平台">
