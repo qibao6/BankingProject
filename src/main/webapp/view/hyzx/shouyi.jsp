@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 String path = request.getContextPath();
@@ -35,53 +37,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<th width="20%">金额</th>
 							<th width="20%">备注</th>
 						</tr>
+						<c:forEach items="${mPage.getContent() }" var="mpr"></c:forEach>
 						<tr>
-							<td>2017-12-07</td>
-							<td>TZSY201712081207254377</td>
-							<td><font color="#ff503f">￥0.0192</font></td>
-							<td>有缘固收类1收益</td>
-						</tr>
-						<tr>
-							<td>2016-03-23</td>
-							<td>TZSY201603241205079151</td>
-							<td><font color="#ff503f">￥0.0192</font></td>
-							<td>有缘固收类1收益</td>
-						</tr>
-						<tr>
-							<td>2016-03-11</td>
-							<td>TZSY201603121205016705</td>
-							<td><font color="#ff503f">￥0.0192</font></td>
-							<td>有缘固收类1收益</td>
-						</tr>
-						<tr>
-							<td>2016-03-09</td>
-							<td>TZSY201603101205013783</td>
-							<td><font color="#ff503f">￥0.0192</font></td>
-							<td>有缘固收类1收益</td>
-						</tr>
-						<tr>
-							<td>2016-03-07</td>
-							<td>TZSY201603081205001069</td>
-							<td><font color="#ff503f">￥0.0192</font></td>
-							<td>理财宝一号11收益</td>
-						</tr>
-						<tr>
-							<td>2016-03-05</td>
-							<td>TZSY201603061205007493</td>
-							<td><font color="#ff503f">￥0.0863</font></td>
-							<td>有缘固收类1收益</td>
-						</tr>
-						<tr>
-							<td>2016-03-05</td>
-							<td>TZSY201603061205003219</td>
-							<td><font color="#ff503f">￥0.0192</font></td>
-							<td>理财宝一号11收益</td>
-						</tr>
-						<tr>
-							<td>2016-03-03</td>
-							<td>TZSY201603041205006016</td>
-							<td><font color="#ff503f">￥0.0863</font></td>
-							<td>有缘固收类1收益</td>
+							<td><f:formatDate value="${mpr.updateDate }" pattern="yyyy-MM-dd HH:mm:ss" /> </td>
+							<td>${mpr.serialNumber }</td>
+							<td><font color="#ff503f">￥${mpr.amount }</font></td>
+							<td>${mpr.mprComment }</td>
 						</tr>
 					</table>
 
