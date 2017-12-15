@@ -22,6 +22,13 @@ public class SubjectHandler {
 
 	@Autowired
 	SubjectService subjectService;
+	
+	@RequestMapping("init")
+	public String init(HttpServletRequest request,Map<String,Object> map){
+		Members members=(Members) request.getSession().getAttribute("members");
+		map.put("members", members);
+		return "front/main";
+	}
 
 	//固收类理财
 	@RequestMapping("subindex")
