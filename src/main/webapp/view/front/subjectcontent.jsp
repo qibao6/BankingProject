@@ -208,18 +208,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             			$(".li4").show(100);
             			return false;
             		}
-            	
-	
-              //  if (exists == true) {
-                   // $("#checkmoney").html("请先登陆!");
-                   // $(".li4").show(100);
-                   // return false;
-               // }
-                //if(authBankCard==false){
-                 	//$("#checkmoney").html("请先绑定银行卡，<a href='/winplus/account/security/memberBankcardView'>绑卡</a>");
-                   //  $(".li4").show(100);
-                 //	return false;
-                // }
+                if(authBankCard==false){
+                 	$("#checkmoney").html("请先绑定银行卡，<a href='/winplus/account/security/memberBankcardView'>绑卡</a>");
+                    $(".li4").show(100);
+                 	return false;
+                 }
                 // var value = $(":input[name=totalFee]").val();
                 // if (value == null || value == '') {
                     // $("#checkmoney").html("金额不能为空");
