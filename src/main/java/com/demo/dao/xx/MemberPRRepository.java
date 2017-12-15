@@ -9,6 +9,6 @@ import com.demo.model.Member_profit_record;
  * @author 肖鑫
  *
  */
-public interface MemberPR_Repository extends JpaRepository<Member_profit_record, Integer>,JpaSpecificationExecutor<Member_profit_record> {
+public interface MemberPRRepository extends JpaRepository<Member_profit_record, Integer>,JpaSpecificationExecutor<Member_profit_record> {
 
 }
