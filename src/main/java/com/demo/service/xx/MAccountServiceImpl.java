@@ -18,7 +18,7 @@ public class MAccountServiceImpl implements MAccountService {
 	MAccountRepository mAccountRepository;
 //	@Autowired
 //	MemberPR_Repository mprRepository;
-	@Autowired
+//	@Autowired
 	MemberPR_Repository mprRepository;
 	@Override
 	public MemberAccount findById(Integer id) {
