@@ -71,8 +71,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div class="li4" style=""><span id="checkmoney" style="color: red;"></span></div>
                     <div class="tit">
                     <c:if test="${members==null}">
-                    <span class="fr">
-                            <a style="color:#2695d5" class="unlogin" href="<%=basePath%>web/login" target="myiframe">登录</a>后可见
+                    <span class="fr" id="login">
+                            <a style="color:#2695d5" class="unlogin" href="<%=basePath%>web/login">登录</a>后可见
 						</span>
 						</c:if>
 						<c:if test="${members!=null}">
@@ -192,14 +192,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         var bbinAll = $("#bbinAll");
         var addMoney = $("#addMoney");
         var mytext = $("#mytext");
-        var exists = false;
-      
+        var exists = $("#login").val();
+       // var acountval = $("#account").val();
         var authBankCard=false;
         
             $(".submit").click(function () {
+            	//alert(exists);
             	
             	
-            	 var members="<%=session.getAttribute("members")%>";
+            	
             		//alert(members.mobilephone);
             		if(exists==false){
             			
