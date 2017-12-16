@@ -11,7 +11,32 @@ public interface UserLoginDao {
 	 */
 	Object[] login(String userName);
 	
+	/**
+	 * 邀请奖励
+	 * @return
+	 */
+	List<Object[]> inviteRewardsAll();
+	/**
+	 * 奖励记录(邀请手机号，邀请码)
+	 * @return
+	 */
+	Object[] obj(Integer awardRecordsId);
+	/**
+	 * 奖励记录(列表循环)
+	 * @param awardRecordsId
+	 * @return
+	 */
+	List<Object[]> olist(Integer awardRecordsId);
+	/**
+	 * 付息计划
+	 * @return
+	 */
+	List<Object[]> flist();
 	
-	List<Object> inviteRewardsAll();
-	
+	/**
+	 * 体验金付息计划（标的名称，标的期限，年化收益）
+	 * @param subjectId
+	 * @return
+	 */
+	Object[] sub(Integer subjectId);
 }

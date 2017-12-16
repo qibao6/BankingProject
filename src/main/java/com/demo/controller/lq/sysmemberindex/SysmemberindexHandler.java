@@ -14,6 +14,8 @@ import com.demo.model.MemberDepositRecord;
 import com.demo.model.MemberTradeRecord;
 import com.demo.model.MemberWithdrawRecord;
 import com.demo.model.Members;
+import com.demo.model.Subject;
+import com.demo.service.lq.LoginService;
 import com.demo.service.lq.MembersService;
 
 @Controller
@@ -22,6 +24,9 @@ public class SysmemberindexHandler {
 	
 	@Autowired
 	MembersService membersService;
+	
+	@Autowired
+	LoginService loginservice;
 	
 	@RequestMapping("index")
 	public String sysindex(Map<String,Object> map){
@@ -80,9 +85,38 @@ public class SysmemberindexHandler {
 	}
 
 	@RequestMapping("inviteRewards")
-	public String inviteRewards(Integer memberBankcardsId){
-		
+	public String inviteRewards(Map<String,Object> map){
+		List<Object[]> olist= loginservice.inviteRewardsAll();
+		map.put("olist", olist);
 		return "/Backstage/sysmember/inviteRewards";
+	}
+	@RequestMapping("awards")
+	public String awards(Integer awardRecordsId,Integer memberAccountId,Float amount){
+		Integer isaward =1;
+		membersService.updateIsaward(isaward,awardRecordsId);
+		membersService.updateUseableBalance(amount,memberAccountId);
+		return "redirect:/sysmember/inviteRewards";
+	}
+	@RequestMapping("inviteRewardsRecord")
+	public String inviteRewardsRecord(Integer awardRecordsId,Map<String,Object> map){
+		Object[] m= loginservice.obj(awardRecordsId);
+		List<Object[]> olist =loginservice.olist(awardRecordsId);
+		map.put("m", m);
+		map.put("olist", olist);
+		return "Backstage/sysmember/inviteRewardsRecord";
+	}
+	@RequestMapping("payment")
+	public String payment(Map<String,Object> map){
+		List<Object[]> flist =loginservice.flist();
+		map.put("flist", flist);
+		return "Backstage/sysmember/payment";
+	}
+	@RequestMapping("paymentBbinContent")
+	public String paymentBbinContent(Integer subjectId,Map<String,Object> map){
+		Object[] su= loginservice.sub(subjectId);
+		map.put("su", su);
+		return "Backstage/sysmember/paymentBninContent";
 	}
 	
 }
+ 

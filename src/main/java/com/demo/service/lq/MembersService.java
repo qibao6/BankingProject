@@ -2,6 +2,7 @@ package com.demo.service.lq;
 
 import java.util.List;
 
+import com.demo.model.AwardRecords;
 import com.demo.model.FinancialPlanner;
 import com.demo.model.MemberAccount;
 import com.demo.model.MemberBankcards;
@@ -9,6 +10,7 @@ import com.demo.model.MemberDepositRecord;
 import com.demo.model.MemberTradeRecord;
 import com.demo.model.MemberWithdrawRecord;
 import com.demo.model.Members;
+import com.demo.model.Subject;
 
 public interface MembersService {
 	
@@ -86,4 +88,18 @@ public interface MembersService {
 	 * @param memberBankcardsId
 	 */
 	void updateDelflag(Integer delflag,Integer memberBankcardsId);
+	
+	/**
+	 * 注册奖励(修改奖励状态)
+	 * @param isaward
+	 * @param awardRecordsId
+	 */
+	void updateIsaward(Integer isaward,Integer awardRecordsId);
+	/**
+	 * 注册奖励(修改奖金)
+	 * @param useableBalance
+	 * @param memberAccountId
+	 */
+	void updateUseableBalance(Float useableBalance,Integer memberAccountId);
+	
 }
