@@ -41,7 +41,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <img src="<%=basePath%>resources/web/images/400Icon.png" onmousemove="this.src = '<%=basePath%>resources/web/images/400IconActive.png'" onmouseout="	this.src = '<%=basePath%>resources/web/images/400Icon.png'">
             <div class="detail">
 
-                    	<div style="font-size:16px;float:right;margin-top:5px;color:#917739;">  欢迎${members.names },<a href="<%=basePath%>hyzx/shouyi">[会员中心]</a>,<a href="<%=basePath%>web/logout">[退出]</a></div>
+                    	<div style="font-size:16px;float:right;margin-top:5px;color:#917739;">  欢迎${members.names },<a href="<%=basePath%>hyzx/${memberAccount.members.memberId }/shouyi" target="rightkj">[会员中心]</a>,<a href="<%=basePath%>web/logout">[退出]</a></div>
                 <br>4000-999-158
             </div>
         </div>
@@ -110,7 +110,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     });
 
-</script><table height="160" class="peopleInfo" width="970" border="0" cellspacing="0" cellpadding="0">
+</script>
+<script type="text/javascript">
+function iframeAutoHeight(){  
+    var iframe=document.getElementById("kuangjia");  
+    if(navigator.userAgent.indexOf("MSIE")>0||navigator.userAgent.indexOf("rv:11")>0||navigator.userAgent.indexOf("Firefox")>0){  
+        iframe.height=iframe.contentWindow.document.body.scrollHeight;  
+    }else{  
+        iframe.height=iframe.contentWindow.document.documentElement.scrollHeight;  
+    }  
+}  
+</script>
+<table height="160" class="peopleInfo" width="970" border="0" cellspacing="0" cellpadding="0">
     <tr>
         <td align="left" valign="middle" class="info">
             <a href="<%=basePath%>account/security">
@@ -146,11 +157,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div class="adminLeft">
     <h2>我的投资</h2>
     <ul>
-        <li><a id="member_center_menu_invests" href="<%=basePath%>account/touZiList" target="rightkj"><em class="iconfont red">&#xe602;</em>投资记录</a></li>
-        <li><a id="member_center_menu_profit_record" href="<%=basePath%>view/hyzx/shouyi.jsp" target="rightkj"><em class="iconfont red">&#xe616;</em>收益记录</a></li>
-        <li><a id="member_center_menu_deposit_record" href="<%=basePath%>account/deposit/records" target="rightkj"><em class="iconfont red">&#xe616;</em>充值记录</a></li>
-        <li><a id="member_center_menu_withdraw_record" href="<%=basePath%>account/withdraw/records" target="rightkj"><em class="iconfont red">&#xe616;</em>提款记录</a></li>
-        <li><a id="member_center_menu_bbinInfo_record" href="<%=basePath%>account/bbinInfo/records" target="rightkj"><em class="iconfont red">&#xe616;</em>体验金记录</a></li>
+        <li><a id="member_center_menu_invests" href="<%=basePath%>hyzx/${memberAccount.members.memberId }/tozi" target="rightkj"><em class="iconfont red">&#xe602;</em>投资记录</a></li>
+        <li><a id="member_center_menu_profit_record" href="<%=basePath%>hyzx/${memberAccount.members.memberId }/shouyi" target="rightkj"><em class="iconfont red">&#xe616;</em>收益记录</a></li>
+        <li><a id="member_center_menu_deposit_record" href="<%=basePath%>hyzx/${memberAccount.members.memberId }/chongzhi" target="rightkj"><em class="iconfont red">&#xe616;</em>充值记录</a></li>
+        <li><a id="member_center_menu_withdraw_record" href="<%=basePath%>hyzx/${memberAccount.members.memberId }/tikuan" target="rightkj"><em class="iconfont red">&#xe616;</em>提款记录</a></li>
+        <li><a id="member_center_menu_bbinInfo_record" href="<%=basePath%>hyzx/${memberAccount.members.memberId }/tiyanjin" target="rightkj"><em class="iconfont red">&#xe616;</em>体验金记录</a></li>
     </ul>
     <h2>我的账户</h2>
     <ul>
@@ -160,12 +171,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <li><a id="member_center_menu_financial" href="<%=basePath%>account/financial" target="rightkj"><em class="iconfont">&#xe612;</em>我是理财师</a></li>
     </ul>
 </div>
-<script>
-  var menu_item="member_center_menu_profit_record";
- $("#"+menu_item).addClass("select");
-</script>
+<!-- <script>
+
+	var menu_item="member_center_menu_profit_record";
+	$("#"+menu_item).addClass("select");
+	
+</script> -->
         <div class="admin-right">
-        	<iframe width="95%" height="600px" id="kuangjia" name="rightkj" frameborder=0 scrolling=auto src="<%=basePath%>hyzx/shouyi"></iframe>
+        	<iframe width="95%" height="110%" id="kuangjia" name="rightkj" frameborder=0 scrolling=no src="<%=basePath%>hyzx/${memberAccount.members.memberId }/shouyi" onload="javascript:iframeAutoHeight();"></iframe>
         </div>
     </div>
 <meta charset="UTF-8">

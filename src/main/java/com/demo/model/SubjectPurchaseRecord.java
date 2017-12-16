@@ -4,6 +4,8 @@ import java.sql.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 /**
  * 标的购买		sql_subject_purchase_record
  * @author LENOVO
@@ -16,12 +18,12 @@ public class SubjectPurchaseRecord {
 	   private String serialNumber;//  varchar2(50) ,-- '流水号',
 	   private Float amount;//  binary_float, -- '购买金额',
 	   private String dealIp;//  varchar2(25) ,-- '交易ip',
-	   private Integer subjectId;//  number ,-- '标的Id',
+	   Subject subject;//  number ,-- '标的Id',
 	   private Integer memberId;//  number,
 	   private Integer delflag;//  number,
 	   private Date createDate;//  date,
 	   private Date updateDate;//  date,
-	   private Integer interest;//  decimal(16,4) ,-- '结算利息',
+	   private Float interest;//  decimal(16,4) ,-- '结算利息',
 	   private Integer ispayment;//  number,--'是否还款',
 	   private Integer payInterestTimes;//  number,
 	   private Integer lastProfitDay;//  number,-- '最后计息日',
@@ -40,11 +42,19 @@ public class SubjectPurchaseRecord {
 	public String getDealIp() {
 		return dealIp;
 	}
-	public Integer getSubjectId() {
-		return subjectId;
+	@ManyToOne
+	@JoinColumn(name="subject_id")
+	public Subject getSubject() {
+		return subject;
+	}
+	public void setSubject(Subject subject) {
+		this.subject = subject;
 	}
 	public Integer getMemberId() {
 		return memberId;
+	}
+	public void setMemberId(Integer memberId) {
+		this.memberId = memberId;
 	}
 	public Integer getDelflag() {
 		return delflag;
@@ -54,9 +64,6 @@ public class SubjectPurchaseRecord {
 	}
 	public Date getUpdateDate() {
 		return updateDate;
-	}
-	public Integer getInterest() {
-		return interest;
 	}
 	public Integer getIspayment() {
 		return ispayment;
@@ -82,12 +89,7 @@ public class SubjectPurchaseRecord {
 	public void setDealIp(String dealIp) {
 		this.dealIp = dealIp;
 	}
-	public void setSubjectId(Integer subjectId) {
-		this.subjectId = subjectId;
-	}
-	public void setMemberId(Integer memberId) {
-		this.memberId = memberId;
-	}
+	
 	public void setDelflag(Integer delflag) {
 		this.delflag = delflag;
 	}
@@ -97,7 +99,11 @@ public class SubjectPurchaseRecord {
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
 	}
-	public void setInterest(Integer interest) {
+	
+	public Float getInterest() {
+		return interest;
+	}
+	public void setInterest(Float interest) {
 		this.interest = interest;
 	}
 	public void setIspayment(Integer ispayment) {
