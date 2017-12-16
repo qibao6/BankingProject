@@ -74,22 +74,40 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                           <td>注册时间</td>
                           <td>操作</td>
                           </tr>
+                          <c:forEach items="${olist}" var="o">
                           <tr class="text-center">
-                            <td>1</td>
-                            <td>13074607845</td>
-                            <td>张丽珍</td>
-                            <td>W3MN2C</td>
-                            <td>J1Y7JF</td>
-                            <td>0</td>
-                            <td><span style="color: red;">否</span></td>
-                            <td><span style="color: red;">否</span></td>
-                            <td>2016-03-08 14:20:11</td>
+                            <td>${o[0]}</td>
+                            <td>${o[1]}</td>
+                            <td>${o[2]}</td>
+                            <td>${o[3]}</td>
+                            <td>${o[4]}</td>
+                            <td>${o[5]}</td>
                             <td>
-                            			<a class="btn btn-primary btn-sm" href="javascript:" onclick="award('121',0)">注册奖励</a>
-	                            		<span style="color: blue;">投资金额未达到 |</span>
-                            	<a class="btn btn-primary btn-sm" href="<%=basePath%>sysmember/inviteRewardsRecord?id=121">奖励记录</a>
+                            <c:if test="${o[6]==0 && o[7]==0}"><font color="red">否</font></c:if>
+                            <c:if test="${o[6]==0 && o[7]==1}"><font color="blue">是</font></c:if>
+                            <c:if test="${o[6]==1 && o[7]==0}"><font color="red">否</font></c:if>
+                            <c:if test="${o[6]==1 && o[7]==1}"><font color="blue">是</font></c:if>
+                          	</td>
+                          	
+                            <td>
+                            <c:if test="${o[6]==1 && o[7]==0}"><font color="red">否</font></c:if>
+                            <c:if test="${o[6]==1 && o[7]==1}"><font color="blue">是</font></c:if>
+                            <c:if test="${o[6]==0 && o[7]==0}"><font color="red">否</font></c:if>
+                            <c:if test="${o[6]==0 && o[7]==1}"><font color="blue">是</font></c:if>
+							</td>
+							
+                            <td><f:formatDate value="${o[8]}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
+                            
+                            <td>
+                            <c:if test="${o[6]==0 && o[7]==0}"><a class="btn btn-primary btn-sm" href="javascript:" onclick="award(${o[0]},${o[9]},${o[10]})">注册奖励</a></c:if>
+                            <c:if test="${o[6]==0 && o[7]==1}"><font color="blue">注册已奖励</font></c:if>
+                            <c:if test="${o[6]==1}"><font color="blue">注册不能奖励 |</font></c:if>		
+                            <c:if test="${o[6]==0}"><font color="blue">|投资金额未达到 |</font></c:if>	
+                            <a class="btn btn-primary btn-sm" href="<%=basePath%>sysmember/inviteRewardsRecord?awardRecordsId=${o[0]}">奖励记录</a>
                             </td>
                           </tr>
+                          </c:forEach>
+                          
                         </table>
 	
 	
@@ -126,25 +144,9 @@ $(function(){
 	
 });
 
-	 function award(tid,type){
-		if(confirm('你确定要奖励吗？')){
-			$.ajax({
-                type: "POST", // 用POST方式传输
-                dataType: "json", // 数据格式:JSON
-                url: '<%=basePath%>sysmember/awards', // 目标地址
-                data: {
-                    id: tid,
-                    type:type
-                },
-                success: function (msg) {
-                	 if (msg.code == 0) {
-                         window.location.href = "<%=basePath%>sysmember/inviteRewards";
-                     } else {
-                        alert(msg.msg);
-                     }
-                }
-            });
-		}
+	 function award(tid,memberAccountId,amount){
+		 alert(tid+"==="+memberAccountId+"=="+amount);
+		location.href="<%=basePath%>sysmember/awards?awardRecordsId="+tid+"&&memberAccountId="+memberAccountId+"&&amount="+amount;
 	} 
 </script>
 </html>

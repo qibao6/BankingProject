@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.demo.dao.lq.members.AwardRecordsRepository;
 import com.demo.dao.lq.members.FinancialPlannerRepository;
 import com.demo.dao.lq.members.MemberAccountRepository;
 import com.demo.dao.lq.members.MemberBankcardsRepository;
@@ -46,6 +47,10 @@ public class MemberServiceImpl implements MembersService {
 
 	@Autowired
 	MemberBankcardsRepository memberBankcardsRepository;
+	
+	@Autowired
+	AwardRecordsRepository awardRecordsRepository;
+	
 	
 	@Override
 	public List<Members> findMembers() {
@@ -116,5 +121,17 @@ public class MemberServiceImpl implements MembersService {
 	@Transactional
 	public void updateDelflag(Integer delflag, Integer memberBankcardsId) {
 		memberBankcardsRepository.updateDelflag(delflag, memberBankcardsId);
+	}
+
+	@Override
+	@Transactional
+	public void updateIsaward(Integer isaward, Integer awardRecordsId) {
+		awardRecordsRepository.updateIsaward(isaward, awardRecordsId);
+	}
+
+	@Override
+	@Transactional
+	public void updateUseableBalance(Float useableBalance, Integer memberAccountId) {
+		memberAccountRepository.updateUseableBalance(useableBalance, memberAccountId);
 	}
 }

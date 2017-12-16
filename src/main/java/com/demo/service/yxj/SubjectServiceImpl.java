@@ -54,9 +54,9 @@ public class SubjectServiceImpl implements SubjectService{
 						slist.add(builder.like(subpath, "%"+subject.getSubjectType()+"%"));
 					}
 				}
-				if (subject.getYear_rate()!=null&&!"".equals(subject.getYear_rate())) {
+				if (subject.getYearRate()!=null&&!"".equals(subject.getYearRate())) {
 					Path spath=root.get("year_rate");
-					slist.add(builder.like(spath, "%"+subject.getYear_rate()+"%"));
+					slist.add(builder.like(spath, "%"+subject.getYearRate()+"%"));
 				}
 				if (subject.getStatus()!=null&&subject.getStatus()!=0) {
 					Path sbpath=root.get("status");
