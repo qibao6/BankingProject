@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 String path = request.getContextPath();
@@ -25,73 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="<%=basePath%>resources/web/js/jquery.js"></script>
 <script type="text/javascript" src="<%=basePath%>resources/web/layer/layer.js"></script>
 <script src="<%=basePath%>resources/web/echart/dist/echarts.js"></script></head>
-<div class="logo container">
-    <div class="row">
-        <div class="logoImg">
-            <a href="http://www.ying158.com/home"><img src="<%=basePath%>resources/web/images/logo2.png" onmouseover="this.src = '<%=basePath%>/resources/resources/web/images/logo1.png'" onmouseout="this.src = '<%=basePath%>resources/resources/web/images/logo2.png'"></a>
-        </div>
-        <div class="telInfo">
-            <img src="<%=basePath%>resources/web/images/400Icon.png" onmousemove="this.src = '<%=basePath%>resources/web/images/400IconActive.png'" onmouseout="	this.src = '<%=basePath%>resources/resources/web/images/400Icon.png'">
-            <div class="detail">
 
-                        <a style="font-size:18px;float:right;margin-top:5px;color:#917739;" href="<%=basePath%>web/login" target="twoiframe">登录</a>
-                        <a style="font-size:18px;float:right;margin-right:15px;margin-top:5px;color:#917739;" href="<%=basePath%>web/regis" target="twoiframe">注册</a>
-                <br>4000-999-158
-            </div>
-        </div>
-    </div>
-</div>
-<div class="jwNav">
-    <div class="container">
-        <div class="row">
-            <ul class="topNav">
-                <li>
-                    <a class="item first" href="http://www.ying158.com/home">
-                        首页
-                    </a>
-                </li>
-                <li>
-                    <a class="item" href="http://www.ying158.com/home/kcenter">
-                        网上体验中心
-                    </a>
-                </li>
-                <li  class="item">
-                    <a class="item" href="<%=basePath%>subject/subindex" target="myiframe">
-                        产品中心
-                    </a>
-                </li>
-                <li>
-                    <a class="item" href="http://www.ying158.com/Home/NewsCenter">
-                        新闻中心
-                    </a>
-                </li>
-                <li>
-                    <a class="item" href="/winplus/mobileappdownload">
-                      下载中心
-                    </a>
-                </li>
-                <li>
-                    <a class="item " href="http://www.ying158.com/Home/Help">
-                        盈+商学院
-                    </a>
-                </li>
-                <li>
-                    <a class="item" href="http://ying158.com/UserGuide/TradingSoftware">
-                        投研中心
-                    </a>
-                </li>
-                <li>
-                    <a class="item last" href="http://pro.ying158.com/account/trades/profit/records">
-                        我的加法库
-                    </a>
-                </li>
-
-
-
-            </ul>
-        </div>
-    </div>
-</div>
 <script type="text/javascript">
     $(function(){
         function showIn(url){
@@ -101,15 +36,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     });
 
-</script> <div class="sdbanner probanner"></div>
+</script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
-
+<div class="sdbanner probanner"></div>
 <div class="proMain">
     <div class="conTit">
-        <span><a style="color:#9d8440;" href="<%=basePath%>view/front/main.jsp">其他标的</a></span>
+        <span><a style="color:#9d8440;" href="<%=basePath%>subject/subindex" target="myiframe">其他标的</a></span>
         <h2><em>￥</em>${subject.subjectName}</h2>
     </div>
     <table class="conTable" width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -135,10 +70,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <p>已投金额(元)</p>
                     <div class="li4" style=""><span id="checkmoney" style="color: red;"></span></div>
                     <div class="tit">
-                    	<span class="fr">
-                            <a style="color:#2695d5" class="unlogin" href="<%=basePath%>web/login" target="twoiframe">登录</a>后可见
+                    <c:if test="${members==null}">
+                    <span class="fr" id="login">
+                            <a style="color:#2695d5" class="unlogin" href="<%=basePath%>web/login">登录</a>后可见
 						</span>
+						</c:if>
+						<c:if test="${members!=null}">
+						<span class="fr">
+                        157.61元&nbsp;&nbsp;<a href="/winplus/account/deposit">充值&nbsp;&nbsp;&nbsp;</a>
+						</span>
+						</c:if>
+                    	
                         <h2>账户余额</h2>
+                        
                         <div id="count">预期所得收益<i
                                 data-num="0.001151"
                                 id="num">0</i>元
@@ -151,6 +95,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <p class="preBox">
                         <input type="checkbox" id="registerRule" class="registerRule" checked="checked"><span
                             class="fl">同意<a href="/winplus/web/syxy" target="_black">《产品协议》</a></span>
+                            <c:if test="${members!=null}">
+                            <button id="redPacket">使用红包</button>
+                            </c:if>
                     </p>
                     <button class="submit">确认抢购</button>
                 </div>
@@ -227,6 +174,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript">
 
     $(function () {
+    
+    	//var members=document.getElementsByName("members");
         $(".tbConBox .tab a").click(function () {
             if (!$(this).hasClass("select")) {
                 var num = $(this).index();
@@ -243,20 +192,96 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         var bbinAll = $("#bbinAll");
         var addMoney = $("#addMoney");
         var mytext = $("#mytext");
-        var exists = false;
+        var exists = $("#login").val();
+       // var acountval = $("#account").val();
         var authBankCard=false;
         
             $(".submit").click(function () {
+            	//alert(exists);
+            	
+            	
+            	
+            		//alert(members.mobilephone);
+            		if(exists==false){
+            			
+            			$("#checkmoney").html("请先登陆!");
+            			$(".li4").show(100);
+            			return false;
+            		}
+            	
+	
+              //  if (exists == true) {
+                   // $("#checkmoney").html("请先登陆!");
+                   // $(".li4").show(100);
+                   // return false;
+               // }
+                //if(authBankCard==false){
+                 	//$("#checkmoney").html("请先绑定银行卡，<a href='/winplus/account/security/memberBankcardView'>绑卡</a>");
+                   //  $(".li4").show(100);
+                 //	return false;
+                // }
+                // var value = $(":input[name=totalFee]").val();
+                // if (value == null || value == '') {
+                    // $("#checkmoney").html("金额不能为空");
+                    // $(".li4").show(100);
+                    // return false;
+               //  }
+                // value = parseInt(value);
+                // if (value
+                      //   <100) {
+                    // $("#checkmoney").html("起投金额在100以上");
+                    // $(".li4").show(100);
+                    // return false;
+                // }
+                // var bonusFee = 0;
+                // var bbinStatus = 0;
+                 //if (!(bbinAll.hasClass("active"))) {//未选中体验金
+                  //   var acountval = $("#account").val();
+                   //  if (acountval != -1) {
+                     //    if ((acountval - value) < 0) {
+                            // $("#checkmoney").html("账号余额不足，请充值");
+                            // $(".li4").show(100);
+                            // return false;
+                        // }
+                    // }
+                    // if (redPacket.hasClass("active")) {//选中红包
+                       //  bonusFee =0;
+                     //}
+              //   } else {
+                   //  bbinStatus = 1;
+                // }
 
-                if (exists == false) {
-                    $("#checkmoney").html("请先登陆!");
-                    $(".li4").show(100);
-                    return false;
-                }
-            });
+                 $.ajax({
+                     type: "POST", // 用POST方式传输
+                     dataType: "json", // 数据格式:JSON
+                     async: true,
+                     url: '/winplus/subjectPur/order', // 目标地址
+                     data: {
+                         subjectId:1638,
+                         totalFee: value,
+                         bonusFee: bonusFee,
+                         bbinStatus: bbinStatus
+                     },
+                     success: function (msg) {
+                         if (msg.code == 0) {
+                             window.location.href = "/winplus/subjectPur/orderView?tradeNo=" + msg.msg + "&bbinStatus=" + bbinStatus;
+                         } else {
+                             $("#checkmoney").html(msg.msg);
+                             $(".li4").show(100);
+                         }
+                     }
+                 });
+
+             });
 
 
     });
+
+
+    
+
+
+ 
 
 </script>
 

@@ -28,6 +28,22 @@
 </head>
 
 <body>
+	<div class="sdbanner probanner"></div>
+	
+	<div class="proMain">
+		<div class="hwpzNav">
+		
+			<ul>
+				<li class="first"><a class="active"
+					href="<%=basePath%>subject/subindex" target="myiframe">固收类理财</a></li>
+				<li class="second"><a href="<%=basePath%>finance/financelist"
+					target="myiframe">私募基金</a></li>
+				<li class="three"><a href="<%=basePath%>subject/oversea"
+					target="myiframe">海外配置</a></li>
+				<li class="four"><a href="<%=basePath%>finance/financelist"
+					target="myiframe">股权基金</a></li>
+			</ul>
+		</div>
 
 	<div class="sdShaix">
 		<ul>
@@ -131,7 +147,7 @@
 			</p></li>
 		<li class="four"></li>
 		<li class="five"><a class="abtn"
-			href="<%=basePath%>subject/purchase/${sub[0]}" target="twoiframe">购买</a></li>
+			href="<%=basePath%>subject/purchase/${sub[0]}" target="myiframe">购买</a></li>
 	</ul>
 	</c:forEach>
 	<div class="llpage">

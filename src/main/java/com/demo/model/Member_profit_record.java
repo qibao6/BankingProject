@@ -2,11 +2,15 @@ package com.demo.model;
 
 import java.sql.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  * 		sql_member_profit_record
  * @author LENOVO
  *
  */
+@Entity
 public class Member_profit_record {
 	   private Integer mprId;
 	   private String serialNumber;//流水号
@@ -22,6 +26,7 @@ public class Member_profit_record {
 	   private Integer profitMonth;//计息月
 	   private Integer profitDay;//计息日
 	   
+	@Id
 	public Integer getMprId() {
 		return mprId;
 	}

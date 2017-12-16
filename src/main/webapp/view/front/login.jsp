@@ -25,17 +25,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="<%=basePath%>resources/web/js/jquery.js"></script>
 <script type="text/javascript" src="<%=basePath%>resources/web/layer/layer.js"></script>
 <script src="<%=basePath%>resources/web/echart/dist/echarts.js"></script></head>
+
+<script type="text/javascript">
+    $(function(){
+        function showIn(url){
+            var info="<div class='mydig'><div class='bg'></div><div class='imgbox'><a href="+url+"></a></div></div>";
+            $('body').append(info);
+        }
+
+    });
+
+</script> 
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
 <div class="logo container">
     <div class="row">
         <div class="logoImg">
-            <a href="http://www.ying158.com/home"><img src="<%=basePath%>resources/web/images/logo2.png" onmouseover="this.src = '<%=basePath%>/resources/resources/web/images/logo1.png'" onmouseout="this.src = '<%=basePath%>resources/resources/web/images/logo2.png'"></a>
+            <a href="http://www.ying158.com/home"><img src="<%=basePath%>resources/web/images/logo2.png" onmouseover="this.src = '<%=basePath%>resources/web/images/logo1.png'" onmouseout="this.src = '<%=basePath%>resources/web/images/logo2.png'"></a>
         </div>
         <div class="telInfo">
-            <img src="<%=basePath%>resources/web/images/400Icon.png" onmousemove="this.src = '<%=basePath%>resources/web/images/400IconActive.png'" onmouseout="	this.src = '<%=basePath%>resources/resources/web/images/400Icon.png'">
+            <img src="<%=basePath%>resources/web/images/400Icon.png" onmousemove="this.src = '<%=basePath%>resources/web/images/400IconActive.png'" onmouseout="	this.src = '<%=basePath%>resources/web/images/400Icon.png'">
             <div class="detail">
 
-                        <a style="font-size:18px;float:right;margin-top:5px;color:#917739;" href="<%=basePath%>web/login" target="twoiframe">登录</a>
-                        <a style="font-size:18px;float:right;margin-right:15px;margin-top:5px;color:#917739;" href="<%=basePath%>web/regis" target="twoiframe">注册</a>
+                        <a style="font-size:18px;float:right;margin-top:5px;color:#917739;" href="/winplus/web/login">登录</a>
+                        <a style="font-size:18px;float:right;margin-right:15px;margin-top:5px;color:#917739;" href="/winplus/web/regis">注册</a>
                 <br>4000-999-158
             </div>
         </div>
@@ -56,7 +71,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </a>
                 </li>
                 <li  class="item">
-                    <a class="item" href="<%=basePath%>subject/subindex" target="myiframe">
+                    <a class="item" href="<%=basePath%>view/front/main.jsp">
                         产品中心
                     </a>
                 </li>
@@ -92,20 +107,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    $(function(){
-        function showIn(url){
-            var info="<div class='mydig'><div class='bg'></div><div class='imgbox'><a href="+url+"></a></div></div>";
-            $('body').append(info);
-        }
-
-    });
-
-</script> 
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
 <script type="text/javascript">
     $(function(){
         function showIn(url){

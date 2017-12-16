@@ -3,12 +3,16 @@ package com.demo.controller.yxj;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.catalina.connector.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.demo.model.Members;
 import com.demo.model.Subject;
 import com.demo.service.yxj.SubjectService;
 
@@ -18,11 +22,21 @@ public class SubjectHandler {
 
 	@Autowired
 	SubjectService subjectService;
+	
+	@RequestMapping("init")
+	public String init(HttpServletRequest request,Map<String,Object> map){
+		Members members=(Members) request.getSession().getAttribute("members");
+		map.put("members", members);
+		return "front/main";
+	}
 
 	//固收类理财
 	@RequestMapping("subindex")
-	public String findsublist(Map<String,Object> map){
+	public String findsublist(Map<String,Object> map,HttpServletRequest request){
 		System.out.println("==============================");
+		
+		Members members=(Members) request.getSession().getAttribute("members");
+		map.put("members", members);
 				List<Object[]> sublist=subjectService.findsubindex();
 				map.put("sublist", sublist);
 				
@@ -65,10 +79,12 @@ public class SubjectHandler {
 
 	//固收类理财购买
 	@RequestMapping("purchase/{subjectId}")
-	public String purchase(Map<String,Object> map,@PathVariable Integer subjectId){
+	public String purchase(Map<String,Object> map,@PathVariable Integer subjectId,HttpServletRequest request){
 		System.out.println("再见面时，谈笑风生不动情");
 		Subject subject=subjectService.getByid(subjectId);
 		map.put("subject",subject);
+		Members members=(Members) request.getSession().getAttribute("members");
+		map.put("members", members);
 //		List<Object[]> sublist=subjectService.findsubindex();
 //		map.put("sublist", sublist);
 		return "front/subjectcontent";

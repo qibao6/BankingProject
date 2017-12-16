@@ -30,6 +30,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <title>Insert title here</title>
 </head>
 <body>
+	<div class="sdbanner probanner"></div>
+	<div class="proMain">
+		<div class="hwpzNav">
+			<ul>
+				<li class="first"><a class="active"
+					href="<%=basePath%>subject/subindex" target="myiframe">固收类理财</a></li>
+				<li class="second"><a href="<%=basePath%>finance/financelist"
+					target="myiframe">私募基金</a></li>
+				<li class="three"><a href="<%=basePath%>subject/oversea"
+					target="myiframe">海外配置</a></li>
+				<li class="four"><a href="<%=basePath%>finance/financelist"
+					target="myiframe">股权基金</a></li>
+			</ul>
+		</div>
 <div class="ajaxContainer">
         <!-- 异步内容开始 -->
                     <ul class="tbList">
@@ -54,7 +68,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             </div>
 
                         </li>
-                        <li class="five"><a class="abtn" href="<%=basePath%>finance/financeview" target="twoiframe">购买</a></li>
+                        <li class="five"><a class="abtn" href="<%=basePath%>finance/financeview" target="myiframe">购买</a></li>
                     </ul>
                     <ul class="tbList">
                         <li class="first">
@@ -78,7 +92,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             </div>
 
                         </li>
-                        <li class="five"><a class="abtn" href="<%=basePath%>finance/financeview" target="twoiframe">购买</a></li>
+                        <li class="five"><a class="abtn" href="<%=basePath%>finance/financeview" target="myiframe">购买</a></li>
                     </ul>
                     <ul class="tbList">
                         <li class="first">
@@ -102,7 +116,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             </div>
 
                         </li>
-                        <li class="five"><a class="abtn" href="<%=basePath%>finance/financeview" target="twoiframe">购买</a></li>
+                        <li class="five"><a class="abtn" href="<%=basePath%>finance/financeview" target="tmyiframe">购买</a></li>
                     </ul>
                 <ul class="tbList">
                     <li class="first">
@@ -127,7 +141,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             投资方向：345
                         </p>
                     </li>
-                    <li class="five"><a class="abtn" href="<%=basePath%>finance/financeview" target="twoiframe">购买</a></li>
+                    <li class="five"><a class="abtn" href="<%=basePath%>finance/financeview" target="myiframe">购买</a></li>
                 </ul>
                 </div>
                 <div class="llpage">
