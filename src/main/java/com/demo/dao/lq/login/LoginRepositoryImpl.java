@@ -1,5 +1,6 @@
 package com.demo.dao.lq.login;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -62,5 +63,33 @@ public class LoginRepositoryImpl implements UserLoginDao {
 		String sql ="select s.subject_name,s.period,s.year_rate from subject s where s.subject_id="+subjectId;
 		Object[] sub = (Object[]) entityManager.createNativeQuery(sql).getSingleResult();
 		return sub;
+	}
+
+	@Override
+	public List<Object[]> fxjAll(Integer subjectId) {
+		String sql ="select rownum,a.* from  (select sbpr.serial_number,m.mobile_phone,m.member_name,m.member_identity,sbpr.amount,sbpr.interest,sbpr.update_date,sbpr.ispayment from subject_bbin_purchase_record sbpr left join members m  on sbpr.member_id=m.member_id where sbpr.subject_id="+subjectId+") a";
+		List<Object[]> list = entityManager.createNativeQuery(sql).getResultList();
+		return list;
+	}
+
+	@Override
+	public List<Object[]> fxAll(Integer subjectId) {
+		String sql ="select rownum,a.* from  (select sbpr.serial_number,m.mobile_phone,m.member_name,m.member_identity,ma.invest_amount,sbpr.interest,ma.create_date,sbpr.update_date,sbpr.ispayment from subject_bbin_purchase_record sbpr left join members m  on sbpr.member_id=m.member_id inner join member_account ma on ma.member_id=m.member_id where sbpr.subject_id="+subjectId+") a";
+		List<Object[]> list = entityManager.createNativeQuery(sql).getResultList();
+		return list;
+	}
+
+	@Override
+	public List<Object[]> txAll() {
+		String sql ="select rownum,a.* from (select m.mobile_phone,m.member_name,m.member_identity,mw.amount,mw.bank_name,mw.bank_card,mw.cardaddress,mw.status,mw.create_date from member_withdraw_record mw left join members m  on mw.member_id=m.member_id)a";
+		List<Object[]> list = entityManager.createNativeQuery(sql).getResultList();
+		return list;
+	}
+
+	@Override
+	public Integer m(String mobilePhone) {
+		String sql="select m.member_id from members m  where m.mobile_phone="+mobilePhone;
+		BigDecimal m = (BigDecimal) entityManager.createNativeQuery(sql).getSingleResult();
+		return m.intValue();
 	}
 }

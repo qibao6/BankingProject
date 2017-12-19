@@ -58,10 +58,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			               <li class="list-group-item"><a href="<%= basePath %>financeProductFunds/list" target="rightkj">私募/股权类</a></li>
 			               <li class="list-group-item"><a href="<%= basePath %>overseaSys/overseaConfig" target="rightkj">海外配置</a></li>
 		               </ul>
- 					  <li><a href="javascript:;" class="titlea"><span class="iconfont">&#xe60c;</span>钱包管理</a></li>
-              		  <ul class="list-group">
-			               <li class="list-group-item"><a href="<%= basePath %>dailycash/list" target="rightkj">钱包缴费记录</a></li>
-                      </ul>
 		              <li><a href="javascript:;" class="titlea"><span class="iconfont">&#xe60b;</span>学院管理</a></li>
 		              <ul class="list-group">
 			               <li class="list-group-item"><a href="<%= basePath %>newsType/index" target="rightkj">资讯分类</a></li>

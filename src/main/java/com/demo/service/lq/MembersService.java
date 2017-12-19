@@ -2,7 +2,8 @@ package com.demo.service.lq;
 
 import java.util.List;
 
-import com.demo.model.AwardRecords;
+import org.springframework.data.domain.Page;
+
 import com.demo.model.FinancialPlanner;
 import com.demo.model.MemberAccount;
 import com.demo.model.MemberBankcards;
@@ -10,7 +11,6 @@ import com.demo.model.MemberDepositRecord;
 import com.demo.model.MemberTradeRecord;
 import com.demo.model.MemberWithdrawRecord;
 import com.demo.model.Members;
-import com.demo.model.Subject;
 
 public interface MembersService {
 	
@@ -19,7 +19,7 @@ public interface MembersService {
 	 * 账号管理
 	 * @return
 	 */
-	List<Members> findMembers();
+	Page<Members> findMembers(Integer page,Integer size,final Members members);
 	
 	/**
 	 * 账号详情
@@ -48,19 +48,19 @@ public interface MembersService {
 	 * @param memberId
 	 * @return
 	 */
-	List<MemberDepositRecord>  memberDepositRecord(Integer memberId);
+	Page<MemberDepositRecord>  memberDepositRecord(final Integer memberId,Integer page,Integer size);
 	/**
 	 * 钱包记录
 	 * @param memberId
 	 * @return
 	 */
-	List<MemberTradeRecord>  memberTradeRecord(Integer memberId);
+	Page<MemberTradeRecord>  memberTradeRecord(final Integer memberId,Integer page,Integer size);
 	/**
 	 * 提现记录
 	 * @param memberId
 	 * @return
 	 */
-	List<MemberWithdrawRecord>  memberWithdrawRecord(Integer memberId);
+	Page<MemberWithdrawRecord>  memberWithdrawRecord(final Integer memberId,Integer page,Integer size);
 	
 	/**
 	 * 理财师审核查询

@@ -29,12 +29,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body>
 
                      <div class="box-right-main">
-                        <h2><span class="glyphicon glyphicon-play" style="margin-right:5px"></span>体验金付息计划</h2>
+                        <h2><span class="glyphicon glyphicon-play" style="margin-right:5px"></span>付息计划</h2>
 
                       <div class="tablelist">
                         <table class="table tabletop">
                         <tr>
-                        <td style="padding-left:30px">标的名称：${su[0]}
+                        <td style="padding-left:30px">标的名称：${su[0]} 
                         				&nbsp; &nbsp; &nbsp; &nbsp;  标的期限：${su[1]}天
                         				&nbsp; &nbsp; &nbsp; &nbsp;  年化收益率：${su[2]}%</td>
                         </tr>     
@@ -47,34 +47,41 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                           <td>投资人手机号</td>
                           <td>投资人姓名</td>
                           <td>投资人身份证</td>
-                          <td>投资体验金</td>
-                          <td>还款利息</td>
+                          <td>投资金额</td>
+                          <td>还款利息+本金=本息</td>
+                          <td>投资时间</td>
                           <td>还款时间</td>
                           <td>还款状态</td>
                           <td>操作</td>
                           </tr>
                     <c:forEach items="${list}" var="a">
-                    <tr class="text-center">
+                      <tr class="text-center">
                         <td>${a[0]}</td>
                         <td>${a[1]}</td>
                         <td>${a[2]}</td>
                         <td>${a[3]}</td>
                         <td>${a[4]}</td>
-                        <td><span style="color: blue;">￥${a[5]}</span>元</td>
-                        <td><span style="color: red;">￥${a[6]}</span>元 </td>
+                        <td>￥${a[5]}元</td>
+                        <td><span style="color: red;">${a[6]}</span>+
+                        	<span style="color: red;">${a[5]}</span>=
+                        	<span style="color: blue;">￥${a[6]+a[5]}</span>元
+                        </td>
                         <td><f:formatDate value="${a[7]}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
+                        <td><f:formatDate value="${a[8]}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
                         <td>
-                        <c:if test="${a[8]==0}"><span style="color: blue;">已还款</span></c:if>
-                        <c:if test="${a[8]==1}"><span style="color: red;">待还款</span></c:if>
+                        <c:if test="${a[9]==0}"><span style="color: blue;">已还款</span></c:if>
+                        <c:if test="${a[9]==1}"><span style="color: red;">待还款</span></c:if>
                         </td>
                         <td>
-                        	<c:if test="${a[8]==0}"><a href="javascript:" class="btn btn-primary btn-sm" style="background-color: #8393A1;">已还款</a></c:if>
-                        	<c:if test="${a[8]==1}"><a href="<%=basePath%>sysmember/paymentBbin?id=16" class="btn btn-primary btn-sm">立即还款</a></c:if>
+                        <c:if test="${a[9]==0}"><a href="javascript:" class="btn btn-primary btn-sm" style="background-color: #8393A1;">已还款</a></c:if>
+                        <c:if test="${a[9]==1}"><a href="<%=basePath%>sysmember/paymentBbin?id=16" class="btn btn-primary btn-sm">立即还款</a></c:if>
                         	
                         </td>
                     </tr>
                     </c:forEach>
             </table>
+	
+	
 	<div class="llpage">
 		<div class="in">
 			<nav>

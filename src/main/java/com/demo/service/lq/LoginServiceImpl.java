@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.dao.lq.login.LoginRepository;
+import com.demo.model.Members;
 
 @Service
 public class LoginServiceImpl implements LoginService {
@@ -36,6 +37,26 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public Object[] sub(Integer subjectId) {
 		return loginRepository.sub(subjectId);
+	}
+
+	@Override
+	public List<Object[]> fxjAll(Integer subjectId) {
+		return loginRepository.fxjAll(subjectId);
+	}
+
+	@Override
+	public List<Object[]> fxAll(Integer subjectId) {
+		return loginRepository.fxAll(subjectId);
+	}
+
+	@Override
+	public List<Object[]> txAll() {
+		return loginRepository.txAll();
+	}
+
+	@Override
+	public Integer m(String mobilePhone) {
+		return loginRepository.m(mobilePhone);
 	}
 
 }

@@ -2,6 +2,8 @@ package com.demo.dao.lq.login;
 
 import java.util.List;
 
+import com.demo.model.Members;
+
 public interface UserLoginDao {
 	
 	/**
@@ -39,4 +41,28 @@ public interface UserLoginDao {
 	 * @return
 	 */
 	Object[] sub(Integer subjectId);
+	/**
+	 * 体验金付息计划
+	 * @param subjectId
+	 * @return
+	 */
+	List<Object[]> fxjAll(Integer subjectId);
+	/**
+	 * 付息列表
+	 * @param subjectId
+	 * @return
+	 */
+	List<Object[]> fxAll(Integer subjectId);
+	/**
+	 * 提现列表
+	 * @return
+	 */
+	List<Object[]> txAll();
+	/**
+	 * 查询membersId
+	 * @param mobilePhone
+	 * @return
+	 */
+	Integer m(String mobilePhone);
 }
+ 

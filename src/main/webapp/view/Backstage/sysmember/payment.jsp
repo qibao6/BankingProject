@@ -78,7 +78,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         	<c:if test="${f[2]==1}">P2P车贷</c:if>
                         </td>
                         <td>${f[3]}</td>
-                        <td>￥${f[4]==null?0:f[4]}</td>
+                        <td>￥${f[4]==null?0:f[4]}元</td>
                         <td>￥${f[5]==null?0:f[5]}元</td>
                         <td>${f[6]}人</td>
                         <td>${f[7]}天</td>
@@ -93,8 +93,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         	<c:if test="${f[10]==1}">是</c:if>
                         </td>
                         <td>
-                        	<a href="<%=basePath%>sysmember/paymentBbinContent?subjectId=${f[0]}" class="btn btn-primary btn-sm">体验金付息</a>
-                        	<a href="<%=basePath%>sysmember/paymentContent?id=1638" class="btn btn-primary btn-sm">付息列表</a>	
+                        	<c:if test="${f[10]==1}"><a href="<%=basePath%>sysmember/paymentBbinContent?subjectId=${f[0]}" class="btn btn-primary btn-sm">体验金付息</a></c:if>
+                        	<a href="<%=basePath%>sysmember/paymentContent?subjectId=${f[0]}" class="btn btn-primary btn-sm">付息列表</a>	
                         </td>
                     </tr>
                 </c:forEach>

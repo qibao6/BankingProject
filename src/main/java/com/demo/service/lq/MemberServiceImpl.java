@@ -1,8 +1,19 @@
 package com.demo.service.lq;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Path;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -53,8 +64,40 @@ public class MemberServiceImpl implements MembersService {
 	
 	
 	@Override
-	public List<Members> findMembers() {
-		return membersRepository.findAll();
+	public Page<Members> findMembers(Integer page,Integer size,final Members members) {
+		
+		Pageable pageable = new PageRequest(page-1,size);
+		
+		Specification<Members> specification = new Specification<Members>() {
+			
+			@Override
+			public Predicate toPredicate(Root<Members> root, CriteriaQuery<?> query,
+					CriteriaBuilder builder) {
+				List<Predicate> plist = new ArrayList<>();
+				if(members!=null){
+					if(members.getNames()!=null&&!"".equals(members.getNames())){
+						Path namespath = root.get("names");
+						plist.add(builder.like(namespath, "%"+members.getNames()+"%"));
+					}
+					
+					if(members.getMobilePhone()!=null&&!"".equals(members.getMobilePhone())){
+						Path phonepath = root.get("mobilePhone");
+						plist.add(builder.like(phonepath, "%"+members.getMobilePhone()+"%"));
+					}
+					if(members.getMemberName()!=null&&!"".equals(members.getMemberName())){
+						Path mnpath = root.get("memberName");
+						plist.add(builder.like(mnpath,"%"+members.getMemberName()+"%"));
+					}
+					if(members.getInvitationcode()!=null&&!"".equals(members.getInvitationcode())){
+						Path inpath = root.get("invitationcode");
+						plist.add(builder.like(inpath,"%"+members.getInvitationcode()+"%"));
+					}
+				}
+				return builder.and(plist.toArray(new Predicate[plist.size()]));
+			}
+		};
+		
+		return membersRepository.findAll(specification, pageable);
 	}
 
 	@Override
@@ -69,24 +112,25 @@ public class MemberServiceImpl implements MembersService {
 	}
 
 	@Override
-	public List<MemberDepositRecord> memberDepositRecord(Integer memberId) {
+	public Page<MemberDepositRecord> memberDepositRecord(final Integer memberId,Integer page,Integer size) {
 		m.setMemberId(memberId);
-		List<MemberDepositRecord> dlist= memberDepositRecordRepository.findMemberDepositRecordBymembers(m);
-		return dlist;
+		Pageable pageable = new PageRequest(page-1,size);
+		
+		return memberDepositRecordRepository.findMemberDepositRecordBymembers(m, pageable);
 	}
 
 	@Override
-	public List<MemberTradeRecord> memberTradeRecord(Integer memberId) {
+	public Page<MemberTradeRecord> memberTradeRecord(final Integer memberId,Integer page,Integer size) {
 		m.setMemberId(memberId);
-		List<MemberTradeRecord> trlist = memberTradeRecordRepository.findMemberTradeRecordBymembers(m);
-		return trlist;
+		Pageable pageable = new PageRequest(page-1,size);
+		return memberTradeRecordRepository.findMemberTradeRecordBymembers(m, pageable);
 	}
 
 	@Override
-	public List<MemberWithdrawRecord> memberWithdrawRecord(Integer memberId) {
+	public Page<MemberWithdrawRecord> memberWithdrawRecord(final Integer memberId,Integer page,Integer size) {
 		m.setMemberId(memberId);
-		List<MemberWithdrawRecord> wrlist = memberWithdrawRecordRepository.findMemberWithdrawRecordBymembers(m);
-		return wrlist;
+		Pageable pageable = new PageRequest(page-1,size);
+		return memberWithdrawRecordRepository.findMemberWithdrawRecordBymembers(m, pageable);
 	}
 
 	@Override

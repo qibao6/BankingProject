@@ -97,7 +97,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 	</tr>
 	 	<tr>
 			<th>添加时间</th>	
-			<td>${fp.createDate}</td>
+			<td><f:formatDate value="${fp.createDate}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
 			<td>&nbsp;</td>	
 			<td>&nbsp;</td>	
 	 	</tr>
@@ -148,7 +148,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<th width="15%">提现卡号</th>
 			<th width="15%">提现时间</th>
 		</tr>
-		<c:forEach items="${wr}" var="wr">
+		<c:forEach items="${wr.getContent()}" var="wr">
 		<tr>
 			<td width="5%">${wr.mwrId}</td>
 			<td width="15%">${wr.serialNumber}</td>
@@ -166,6 +166,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</c:forEach>
 		
 	</table>
+	
+	<div class="llpage">
+		<div class="in">
+			<nav>
+				<ul class="pagination">
+						<li><a class="prev_page" href="<%= basePath%>sysmember/memberInfo?page=${wr.getNumber()>1?wr.getNumber():1}&&memberId=${m.memberId}">上页</a></li>
+						
+							<c:forEach begin="1" end="${wr.getTotalPages()}" var="v" >
+							<li><a class="now" href="<%= basePath%>sysmember/memberInfo?page=${v}&&memberId=${m.memberId}">${v}</a></li>
+							</c:forEach>
+							
+						<li><a class="next_page" rel="next" href="<%= basePath%>sysmember/memberInfo?page=${wr.getNumber()+1<wr.getTotalPages()?wr.getNumber()+1+1:wr.getTotalPages()}&&memberId=${m.memberId}">下页</a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	
 </div>
 <script type="text/javascript">
 	function getJsonInfo2(url) {
@@ -192,7 +209,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<th width="15%">充值渠道编号</th>
 			<th width="15%">充值时间</th>
 		</tr>
-		<c:forEach items="${md}" var="mds">
+		<c:forEach items="${md.getContent()}" var="mds">
 		<tr>
 			<td width="5%">${mds.memberDepositRecordId}</td>
 			<td width="15%">${mds.serialNumber}</td>
@@ -207,6 +224,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</tr>
 		</c:forEach>
 	</table>
+	<div class="llpage">
+		<div class="in">
+			<nav>
+				<ul class="pagination">
+						<li><a class="prev_page" href="<%= basePath%>sysmember/memberInfo?page=${md.getNumber()>1?md.getNumber():1}&&memberId=${m.memberId}">上页</a></li>
+						
+							<c:forEach begin="1" end="${md.getTotalPages()}" var="v" >
+							<li><a class="now" href="<%= basePath%>sysmember/memberInfo?page=${v}&&memberId=${m.memberId}">${v}</a></li>
+							</c:forEach>
+							
+						<li><a class="next_page" rel="next" href="<%= basePath%>sysmember/memberInfo?page=${md.getNumber()+1<md.getTotalPages()?md.getNumber()+1+1:md.getTotalPages()}&&memberId=${m.memberId}">下页</a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
 </div>
 <script type="text/javascript">
 	function getJsonInfo3(url) {
@@ -233,7 +265,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<th width="15%">交易名称</th>
 			<th width="15%">交易时间</th>
 		</tr>
-		<c:forEach items="${tr}" var="tr">
+		<c:forEach items="${tr.getContent()}" var="tr">
 		<tr>
 			<td width="5%">${tr.mtrId}</td>
 			<td width="15%">${tr.tradeNo}</td>
@@ -248,6 +280,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</tr>
 		</c:forEach>
 	</table>
+	
+	<div class="llpage">
+		<div class="in">
+			<nav>
+				<ul class="pagination">
+						<li><a class="prev_page" href="<%= basePath%>sysmember/memberInfo?page=${tr.getNumber()>1?tr.getNumber():1}&&memberId=${m.memberId}">上页 </a></li>
+							<c:forEach begin="1" end="${tr.getTotalPages()}" var="v" >
+							<li><a class="now" href="<%= basePath%>sysmember/memberInfo?page=${v}&&memberId=${m.memberId}">${v}</a></li>
+							</c:forEach>
+							
+						<li><a class="next_page" rel="next" href="<%= basePath%>sysmember/memberInfo?page=${tr.getNumber()+1<tr.getTotalPages()?tr.getNumber()+1+1:tr.getTotalPages()}&&memberId=${m.memberId}">下页</a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	
 </div>
 <script type="text/javascript">
 	function getJsonInfo(url) {
