@@ -4,6 +4,8 @@ import java.sql.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  * 		sql_member_profit_record
@@ -16,7 +18,7 @@ public class Member_profit_record {
 	   private String serialNumber;//流水号
 	   private Integer mprType;
 	   private Float amount;//金额
-	   private Integer memberId;//用户id
+	   private Members memberId;//用户id
 	   private Integer delflag;
 	   private Date createDate;
 	   private Date updateDate;
@@ -39,8 +41,13 @@ public class Member_profit_record {
 	public Float getAmount() {
 		return amount;
 	}
-	public Integer getMemberId() {
+	@ManyToOne
+	@JoinColumn(name="member_id")
+	public Members getMemberId() {
 		return memberId;
+	}
+	public void setMemberId(Members memberId) {
+		this.memberId = memberId;
 	}
 	public Integer getDelflag() {
 		return delflag;
@@ -77,9 +84,6 @@ public class Member_profit_record {
 	}
 	public void setAmount(Float amount) {
 		this.amount = amount;
-	}
-	public void setMemberId(Integer memberId) {
-		this.memberId = memberId;
 	}
 	public void setDelflag(Integer delflag) {
 		this.delflag = delflag;
