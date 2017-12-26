@@ -45,7 +45,21 @@ public class Subject {
 	   private String safetycontrol;//  CLOB,--'安全保障',
 	   private Integer experStatus;//  number-- '体验金是否可以购买（0：否，1：是）',
 	
+	   //默认构造函数
+	   public Subject(){
+		   
+	   }
 	   
+	
+	public Subject(Integer subjectType, Integer status, Integer period, Float year_rate) {
+		
+		this.subjectType = subjectType;
+		this.status = status;
+		this.period = period;
+		this.yearRate = year_rate;
+	}
+
+
 	@Id
 	
 	public Integer getSubjectId() {
@@ -235,5 +249,5 @@ public class Subject {
 	public void setYearRate(Float yearRate) {
 		this.yearRate = yearRate;
 	}
-	
+
 }

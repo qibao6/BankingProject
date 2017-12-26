@@ -14,7 +14,6 @@ import com.demo.model.MemberDepositRecord;
 import com.demo.model.MemberTradeRecord;
 import com.demo.model.MemberWithdrawRecord;
 import com.demo.model.Members;
-import com.demo.model.Subject;
 import com.demo.service.lq.LoginService;
 import com.demo.service.lq.MembersService;
 
