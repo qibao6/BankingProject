@@ -38,11 +38,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<td><f:formatDate value="${mwr.createDate }" pattern="yyyy-MM-dd" /></td>
 				<td>${mwr.serialNumber }</td>
 				<td><font color="#ff503f">￥${mwr.amount }</font></td>
-				<td>待审核
-					<c:if test="${mwr.amount==0 }">待审核</c:if>
-					<c:if test="${mwr.amount==1 }">已打款</c:if>
-					<c:if test="${mwr.amount==2 }">打款中</c:if>
-					<c:if test="${mwr.amount==3 }">打款失败</c:if>
+				<td>
+					<c:if test="${mwr.status==0 }">待审核</c:if>
+					<c:if test="${mwr.status==1 }">已打款</c:if>
+					<c:if test="${mwr.status==2 }">打款中</c:if>
+					<c:if test="${mwr.status==3 }">打款失败</c:if>
 				</td>
 			</tr>
 		</c:forEach>

@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 /**
+ * 收益记录表
  * 		sql_member_profit_record
  * @author LENOVO
  *
