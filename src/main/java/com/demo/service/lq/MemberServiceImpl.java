@@ -134,8 +134,35 @@ public class MemberServiceImpl implements MembersService {
 	}
 
 	@Override
-	public List<FinancialPlanner> fplist() {
-		return financialPlannerRepository.findAll();
+	public Page<FinancialPlanner> fplist(Integer page,Integer size,final FinancialPlanner financialPlanner) {
+		Pageable pageable = new PageRequest(page-1,size);
+		
+		Specification<FinancialPlanner> specification = new Specification<FinancialPlanner>() {
+			
+			@Override
+			public Predicate toPredicate(Root<FinancialPlanner> root, CriteriaQuery<?> query,
+					CriteriaBuilder builder) {
+			List<Predicate> plist = new ArrayList<>();
+				if (financialPlanner!=null) {
+				 if(financialPlanner.getMembers()!=null){
+					if(financialPlanner.getMembers().getMobilePhone()!=null&&!"".equals(financialPlanner.getMembers().getMobilePhone())){
+						Path mppath = root.get("members").get("mobilePhone");
+						plist.add(builder.like(mppath, "%"+financialPlanner.getMembers().getMobilePhone()+"%"));
+					}
+					if(financialPlanner.getFinancialPlannerName()!=null&&!"".equals(financialPlanner.getFinancialPlannerName())){
+						Path mnpath = root.get("financialPlannerName");
+						plist.add(builder.like(mnpath,"%"+financialPlanner.getFinancialPlannerName()+"%"));
+					}
+				  }
+					if(financialPlanner.getStatus()!=null&&financialPlanner.getStatus()>0){
+						Path spath = root.get("status");
+						plist.add(builder.equal(spath,financialPlanner.getStatus()));
+					}
+				}
+				return builder.and(plist.toArray(new Predicate[plist.size()]));
+			}
+		};
+		return financialPlannerRepository.findAll(specification, pageable);
 	}
 
 	@Override
@@ -145,14 +172,72 @@ public class MemberServiceImpl implements MembersService {
 	}
 
 	@Override
-	public List<MemberBankcards> memberBankcards() {
-		return memberBankcardsRepository.findAll();
+	public Page<MemberBankcards> memberBankcards(Integer page,Integer size,final MemberBankcards memberBankcards) {
+		
+		Pageable pageable = new PageRequest(page-1,size);
+		
+		Specification<MemberBankcards> specification = new Specification<MemberBankcards>() {
+			
+			@Override
+			public Predicate toPredicate(Root<MemberBankcards> root, CriteriaQuery<?> query,
+					CriteriaBuilder builder) {
+			List<Predicate> plist = new ArrayList<>();
+				if (memberBankcards!=null) {
+				 if(memberBankcards.getMembers()!=null){
+					if(memberBankcards.getMembers().getMobilePhone()!=null&&!"".equals(memberBankcards.getMembers().getMobilePhone())){
+						Path mppath = root.get("members").get("mobilePhone");
+						plist.add(builder.like(mppath, "%"+memberBankcards.getMembers().getMobilePhone()+"%"));
+					}
+					if(memberBankcards.getMembers().getMemberName()!=null&&!"".equals(memberBankcards.getMembers().getMemberName())){
+						Path mnpath = root.get("members").get("memberName");
+						plist.add(builder.like(mnpath,"%"+memberBankcards.getMembers().getMemberName()+"%"));
+					}
+				  }
+					if(memberBankcards.getCardNo()!=null&&!"".equals(memberBankcards.getCardNo())){
+						Path spath = root.get("cardNo");
+						plist.add(builder.equal(spath,memberBankcards.getCardNo()));
+					}
+				}
+				return builder.and(plist.toArray(new Predicate[plist.size()]));
+			}
+		};
+		return memberBankcardsRepository.findAll(specification, pageable);
 	}
 
 	@Override
-	public List<MemberDepositRecord> findAllMDR() {
-		List<MemberDepositRecord> dlist = memberDepositRecordRepository.findAll();
-		return dlist;
+	public Page<MemberDepositRecord> findAllMDR(Integer page,Integer size,final MemberDepositRecord memberDepositRecord) {
+		Pageable pageable = new PageRequest(page-1,size);
+		
+		Specification<MemberDepositRecord> specification = new Specification<MemberDepositRecord>() {
+			
+			@Override
+			public Predicate toPredicate(Root<MemberDepositRecord> root, CriteriaQuery<?> query,
+					CriteriaBuilder builder) {
+			List<Predicate> plist = new ArrayList<>();
+				if (memberDepositRecord!=null) {
+					 if(memberDepositRecord.getSerialNumber()!=null&&!"".equals(memberDepositRecord.getSerialNumber())){
+							Path mppath = root.get("serialNumber");
+							plist.add(builder.equal(mppath,memberDepositRecord.getSerialNumber()));
+						}
+				if(memberDepositRecord.getMembers()!=null){
+					if(memberDepositRecord.getMembers().getMobilePhone()!=null&&!"".equals(memberDepositRecord.getMembers().getMobilePhone())){
+						Path mppath = root.get("members").get("mobilePhone");
+						plist.add(builder.like(mppath, "%"+memberDepositRecord.getMembers().getMobilePhone()+"%"));
+					}
+				}
+					if(memberDepositRecord.getStatus()!=null&&memberDepositRecord.getStatus()>0){
+						Path mnpath = root.get("status");
+						plist.add(builder.equal(mnpath,memberDepositRecord.getStatus()));
+					}
+				  }
+					if(memberDepositRecord.getPayChannelOrderNo()!=null&&!"".equals(memberDepositRecord.getPayChannelOrderNo())){
+						Path spath = root.get("payChannelOrderNo");
+						plist.add(builder.equal(spath,memberDepositRecord.getPayChannelOrderNo()));
+					}
+				return builder.and(plist.toArray(new Predicate[plist.size()]));
+			}
+		};
+		return memberDepositRecordRepository.findAll(specification, pageable);
 	}
 
 	@Override

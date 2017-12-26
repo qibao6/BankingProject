@@ -6,17 +6,32 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.demo.service.lq.LoginService;
+
 @Controller
 @RequestMapping("Backstage")
 public class LoginHandlers {
+	@Autowired
+	LoginService loginService;
 	
 	@RequestMapping("login")
 	public String login(){
 		return "/Backstage/BackStagelogin";
+	}
+	
+	@RequestMapping("sendcode")
+	@ResponseBody
+	public Map<String,Object> sendCode(HttpServletRequest request,HttpSession session) throws Exception {
+		Map<String,Object> map = new HashMap<>();
+		String mobilePhone = request.getParameter("mobilePhone");
+		Integer rand=null;//loginService.dxjk(mobilePhone);
+		session.setAttribute("rand", rand);
+		return map;
 	}
 	
 	@RequestMapping("logins")

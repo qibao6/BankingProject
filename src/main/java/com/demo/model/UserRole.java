@@ -9,7 +9,7 @@ import javax.persistence.Id;
  * @author LENOVO
  *
  */
-@Entity(name="user_role")
+@Entity
 public class UserRole {
 	   private Integer userRoleId;// number primary key,--'主键',
 	   private String cname;//  varchar2(32) ,-- '中文名',

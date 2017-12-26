@@ -1,7 +1,5 @@
 package com.demo.service.lq;
 
-import java.util.List;
-
 import org.springframework.data.domain.Page;
 
 import com.demo.model.FinancialPlanner;
@@ -66,7 +64,7 @@ public interface MembersService {
 	 * 理财师审核查询
 	 * @return
 	 */
-	List<FinancialPlanner> fplist();
+	Page<FinancialPlanner> fplist(Integer page,Integer size,final FinancialPlanner financialPlanner);
 	/**
 	 * 理财师审核
 	 * @param financialPlannerId
@@ -76,12 +74,12 @@ public interface MembersService {
 	 * 绑卡管理
 	 * @return
 	 */
-	List<MemberBankcards> memberBankcards();
+	Page<MemberBankcards> memberBankcards(Integer page,Integer size,final MemberBankcards memberBankcards);
 	/**
 	 * 充值管理
 	 * @return
 	 */
-	List<MemberDepositRecord>  findAllMDR();
+	Page<MemberDepositRecord>  findAllMDR(Integer page,Integer size,final MemberDepositRecord memberDepositRecord);
 	/**
 	 * 解绑银行卡
 	 * @param delflag

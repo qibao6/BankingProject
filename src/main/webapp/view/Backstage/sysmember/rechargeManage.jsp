@@ -38,36 +38,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <h2><span class="glyphicon glyphicon-play" style="margin-right:5px"></span>充值管理</h2>
 
     <div class="tablelist">
-        <form action="<%=basePath%>sysmember/rechargeManage" method="post" id="form1">
+        <form action="<%=basePath%>sysmember/rechargeManage" method="post" id="form1" name="form1">
+            	<input type="hidden" name="page" id="page">
             <table class="table tabletop">
                 <tr>
                     <td style="width:110px;padding-left:30px">订单编号：</td>
                     <td style="width:180px"><input type="text" class="form-control" name="serialNumber"
-                                                   placeholder="订单编号" value=""></td>
+                                                   placeholder="订单编号" value="${mdr.serialNumber}"></td>
                     <td style="width:110px;padding-left:30px">手机号：</td>
-                    <td style="width:180px"><input type="text" class="form-control" name="mobilePhone" placeholder="手机号"
-                                                   value=""></td>
+                    <td style="width:180px"><input type="text" class="form-control" name="members.mobilePhone" placeholder="手机号"
+                                                   value="${mdr.members.mobilePhone}"></td>
                     <td style="width:90px">订单状态：</td>
                     <td style="width:140px"><select name="status" class="form-control" style="width:135px;height:32px"
                                                     id="status">
-                        <option value=-1>全部</option>
-                        <option value=0>充值失败</option>
-                        <option value=1>充值成功</option>
+		                   		<option value="" >全部</option>
+		                        <option value="0" ${mdr.status==0?"selected='selected'":""}>充值失败</option>
+		                        <option value="1" ${mdr.status==1?"selected='selected'":""}>充值成功</option>
                     </select></td>
                     <td style="width:110px;padding-left:30px">富友订单：</td>
                     <td style="width:180px"><input type="text" class="form-control" name="payChannelOrderNo"
-                                                   placeholder="富友订单" value=""></td>
-                    <td style="width:110px;padding-left:30px">订单时间：</td>
-                    <td style="width:180px"><input type="text" class="form-control time" name="createDate"
-                                                   placeholder="订单时间" readonly="readonly"
-                                                   value=""></td>
+                                                   placeholder="富友订单" value="${mdr.payChannelOrderNo}"></td>
+                   
                     <td class="pull-right" style="padding-right:30px">
                         <button type="submit" class="btn btn-primary btn-sm">查询</button>
                     </td>
                     <td>
                         <button type="button" class="btn btn-primary btn-sm"
                                 onclick="$('#form1').find(':input').not(':button, :submit, :reset').val('').removeAttr('checked').removeAttr('selected');">
-                            重置
+                         			   重置
                         </button>
                     </td>
                 </tr>
@@ -86,7 +84,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <td>订单时间</td>
                 <td>操作</td>
             </tr>
-            <c:forEach items="${listd}" var="c">
+            <c:forEach items="${listd.getContent()}" var="c">
             <tr class="text-center">
                 <td>${c.memberDepositRecordId}</td>
                 <td>${c.serialNumber}</td>
@@ -106,31 +104,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </c:forEach>
         </table>
 	
-	
+<table class="table table-bordered tablebox">
 	<div class="llpage">
 		<div class="in">
 			<nav>
-				<span class="count">第&nbsp;<b>1</b>&nbsp;页，&nbsp;共&nbsp;<b>11</b>&nbsp;页</span>
+				<span class="count">第&nbsp;<b>${listd.getNumber()+1}</b>&nbsp;页，&nbsp;共&nbsp;<b>${listd.getTotalPages()}</b>&nbsp;页</span>
 				<ul class="pagination">
-
-						<li><a class="prev_page">上页</a></li>
-
-
-							<li><a class="now" >1</a></li>
-							<li><a href="<%=basePath%>sysmember/rechargeManage?page=2&serialNumber=&mobilePhone=&status=&payChannelOrderNo=&createDate=">2</a></li>
-							<li><a href="<%=basePath%>sysmember/rechargeManage?page=3&serialNumber=&mobilePhone=&status=&payChannelOrderNo=&createDate=">3</a></li>
-							<li><a href="<%=basePath%>sysmember/rechargeManage?page=4&serialNumber=&mobilePhone=&status=&payChannelOrderNo=&createDate=">4</a></li>
-							<li><a href="<%=basePath%>sysmember/rechargeManage?page=5&serialNumber=&mobilePhone=&status=&payChannelOrderNo=&createDate=">5</a></li>
-
-						<li><span class="gap">…</span></li>
-						<li><a href="<%=basePath%>sysmember/rechargeManage?page=10&serialNumber=&mobilePhone=&status=&payChannelOrderNo=&createDate=">10</a></li>
-						<li><a href="<%=basePath%>sysmember/rechargeManage?page=11&serialNumber=&mobilePhone=&status=&payChannelOrderNo=&createDate=">11</a></li>
-
-						<li><a href="<%=basePath%>sysmember/rechargeManage?page=2&serialNumber=&mobilePhone=&status=&payChannelOrderNo=&createDate=" class="next_page" rel="next">下页</a></li>
+						<li><a class="prev_page" href="javascript:pagerequest(${listd.getNumber()>1?listd.getNumber():1})">上页</a></li>
+							<c:forEach begin="1" end="${listd.getTotalPages()}" var="v">
+							<li><a class="now" href="javascript:pagerequest(${v})" >${v}</a></li>
+							</c:forEach>
+						<li><a class="next_page" rel="next" href="javascript:pagerequest(${listd.getNumber()+1<listd.getTotalPages()?listd.getNumber()+1+1:listd.getTotalPages()});">下页</a></li>
 				</ul>
 			</nav>
 		</div>
 	</div>
+ </table>
 
     </div>
 
@@ -140,23 +129,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!-- 容器结束 -->
 
 <script type="text/javascript">
-    $(function () {
-        $("#status").val("");
-    });
-    $('.time').datetimepicker({
-        format: 'yyyy-mm-dd',
-        language: 'zh-CN',
-        weekStart: 1,
-        todayBtn: 1,
-        todayHighlight: 1,
-        startView: 2,
-        minView: 2,
-        forceParse: 0,
-        autoclose: false
-    }).on('changeDate', function (ev) {
-        $('.time').datetimepicker('hide');
-    });
-
+    
+    function pagerequest(page){
+		document.getElementById("page").value=page;
+		document.form1.submit();
+	}
 </script>
 </body>
 </html>

@@ -104,14 +104,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 <!-- 容器结束 -->
 <script type="text/javascript">
-		$('.time').datetimepicker({
-			format : 'yyyy-mm-dd',
-			language: 'zh-CN',
-			minView: 2,
-		    todayBtn: 1
-		}).on('changeDate', function(ev) {
-			$('.time').datetimepicker('hide');
-		});
 		function pagerequest(page){
 			document.getElementById("page").value=page;
 			document.form1.submit();

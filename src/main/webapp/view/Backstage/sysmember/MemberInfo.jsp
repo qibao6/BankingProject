@@ -171,13 +171,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="in">
 			<nav>
 				<ul class="pagination">
-						<li><a class="prev_page" href="<%= basePath%>sysmember/memberInfo?page=${wr.getNumber()>1?wr.getNumber():1}&&memberId=${m.memberId}">上页</a></li>
-						
+						<li><a class="prev_page" href="<%= basePath%>sysmember/memberInfo?page2=${wr.getNumber()>1?wr.getNumber():1}&&memberId=${m.memberId}">上页</a></li>
+							
 							<c:forEach begin="1" end="${wr.getTotalPages()}" var="v" >
-							<li><a class="now" href="<%= basePath%>sysmember/memberInfo?page=${v}&&memberId=${m.memberId}">${v}</a></li>
+							<li><a class="now" href="<%= basePath%>sysmember/memberInfo?page2=${v}&&memberId=${m.memberId}">${v}</a></li>
 							</c:forEach>
 							
-						<li><a class="next_page" rel="next" href="<%= basePath%>sysmember/memberInfo?page=${wr.getNumber()+1<wr.getTotalPages()?wr.getNumber()+1+1:wr.getTotalPages()}&&memberId=${m.memberId}">下页</a></li>
+						<li><a class="next_page" rel="next" href="<%= basePath%>sysmember/memberInfo?page2=${wr.getNumber()+1<wr.getTotalPages()?wr.getNumber()+1+1:wr.getTotalPages()}&&memberId=${m.memberId}">下页</a></li>
 				</ul>
 			</nav>
 		</div>
@@ -285,12 +285,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="in">
 			<nav>
 				<ul class="pagination">
-						<li><a class="prev_page" href="<%= basePath%>sysmember/memberInfo?page=${tr.getNumber()>1?tr.getNumber():1}&&memberId=${m.memberId}">上页 </a></li>
+						<li><a class="prev_page" href="<%= basePath%>sysmember/memberInfo?page1=${tr.getNumber()>1?tr.getNumber():1}&&memberId=${m.memberId}">上页 </a></li>
 							<c:forEach begin="1" end="${tr.getTotalPages()}" var="v" >
-							<li><a class="now" href="<%= basePath%>sysmember/memberInfo?page=${v}&&memberId=${m.memberId}">${v}</a></li>
+							<li><a class="now" href="<%= basePath%>sysmember/memberInfo?page1=${v}&&memberId=${m.memberId}">${v}</a></li>
 							</c:forEach>
 							
-						<li><a class="next_page" rel="next" href="<%= basePath%>sysmember/memberInfo?page=${tr.getNumber()+1<tr.getTotalPages()?tr.getNumber()+1+1:tr.getTotalPages()}&&memberId=${m.memberId}">下页</a></li>
+						<li><a class="next_page" rel="next" href="<%= basePath%>sysmember/memberInfo?page1=${tr.getNumber()+1<tr.getTotalPages()?tr.getNumber()+1+1:tr.getTotalPages()}&&memberId=${m.memberId}">下页</a></li>
 				</ul>
 			</nav>
 		</div>

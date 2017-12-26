@@ -37,30 +37,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <h2><span class="glyphicon glyphicon-play" style="margin-right:5px"></span>提现管理</h2>
 
                       <div class="tablelist">
-                      	<form action="<%=basePath%>sysmember/WithdrawManage" method="post" id="form1">
+                      	<form action="<%=basePath%>sysmember/WithdrawManage" method="post" id="form1" name="form1">
+                       		<input type="hidden" name="page" id="page">
                         <table class="table tabletop">
                         <tr>
                         <td style="width:110px;padding-left:30px">姓名：</td>
-                        <td style="width:180px"><input type="text" name="memberName" class="form-control" placeholder="姓名" value=""></td>
+                        <td style="width:180px"><input type="text" name="memberName" class="form-control" placeholder="姓名" value="${memberName }"></td>
                         <td style="width:110px;padding-left:30px">手机号：</td>
-                        <td style="width:180px"><input type="text"  name="mobilePhone" class="form-control" placeholder="手机号" value=""></td>
+                        <td style="width:180px"><input type="text"  name="mobilePhone" class="form-control" placeholder="手机号" value="${mobilePhone }"></td>
                         <td style="width:130px;padding-left:30px">绑卡卡号：</td>
-                        <td style="width:180px"><input type="text" class="form-control" name="bankCard" placeholder="绑卡卡号" value=""></td>
+                        <td style="width:180px"><input type="text" class="form-control" name="bankCard" placeholder="绑卡卡号" value="${bankCard }"></td>
                          <td style="width:80px">状态：</td>
-	                    <td style="width:180px"><select name="status" class="form-control" style="width:130px;height:32px" id="status">
+	                    <td style="width:180px"><select name="status" class="form-control" style="width:130px;height:32px">
 	                   		<option value="">全部</option>
-	                        <option value="1">待审核</option>
-	                        <option value="2">已付款</option>
-	                        <option value="3">打款中</option>
-	                        <option value="4">打款失败</option>
-	                       	<option value="4">已解冻</option>
+	                        <option value="0" ${status==0?"selected='selected'":""}>待审核</option>
+	                        <option value="1" ${status==1?"selected='selected'":""}>已付款</option>
+	                        <option value="2" ${status==2?"selected='selected'":""}>打款中</option>
+	                        <option value="3" ${status==3?"selected='selected'":""}>打款失败</option>
+	                       	<option value="4" ${status==4?"selected='selected'":""}>已解冻</option>
 	                    </select></td>
-                         <td style="width:110px;padding-left:30px">提现时间：</td>
-                        <td style="width:180px"><input type="text"  name="createDate" class="form-control time" placeholder="提现时间" readonly="readonly" value=""></td>
-                         <td class="pull-right" style="padding-right:30px">
-                         <button type="submit" class="btn btn-primary btn-sm">查询</button></td>
+	                    <td><button type="submit" class="btn btn-primary btn-sm">查询</button></td>
 	                    <td><button type="button" class="btn btn-primary btn-sm" onclick="$('#form1').find(':input').not(':button, :submit, :reset').val('').removeAttr('checked').removeAttr('selected');">重置</button></td>
-	                 	 </tr>    
+	                 	</tr>    
                         </table>
                         </form>
                         <table class="table table-bordered tablebox">
@@ -93,6 +91,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<c:if test="${o[8]==1}"><font style="color: blue;">已打款</font></c:if>
 							<c:if test="${o[8]==2}"><font style="color: green;">打款中</font></c:if>
 							<c:if test="${o[8]==3}"><font style="color: red;">打款失败</font></c:if>
+							<c:if test="${o[8]==4}"><font style="color: red;">已冻结</font></c:if>
                             	
                             </td>
                             <td><f:formatDate value="${o[9]}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
@@ -105,26 +104,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                           	</tr>
                           </c:forEach>
                         </table>
-	
-	
+<table class="table table-bordered tablebox">
 	<div class="llpage">
 		<div class="in">
 			<nav>
-				<span class="count">第&nbsp;<b>1</b>&nbsp;页，&nbsp;共&nbsp;<b>1</b>&nbsp;页</span>
+				<span class="count">第&nbsp;<b>${page}</b>&nbsp;页，&nbsp;共&nbsp;<b>${pages}</b>&nbsp;页</span>
 				<ul class="pagination">
-
-						<li><a class="prev_page">上页</a></li>
-
-
-							<li><a class="now" >1</a></li>
-
-
-						<li><a class="next_page" rel="next">下页</a></li>
+						<li><a class="prev_page" href="javascript:pagerequest(${page>1?page:1})">上页</a></li>
+							<c:forEach begin="1" end="${pages}" var="v">
+							<li><a class="now" href="javascript:pagerequest(${v})" >${v}</a></li>
+							</c:forEach>
+						<li><a class="next_page" rel="next" href="javascript:pagerequest(${page+1<pages?page+1:pages});">下页</a></li>
 				</ul>
 			</nav>
 		</div>
 	</div>
-
+ </table>
          </div>
 
          <!-- 内容结束 -->
@@ -160,28 +155,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div><!-- /.modal -->
 
 <script type="text/javascript">
-	$(function(){
-		$("#status").val("");
-		
-		$('.time').datetimepicker({
-			format : 'yyyy-mm-dd',
-			language: 'zh-CN',
-		    weekStart: 1,
-		    todayBtn: 1,			
-			todayHighlight: 1,
-			startView: 2,
-			minView: 2,
-			forceParse: 0,
-			autoclose : false
-		}).on('changeDate', function(ev) {
-			$('.time').datetimepicker('hide');
-		});
-	});
-	
-	function audit(serialNumber){
-		$("#serialNumber").val(serialNumber);		
-		$("#myModal").modal();
-	}
+function pagerequest(page){
+	document.getElementById("page").value=page;
+	document.form1.submit();
+}
 </script>
 <!-- 容器结束 -->
 </body>

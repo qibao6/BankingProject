@@ -82,23 +82,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </table>
 	
 	
+	<table class="table table-bordered tablebox">
 	<div class="llpage">
 		<div class="in">
 			<nav>
-				<span class="count">第&nbsp;<b>1</b>&nbsp;页，&nbsp;共&nbsp;<b>1</b>&nbsp;页</span>
+				<span class="count">第&nbsp;<b>${page}</b>&nbsp;页，&nbsp;共&nbsp;<b>${pages}</b>&nbsp;页</span>
 				<ul class="pagination">
-
-						<li><a class="prev_page">上页</a></li>
-
-
-							<li><a class="now" >1</a></li>
-
-
-						<li><a class="next_page" rel="next">下页</a></li>
+						<li><a class="prev_page" href="<%=basePath%>sysmember/paymentContent?subjectId=${subjectId}&&page=${page==1?page:page-1}">上页</a></li>
+							<c:forEach begin="1" end="${pages}" var="v">
+							<li><a class="now" href="<%=basePath%>sysmember/paymentContent?subjectId=${subjectId}&&page=${v}" >${v}</a></li>
+							</c:forEach>
+						<li><a class="next_page" rel="next" href="<%=basePath%>sysmember/paymentContent?subjectId=${subjectId}&&page=${page==pages?pages:page+1}">下页</a></li>
 				</ul>
 			</nav>
 		</div>
 	</div>
+ </table>
          </div>
 
          <!-- 内容结束 -->

@@ -18,17 +18,18 @@ public class SubjectPurchaseRecord {
 	   private String serialNumber;//  varchar2(50) ,-- '流水号',
 	   private Float amount;//  binary_float, -- '购买金额',
 	   private String dealIp;//  varchar2(25) ,-- '交易ip',
-	   Subject subject;//  number ,-- '标的Id',
-	   private Integer memberId;//  number,
+	   private Subject subject;//  number ,-- '标的Id',
+	   private Members members;//  number,
 	   private Integer delflag;//  number,
 	   private Date createDate;//  date,
 	   private Date updateDate;//  date,
 	   private Float interest;//  decimal(16,4) ,-- '结算利息',
 	   private Integer ispayment;//  number,--'是否还款',
-	   private Integer payInterestTimes;//  number,
+	   private Integer payInterestTimes;//  number,  
 	   private Integer lastProfitDay;//  number,-- '最后计息日',
 	   private String bonusInfo;//  varchar2(200) -- '红包金额信息（app端实际投资额度+红包额度）',
-	
+	   private String sStatus;//状态
+	   
 	@Id
 	public Integer getSprId() {
 		return sprId;
@@ -50,11 +51,13 @@ public class SubjectPurchaseRecord {
 	public void setSubject(Subject subject) {
 		this.subject = subject;
 	}
-	public Integer getMemberId() {
-		return memberId;
+	@ManyToOne
+	@JoinColumn(name="member_id")
+	public Members getMembers() {
+		return members;
 	}
-	public void setMemberId(Integer memberId) {
-		this.memberId = memberId;
+	public void setMembers(Members members) {
+		this.members = members;
 	}
 	public Integer getDelflag() {
 		return delflag;
@@ -117,5 +120,11 @@ public class SubjectPurchaseRecord {
 	}
 	public void setBonusInfo(String bonusInfo) {
 		this.bonusInfo = bonusInfo;
+	}
+	public String getsStatus() {
+		return sStatus;
+	}
+	public void setsStatus(String sStatus) {
+		this.sStatus = sStatus;
 	}
 }
