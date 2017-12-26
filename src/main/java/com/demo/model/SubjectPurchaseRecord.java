@@ -1,9 +1,12 @@
 package com.demo.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 /**
  * 标的购买		sql_subject_purchase_record
  * @author LENOVO
@@ -26,8 +29,17 @@ public class SubjectPurchaseRecord {
 	   private Integer payInterestTimes;//  number,
 	   private Integer lastProfitDay;//  number,-- '最后计息日',
 	   private String bonusInfo;//  varchar2(200) -- '红包金额信息（app端实际投资额度+红包额度）',
-	
+	   private String sStatus;
+	   
+	public String getsStatus() {
+		return sStatus;
+	}
+	public void setsStatus(String sStatus) {
+		this.sStatus = sStatus;
+	}
 	@Id
+	@SequenceGenerator(name="abc",sequenceName="sql_subject_purchase_record",allocationSize=1)
+	@GeneratedValue(generator="abc",strategy=GenerationType.SEQUENCE)
 	public Integer getSprId() {
 		return sprId;
 	}
@@ -112,4 +124,28 @@ public class SubjectPurchaseRecord {
 	public void setBonusInfo(String bonusInfo) {
 		this.bonusInfo = bonusInfo;
 	}
+	public SubjectPurchaseRecord() {
+		
+	}
+	public SubjectPurchaseRecord(String serialNumber, Float amount, String dealIp, Integer subjectId, Integer memberId,
+			Integer delflag, Date createDate, Date updateDate, Integer interest, Integer ispayment,
+			Integer payInterestTimes, Integer lastProfitDay, String bonusInfo,String sStatus) {
+	
+		this.serialNumber = serialNumber;
+		this.amount = amount;
+		this.dealIp = dealIp;
+		this.subjectId = subjectId;
+		this.memberId = memberId;
+		this.delflag = delflag;
+		this.createDate = createDate;
+		this.updateDate = updateDate;
+		this.interest = interest;
+		this.ispayment = ispayment;
+		this.payInterestTimes = payInterestTimes;
+		this.lastProfitDay = lastProfitDay;
+		this.bonusInfo = bonusInfo;
+		this.sStatus = sStatus;
+	}
+	
+	
 }

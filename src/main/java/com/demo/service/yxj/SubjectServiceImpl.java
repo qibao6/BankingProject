@@ -1,14 +1,22 @@
 package com.demo.service.yxj;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.transaction.Transactional;
 
+import org.apache.commons.httpclient.Header;
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.NameValuePair;
+import org.apache.commons.httpclient.methods.PostMethod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,9 +24,18 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import com.demo.dao.lq.members.MemberTradeRecordRepository;
+import com.demo.dao.yxj.MemberAccountsRepository;
+import com.demo.dao.yxj.MemberTradeRecordsRepository;
 import com.demo.dao.yxj.SubjectDao;
+import com.demo.dao.yxj.SubjectOrderRecordsRepository;
+import com.demo.dao.yxj.SubjectPurchaseRecordsRepository;
 import com.demo.dao.yxj.SubjectRepository;
+import com.demo.model.MemberAccount;
+import com.demo.model.MemberTradeRecord;
 import com.demo.model.Subject;
+import com.demo.model.SubjectOrderRecord;
+import com.demo.model.SubjectPurchaseRecord;
 
 @Service
 public class SubjectServiceImpl implements SubjectService{
@@ -26,15 +43,24 @@ public class SubjectServiceImpl implements SubjectService{
 	
 	@Autowired
 	SubjectRepository subjectrepository;
+	@Autowired
+	MemberAccountsRepository memberAccountsRepository;
+	@Autowired
+	SubjectOrderRecordsRepository subjectOrderRecordsRepository;
+	@Autowired
+	SubjectPurchaseRecordsRepository subjectPurchaseRecordsRepository;
+	@Autowired
+	MemberTradeRecordsRepository memberTradeRecordsRepository;
+	 
+
+	//EntityManager entityManager;
+	
 	
 	//查询显示所有
 	@Override
-	public List<Object[]> findsubindex() {
+	public List<Object[]> findsubindex(Subject subject, Integer page, Integer rowsize) {
 		
-		return subjectrepository.subjectindex();
-		
-		
-		//return subjectrepository.subjectindex();
+		return subjectrepository.findsublist(subject, page, rowsize);
 	}
 //	
 //	
@@ -49,24 +75,64 @@ public class SubjectServiceImpl implements SubjectService{
 			public Predicate toPredicate(Root<Subject> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
 				List<Predicate> slist=new ArrayList<>();
 				if (subject!=null) {
-					Path subpath=root.get("subjectType");
-					if (subject.getSubjectType()!=null&&!"".equals(subject.getSubjectType())) {
-						slist.add(builder.like(subpath, "%"+subject.getSubjectType()+"%"));
-					}
-				}
-				if (subject.getYear_rate()!=null&&!"".equals(subject.getYear_rate())) {
-					Path spath=root.get("year_rate");
-					slist.add(builder.like(spath, "%"+subject.getYear_rate()+"%"));
-				}
-				if (subject.getStatus()!=null&&subject.getStatus()!=0) {
-					Path sbpath=root.get("status");
-					slist.add(builder.equal(sbpath, subject.getStatus()));
-				}
-				if (subject.getPeriod()!=null&&subject.getPeriod()!=0) {
-					Path sbjpath=root.get("period");
-					slist.add(builder.equal(sbjpath, subject.getPeriod()));
-				}
+					//标的类型
+					Path subjectType=root.get("subjectType");
+					if (subject.getSubjectType()==0) 
+						slist.add(builder.equal(subjectType,0));
+					if (subject.getSubjectType()==1)
+						slist.add(builder.equal(subjectType,1));
+					
+					//年化收益
+					Path year_rate=root.get("yearRate");
+					if ( subject.getYearRate()==6)
+						slist.add(builder.equal(year_rate, 6));
+					if ( subject.getYearRate()==7)
+						slist.add(builder.equal(year_rate, 7));
+					if (subject.getYearRate()==9)
+						slist.add(builder.equal(year_rate, 7.5));
+					if (subject.getYearRate()==8)
+						slist.add(builder.equal(year_rate, 8));
+					if (subject.getYearRate()==10)
+						slist.add(builder.gt(year_rate, 8));
+					//标的状态
+				Path status=root.get("status");
+				if (subject.getStatus()==22) 
+					slist.add(builder.equal(status,1));
+				if (subject.getStatus()==99) 
+					slist.add(builder.equal(status,0));
+				if (subject.getStatus()==66) 
+					slist.add(builder.equal(status,2));
 				
+				
+				
+				//项目期限
+				Path period=root.get("period");
+				
+				//List<Subject> plist=new ArrayList<>();
+				if (subject.getPeriod()==15) 
+					slist.add(builder.le(period, 15));
+				if (subject.getPeriod()==30) {
+					List<Predicate>  periods=new ArrayList<>();
+					periods.add(builder.gt(period, 15));
+					periods.add(builder.le(period, 30));
+					slist.addAll(periods);
+				}
+				if (subject.getPeriod()==180) {
+					List<Predicate>  periods=new ArrayList<>();
+					periods.add(builder.gt(period, 30));
+					periods.add(builder.le(period, 180));
+					slist.addAll(periods);
+				}
+				if (subject.getPeriod()==365) {
+					List<Predicate>  periods=new ArrayList<>();
+					periods.add(builder.gt(period, 180));
+					periods.add(builder.le(period, 365));
+					slist.addAll(periods);
+				}
+				if (subject.getPeriod()==366) 
+					slist.add(builder.gt(period, 365));
+				
+				}
 				return builder.and(slist.toArray(new Predicate[slist.size()]));
 			}
 		};
@@ -83,6 +149,46 @@ public class SubjectServiceImpl implements SubjectService{
 		return subjectrepository.findOne(subjectId);
 	}
 
+	
+	//查询余额
+	@Override
+	public MemberAccount selectmoney(Integer member_id) {
+		
+		return memberAccountsRepository.selectmoney(member_id);
+	}
+
+	//添加订单
+	@Transactional
+	@Override
+	public void add(SubjectOrderRecord subjectOrderRecord) {
+		
+		 subjectOrderRecordsRepository.save(subjectOrderRecord);
+	}
+
+	//添加购买记录
+	@org.springframework.transaction.annotation.Transactional
+	@Override
+	public void insertpurchase(SubjectPurchaseRecord subjectPurchaseRecord) {
+		subjectPurchaseRecordsRepository.save(subjectPurchaseRecord);
+		
+	}
+
+	//修改用户资金
+	@org.springframework.transaction.annotation.Transactional
+	@Override
+	public void updatememberaccount(Float amount, Integer memberId) {
+		
+		memberAccountsRepository.updatememberaccount(amount, memberId);
+	}
+
+	//添加数据到交易记录表
+	@Transactional
+	@Override
+	public void addMemberTradeRecord(MemberTradeRecord memberTradeRecord){
+			memberTradeRecordsRepository.save(memberTradeRecord);
+	}
+
+	
 //	@Override
 //	public List<Object[]> findsubindex1() {
 //		// TODO Auto-generated method stub

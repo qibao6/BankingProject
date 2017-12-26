@@ -32,7 +32,7 @@ public class Subject {
 	   private Integer safeguardWay;// number ,-- '保障方式',
 	   private Date startDate;//  date,-- '标的开始日期',
 	   private Date endDate;//  date,-- '标的结束日期',
-	   private String year_rate;//  decimal(16,4) ,-- '年化率',NUMBER(16,4):7.0000
+	   private Float yearRate;//  decimal(16,4) ,-- '年化率',NUMBER(16,4):7.0000
 	   private String subjectComment;//   CLOB, --'产品速览',
 	   private Integer folderId;//  number,-- '文件夹Id',
 	   private Integer delflag;//  number,-- '是否删除',
@@ -45,7 +45,21 @@ public class Subject {
 	   private String safetycontrol;//  CLOB,--'安全保障',
 	   private Integer experStatus;//  number-- '体验金是否可以购买（0：否，1：是）',
 	
+	   //默认构造函数
+	   public Subject(){
+		   
+	   }
 	   
+	
+	public Subject(Integer subjectType, Integer status, Integer period, Float year_rate) {
+		
+		this.subjectType = subjectType;
+		this.status = status;
+		this.period = period;
+		this.yearRate = year_rate;
+	}
+
+
 	@Id
 	
 	public Integer getSubjectId() {
@@ -94,9 +108,7 @@ public class Subject {
 	public Date getEndDate() {
 		return endDate;
 	}
-	public String getYear_rate() {
-		return year_rate;
-	}
+
 	public String getSubjectComment() {
 		return subjectComment;
 	}
@@ -173,9 +185,7 @@ public class Subject {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-	public void setYear_rate(String year_rate) {
-		this.year_rate = year_rate;
-	}
+
 	public void setSubjectComment(String subjectComment) {
 		this.subjectComment = subjectComment;
 	}
@@ -235,7 +245,17 @@ public class Subject {
 	public void setSafetycontrol(String safetycontrol) {
 		this.safetycontrol = safetycontrol;
 	}
-	
+
+
+	public Float getYearRate() {
+		return yearRate;
+	}
+
+
+	public void setYearRate(Float yearRate) {
+		this.yearRate = yearRate;
+	}
+
 	
 	
 }

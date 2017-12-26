@@ -76,7 +76,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				手机号
 			</div>
 			<div class="rInput">
-				<input type="text" placeholder="请输入手机号" id="phone" name="phone" class="form-control textInput phone" /><span class="errorInfo">手机号码不能为空</span>
+				<input type="text" placeholder="请输入手机号" id="phone" name="phone" class="form-control textInput phone" /><span class="errorInfo"></span>
 			</div>
 		</div>
 		
@@ -157,7 +157,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 	</div>
 	
-<script type="text/javascript" src="<%=basePath%>resources/web/js/regis.js"></script>
+<script type="text/javascript" src="<%=basePath%>view/front/regis.js"></script>
 <script type="text/javascript">
 $(function(){
 	var b = "<%=basePath%>";

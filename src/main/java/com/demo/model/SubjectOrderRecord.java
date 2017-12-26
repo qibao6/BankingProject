@@ -1,13 +1,20 @@
 package com.demo.model;
 
-import java.sql.Date;
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
 /**
  * 标的订单			sql_subject_order_record
  * @author LENOVO
  *订单信息表
  */
-public class Subject_order_record {
+@Entity
+public class SubjectOrderRecord {
 	
 	   private Integer sorId;//  number primary key,
 	   private String serialNumber;//  varchar2(50) ,-- '流水号',
@@ -19,6 +26,10 @@ public class Subject_order_record {
 	   private Integer delflag;//  number,-- '是否删除',
 	   private Date createDate;//  date,--'创建日期',
 	   private Date updateDate;//  date--'更新日期',
+	   
+	@Id   
+	@SequenceGenerator(name="abc",sequenceName="sql_subject_order_record",allocationSize=1)
+	@GeneratedValue(generator="abc",strategy=GenerationType.SEQUENCE)
 	public Integer getSorId() {
 		return sorId;
 	}
@@ -78,6 +89,22 @@ public class Subject_order_record {
 	}
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
+	}
+	public SubjectOrderRecord(String serialNumber, Integer dealType, Float amount, Integer status, Integer subjectId,
+			Integer memberId, Integer delflag, Date createDate, Date updateDate) {
+	
+		this.serialNumber = serialNumber;
+		this.dealType = dealType;
+		this.amount = amount;
+		this.status = status;
+		this.subjectId = subjectId;
+		this.memberId = memberId;
+		this.delflag = delflag;
+		this.createDate = createDate;
+		this.updateDate = updateDate;
+	}
+	public SubjectOrderRecord() {
+		
 	}
 	   
 	   
