@@ -123,7 +123,7 @@ public class Members {
 	public void setMemberId(Integer memberId) {
 		this.memberId = memberId;
 	}
-	public void setMemberName(String memberName) {
+	public void setMemberName(String memberName) { 
 		this.memberName = memberName;
 	}
 	public void setNames(String names) {
