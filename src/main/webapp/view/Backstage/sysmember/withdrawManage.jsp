@@ -97,9 +97,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <td><f:formatDate value="${o[9]}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
                             <td><a class="btn btn-primary btn-sm" href="<%=basePath%>sysmember/selectMemberId?mobilePhone=${o[1]}">账号详细</a></td>
                             <td>
+                            	<c:if test="${o[10]==1}">
                             		<a class="btn btn-primary btn-sm" data-toggle="modal" onclick="audit('201603020229224501')">审核</a>
-									<a class="btn btn-primary btn-sm" href="<%=basePath%>sysmember/withdrawPayment?serialNumber=201603020229224501&channelName=BEIFU" onclick="return confirm('你确定要审核通过吗')">贝付打款</a>
-									<a class="btn btn-primary btn-sm" href="<%=basePath%>sysmember/WithdrawUnfreeze?serialNumber=201603020229224501" onclick="return confirm('你确定要解冻吗')">解冻</a>
+                            		<a class="btn btn-primary btn-sm"  onclick="tx(sprid,flag);">贝付打款</a>
+                            		<a class="btn btn-primary btn-sm"  onclick="tx(sprid,flag);">解冻</a>
+                            	</c:if>
+									
+									
                             </td>
                           	</tr>
                           </c:forEach>
@@ -158,6 +162,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 function pagerequest(page){
 	document.getElementById("page").value=page;
 	document.form1.submit();
+};
+function tx(sprid,flag){
+	$.post('<%=basePath%>sysmember/editSubject/'+sprid+'/'+flag,function(data){
+		if(data.code=="success"){
+			alert("操作成功");
+		}
+	})
 }
 </script>
 <!-- 容器结束 -->

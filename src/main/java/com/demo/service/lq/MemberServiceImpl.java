@@ -25,6 +25,7 @@ import com.demo.dao.lq.members.MemberDepositRecordRepository;
 import com.demo.dao.lq.members.MemberTradeRecordRepository;
 import com.demo.dao.lq.members.MemberWithdrawRecordRepository;
 import com.demo.dao.lq.members.MembersRepository;
+import com.demo.dao.lq.members.SubjectPurchaseRecordJpaRepository;
 import com.demo.model.FinancialPlanner;
 import com.demo.model.MemberAccount;
 import com.demo.model.MemberBankcards;
@@ -61,6 +62,9 @@ public class MemberServiceImpl implements MembersService {
 	
 	@Autowired
 	AwardRecordsRepository awardRecordsRepository;
+	
+	@Autowired
+	SubjectPurchaseRecordJpaRepository subjectPurchaseRecordJpaRepository;
 	
 	
 	@Override
@@ -262,5 +266,10 @@ public class MemberServiceImpl implements MembersService {
 	@Transactional
 	public void updateUseableBalance(Float useableBalance, Integer memberAccountId) {
 		memberAccountRepository.updateUseableBalance(useableBalance, memberAccountId);
+	}
+
+	@Override
+	public void updatesubject_purchase_record() {
+		subjectPurchaseRecordJpaRepository.updatesubject_purchase_record();
 	}
 }

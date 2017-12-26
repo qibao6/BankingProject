@@ -116,8 +116,8 @@ public class LoginRepositoryImpl implements UserLoginDao {
 	@Override
 	public List<Object[]> txAll(String memberName,String mobilePhone,String bankCard,Integer status,Integer page,Integer size) {
 		String sql ="select * from (select rownum rid,a.* from (select m.mobile_phone,m.member_name,m.member_identity,mw.amount, "+
-				"mw.bank_name,mw.bank_card,mw.cardaddress,mw.status,mw.create_date from member_withdraw_record mw , members m  "+
-				"where  mw.member_id=m.member_id ";
+				"mw.bank_name,mw.bank_card,mw.cardaddress,mw.status,mw.create_date,spr.s_status from member_withdraw_record mw , members m, subject_purchase_record spr "+
+				"where  mw.member_id=m.member_id and spr.member_id =m.member_id ";
 		if (memberName!=null&&!"".equals(memberName)) {
 			sql +=" and m.member_name like '%"+memberName+"%'";
 		}
@@ -191,8 +191,8 @@ public class LoginRepositoryImpl implements UserLoginDao {
 	@Override
 	public Integer getCounts(String memberName,String mobilePhone,String bankCard,Integer status) {
 		String sql ="select count(*) from (select m.mobile_phone,m.member_name,m.member_identity,mw.amount, "+
-				"mw.bank_name,mw.bank_card,mw.cardaddress,mw.status,mw.create_date from member_withdraw_record mw, members m  "+
-				"where mw.member_id=m.member_id ";
+				"mw.bank_name,mw.bank_card,mw.cardaddress,mw.status,mw.create_date,spr.s_status from member_withdraw_record mw, members m, subject_purchase_record spr "+
+				"where mw.member_id=m.member_id and spr.member_id =m.member_id ";
 		if (memberName!=null&&!"".equals(memberName)) {
 			sql +=" and m.member_name like '%"+memberName+"%'";
 		}

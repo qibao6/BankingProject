@@ -100,4 +100,8 @@ public interface MembersService {
 	 */
 	void updateUseableBalance(Float useableBalance,Integer memberAccountId);
 	
+	/**
+	 * 提现审核（定时任务）
+	 */
+	public void updatesubject_purchase_record();
 }
