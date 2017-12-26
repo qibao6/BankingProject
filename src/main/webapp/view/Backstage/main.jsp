@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 String path = request.getContextPath();
@@ -37,7 +39,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
            <div class="col-sm-10">
            	  <div class="top-right">
            	    <ul class="nav nav-pills">
-               <li><p><span class="iconfont">&#xe605;</span></p><p>admin，系统管理员</p></li>
+               <li><p><span class="iconfont">&#xe605;</span></p><p>${name}，<c:if test="${identity==0}">系统管理员</c:if>
+               															    <c:if test="${identity==1}">普通用户</c:if>
+               																											</p></li>
                <li style="width:100px"><p><a href="<%= basePath %>manage/logout"><span class="iconfont">&#xe606;</span></a></p><p>退出</p></li>
                 </ul>
            	     </div>

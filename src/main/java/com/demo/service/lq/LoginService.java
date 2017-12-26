@@ -3,6 +3,7 @@ package com.demo.service.lq;
 import java.util.List;
 
 import com.demo.model.Subject;
+import com.demo.model.Users;
 
 public interface LoginService {
 	List<Object[]> inviteRewardsAll(Integer page, Integer size, String memberName, String mobilePhone,String invitationcode, String invitedcode);
@@ -19,4 +20,5 @@ public interface LoginService {
 	Integer getCount();
 	Integer getCounts(String memberName,String mobilePhone,String bankCard,Integer status);
 	Integer dxjk(String phone) throws Exception;
+	Object[] login(Users users);
 }

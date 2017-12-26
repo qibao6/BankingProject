@@ -10,5 +10,6 @@ import com.demo.model.MemberDepositRecord;
  *
  */
 public interface MemberDRRepository extends JpaRepository<MemberDepositRecord, Integer>,JpaSpecificationExecutor<MemberDepositRecord> {
-
+	
+	public MemberDepositRecord findBySerialNumber(String serialNumber);
 }

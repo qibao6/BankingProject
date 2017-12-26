@@ -16,6 +16,8 @@
 		<property name="prefix" value="/view/"></property>
 		<property name="suffix" value=".jsp"></property>
 	</bean>
+	<!-- 文件上传 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>
 	<!-- 注解失效，除了servlet请求其他请求都不拦截 -->
 	<mvc:default-servlet-handler/>
 	<!-- 重新加载注释 -->

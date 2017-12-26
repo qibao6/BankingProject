@@ -150,8 +150,8 @@ function iframeAutoHeight(){
         <li><h2 style="color:#9d8440">${memberAccount.totalProfit}</h2><p>累计收益(元)<a href="javascript:;" class="iconfont">&#xe619;<span>累计收益</span><i></i></a></p></li>
         <li><h2 style="color:#9d8440">${memberAccount.imusealeBalance}</h2><p>冻结金额(元)<a href="javascript:;" class="iconfont">&#xe619;<span>提现冻结金额</span><i></i></a></p></li>
     </ul>
-    <a href="<%=basePath%>account/deposit" class="cz">充值</a>
-    <a href="<%=basePath%>account/withdraw" class="tk">提款</a>
+    <a href="<%=basePath%>hyzx/${memberAccount.members.memberId }/chong" target="rightkj" class="cz">充值</a>
+    <a href="<%=basePath%>hyzx/${memberAccount.members.memberId }/ti" target="rightkj" class="tk">提款</a>
 </div>    
 <div class="proMain clearfix">
 <div class="adminLeft">
@@ -165,10 +165,10 @@ function iframeAutoHeight(){
     </ul>
     <h2>我的账户</h2>
     <ul>
-        <li><a id="member_center_menu_deposit" href="<%=basePath%>account/deposit" target="rightkj"><em class="iconfont">&#xe614;</em>账户充值</a></li>
-        <li><a id="member_center_menu_security" href="<%=basePath%>account/security" target="rightkj"><em class="iconfont">&#xe612;</em>安全信息</a></li>
-        <li><a id="member_center_menu_withdraw" href="<%=basePath%>account/withdraw" target="rightkj"><em class="iconfont">&#xe612;</em>我要提款</a></li>
-        <li><a id="member_center_menu_financial" href="<%=basePath%>account/financial" target="rightkj"><em class="iconfont">&#xe612;</em>我是理财师</a></li>
+        <li><a id="member_center_menu_deposit" href="<%=basePath%>hyzx/${memberAccount.members.memberId }/chong" target="rightkj"><em class="iconfont">&#xe614;</em>账户充值</a></li>
+        <li><a id="member_center_menu_security" href="<%=basePath%>hyzx/${memberAccount.members.memberId }/anquan" target="rightkj"><em class="iconfont">&#xe612;</em>安全信息</a></li>
+        <li><a id="member_center_menu_withdraw" href="<%=basePath%>hyzx/${memberAccount.members.memberId }/ti" target="rightkj"><em class="iconfont">&#xe612;</em>我要提款</a></li>
+        <li><a id="member_center_menu_financial" href="<%=basePath%>hyzx/${memberAccount.members.memberId }/licaishi" target="rightkj"><em class="iconfont">&#xe612;</em>我是理财师</a></li>
     </ul>
 </div>
 <!-- <script>
@@ -178,7 +178,7 @@ function iframeAutoHeight(){
 	
 </script> -->
         <div class="admin-right">
-        	<iframe width="95%" height="110%" id="kuangjia" name="rightkj" frameborder=0 scrolling=no src="<%=basePath%>hyzx/${memberAccount.members.memberId }/shouyi" onload="javascript:iframeAutoHeight();"></iframe>
+        	<iframe width="100%" id="kuangjia" name="rightkj" frameborder=0 scrolling=no src="<%=basePath%>hyzx/${memberAccount.members.memberId }/shouyi" onload="javascript:iframeAutoHeight();"></iframe>
         </div>
     </div>
 <meta charset="UTF-8">

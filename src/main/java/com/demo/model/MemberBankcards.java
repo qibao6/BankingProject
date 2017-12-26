@@ -1,11 +1,14 @@
 package com.demo.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 
 /**
  * 		seq_member_bankcards
@@ -36,6 +39,8 @@ public class MemberBankcards {
 	}
 	
 	@Id
+	@SequenceGenerator(name="abc",sequenceName="seq_member_bankcards",allocationSize=1)
+	@GeneratedValue(generator="abc",strategy=GenerationType.SEQUENCE)
 	public Integer getMemberBankcardsId() {
 		return memberBankcardsId;
 	}

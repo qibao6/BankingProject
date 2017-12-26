@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.demo.dao.lq.login.LoginRepository;
 import com.demo.model.Subject;
+import com.demo.model.Users;
 
 @Service
 public class LoginServiceImpl implements LoginService {
@@ -105,5 +106,10 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public Integer getCounts(String memberName,String mobilePhone,String bankCard,Integer status) {
 		return loginRepository.getCounts(memberName, mobilePhone, bankCard, status);
+	}
+
+	@Override
+	public Object[] login(Users users) {
+		return loginRepository.login(users);
 	}
 }

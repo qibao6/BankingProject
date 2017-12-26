@@ -3,6 +3,7 @@ package com.demo.dao.lq.login;
 import java.util.List;
 
 import com.demo.model.Subject;
+import com.demo.model.Users;
 
 public interface UserLoginDao {
 	
@@ -11,7 +12,7 @@ public interface UserLoginDao {
 	 * @param userName
 	 * @return
 	 */
-	Object[] login(String userName);
+	Object[] login(Users users);
 	
 	/**
 	 * 邀请奖励
