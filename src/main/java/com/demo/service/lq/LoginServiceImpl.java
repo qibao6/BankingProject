@@ -8,10 +8,10 @@ import org.apache.commons.httpclient.NameValuePair;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.dao.lq.login.LoginRepository;
 import com.demo.model.Subject;
-import com.demo.model.Users;
 
 @Service
 public class LoginServiceImpl implements LoginService {
@@ -77,12 +77,6 @@ public class LoginServiceImpl implements LoginService {
 	public List<Object[]> fxAll(Integer subjectId,Integer page,Integer size) {
 		return loginRepository.fxAll(subjectId,page,size);
 	}
-
-	@Override
-	public List<Object[]> txAll(String memberName,String mobilePhone,String bankCard,Integer status,Integer page,Integer size) {
-		return loginRepository.txAll(memberName, mobilePhone, bankCard, status, page, size);
-	}
-
 	@Override
 	public Integer m(String mobilePhone) {
 		return loginRepository.m(mobilePhone);
@@ -104,12 +98,17 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public Integer getCounts(String memberName,String mobilePhone,String bankCard,Integer status) {
-		return loginRepository.getCounts(memberName, mobilePhone, bankCard, status);
+	public List<Object[]> login(String userName) {
+		return loginRepository.login(userName);
 	}
 
 	@Override
-	public Object[] login(Users users) {
-		return loginRepository.login(users);
+	public void updateJd(Float useableBalance, Integer memberId) {
+		loginRepository.updateJd(useableBalance, memberId);
+	}
+
+	@Override
+	public void updatedk(Float sum, Integer memberId) {
+		loginRepository.updatedk(sum, memberId);
 	}
 }

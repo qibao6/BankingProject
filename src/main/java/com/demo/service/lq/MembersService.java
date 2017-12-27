@@ -8,7 +8,9 @@ import com.demo.model.MemberBankcards;
 import com.demo.model.MemberDepositRecord;
 import com.demo.model.MemberTradeRecord;
 import com.demo.model.MemberWithdrawRecord;
+import com.demo.model.Member_profit_record;
 import com.demo.model.Members;
+import com.demo.model.SubjectPurchaseRecord;
 
 public interface MembersService {
 	
@@ -104,4 +106,26 @@ public interface MembersService {
 	 * 提现审核（定时任务）
 	 */
 	public void updatesubject_purchase_record();
+	/**
+	 * 提现列表
+	 * @return
+	 */
+	Page<SubjectPurchaseRecord> txAll(Integer page,Integer size,final SubjectPurchaseRecord subjectPurchaseRecord);
+	/**
+	 * 根据ID查询当前的这条购买记录
+	 * @param sprId
+	 * @return
+	 */
+	SubjectPurchaseRecord selectAllSPR(Integer sprId);
+	/**
+	 * 审核修改利息,修改状态变成解冻
+	 * @param sprId
+	 * @param interest
+	 */
+	void updateInterest(Float interest,String sStatus,Integer sprId);
+	/**
+	 * 添加记录
+	 * @param member_profit_record
+	 */
+	void saveMPR(Member_profit_record member_profit_record);
 }

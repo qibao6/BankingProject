@@ -40,9 +40,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
            	  <div class="top-right">
            	    <ul class="nav nav-pills">
                <li><p><span class="iconfont">&#xe605;</span></p><p>${name}，<c:if test="${identity==0}">系统管理员</c:if>
-               															    <c:if test="${identity==1}">普通用户</c:if>
+               															   <c:if test="${identity==1}">普通用户</c:if>
                																											</p></li>
-               <li style="width:100px"><p><a href="<%= basePath %>manage/logout"><span class="iconfont">&#xe606;</span></a></p><p>退出</p></li>
+               <li style="width:100px"><p><a href="<%= basePath %>Backstage/login"><span class="iconfont">&#xe606;</span></a></p><p>退出</p></li>
                 </ul>
            	     </div>
           </div>
@@ -56,7 +56,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div class="col-sm-2">
              	  <div class="box-left">
                       <ul class="nav nav-pills nav-stacked">
-                       <li><a href="javascript:;" class="titlea"><span class="iconfont">&#xe609;</span>理财产品</a></li>
+                       
+                       <c:if test="${identity==0}">
+                       	<li><a href="javascript:;" class="titlea"><span class="iconfont">&#xe609;</span>理财产品</a></li>
 		               <ul class="list-group">
 			               <li class="list-group-item"><a href="<%= basePath %>subject/sys/gushouList" target="rightkj">固收类</a></li>
 			               <li class="list-group-item"><a href="<%= basePath %>financeProductFunds/list" target="rightkj">私募/股权类</a></li>
@@ -91,13 +93,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			               <li class="list-group-item"><a href="<%= basePath %>setting/noticelist" target="rightkj">公告管理</a></li>
 			               <li class="list-group-item"><a href="<%= basePath %>setting/feedbackList" target="rightkj">意见反馈</a></li>
 		              </ul>
-		              <li><a href="javascript:;" class="titlea"><span class="iconfont">&#xe60d;</span>系统设置</a></li>
+                      <li><a href="javascript:;" class="titlea"><span class="iconfont">&#xe60d;</span>系统设置</a></li>
 		              <ul class="list-group">
 			               <li class="list-group-item"><a href="<%= basePath %>sys/userlist" target="rightkj">账户设置</a></li>
 			               <li class="list-group-item"><a href="<%= basePath %>sys/rolelist" target="rightkj">角色设置</a></li>
 			               <li class="list-group-item"><a href="<%= basePath %>sys/updatePasswdPage" target="rightkj">密码设置</a></li>
                       </ul>
+                      <li><a href="javascript:;" class="titlea"><span class="iconfont">&#xe60d;</span>系统设置</a></li>
+		              <ul class="list-group">
+			               <li class="list-group-item"><a href="<%= basePath %>sys/userlist" target="rightkj">账户设置</a></li>
+			               <li class="list-group-item"><a href="<%= basePath %>sys/rolelist" target="rightkj">角色设置</a></li>
+			               <li class="list-group-item"><a href="<%= basePath %>sys/updatePasswdPage" target="rightkj">密码设置</a></li>
+                      </ul>
+                      </c:if>
+		              
+		              <c:if test="${identity==1}">
+		              <li><a href="javascript:;" class="titlea"><span class="iconfont">&#xe609;</span>理财产品</a></li>
+		               <ul class="list-group">
+			               <li class="list-group-item"><a href="<%= basePath %>subject/sys/gushouList" target="rightkj">固收类</a></li>
+			               <li class="list-group-item"><a href="<%= basePath %>financeProductFunds/list" target="rightkj">私募/股权类</a></li>
+			               <li class="list-group-item"><a href="<%= basePath %>overseaSys/overseaConfig" target="rightkj">海外配置</a></li>
 		               </ul>
+		              <li><a href="javascript:;" class="titlea"><span class="iconfont">&#xe60b;</span>学院管理</a></li>
+		              <ul class="list-group">
+			               <li class="list-group-item"><a href="<%= basePath %>newsType/index" target="rightkj">资讯分类</a></li>
+			               <li class="list-group-item"><a href="<%= basePath %>news/index" target="rightkj">资讯管理</a></li>
+		               
+		              </ul>
+		              </c:if>
+		             </ul>
                 </div>
                 </div>
                 <div class="col-sm-10">

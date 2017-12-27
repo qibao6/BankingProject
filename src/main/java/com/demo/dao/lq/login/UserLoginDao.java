@@ -3,17 +3,14 @@ package com.demo.dao.lq.login;
 import java.util.List;
 
 import com.demo.model.Subject;
-import com.demo.model.Users;
 
 public interface UserLoginDao {
-	
 	/**
 	 * 后台用户登陆
 	 * @param userName
 	 * @return
 	 */
-	Object[] login(Users users);
-	
+	List<Object[]> login(String userName);
 	/**
 	 * 邀请奖励
 	 * @return
@@ -55,11 +52,6 @@ public interface UserLoginDao {
 	 */
 	List<Object[]> fxAll(Integer subjectId,Integer page,Integer size);
 	/**
-	 * 提现列表
-	 * @return
-	 */
-	List<Object[]> txAll(String memberName,String mobilePhone,String bankCard,Integer status,Integer page,Integer size);
-	/**
 	 * 查询membersId
 	 * @param mobilePhone
 	 * @return
@@ -81,9 +73,16 @@ public interface UserLoginDao {
 	 */
 	Integer getCount();
 	/**
-	 * 提现总条数
-	 * @return
+	 * 修改冻结资金
+	 * @param useableBalance
+	 * @param memberId
 	 */
-	Integer getCounts(String memberName,String mobilePhone,String bankCard,Integer status);
+	void updateJd(Float useableBalance,Integer memberId);
+	/**
+	 * 打款
+	 * @param sum
+	 * @param memberId
+	 */
+	void updatedk(Float sum,Integer memberId);
 }
  

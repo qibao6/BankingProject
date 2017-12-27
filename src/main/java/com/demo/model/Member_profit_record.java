@@ -1,11 +1,15 @@
 package com.demo.model;
 
-import java.sql.Date;
+
+import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 
 /**
  * 收益记录表
@@ -30,6 +34,8 @@ public class Member_profit_record {
 	   private Integer profitDay;//计息日
 	   
 	@Id
+	@SequenceGenerator(name="mpr",sequenceName="SQL_MEMBER_PROFIT_RECORD",allocationSize=1)
+	@GeneratedValue(generator="mpr",strategy=GenerationType.SEQUENCE)
 	public Integer getMprId() {
 		return mprId;
 	}

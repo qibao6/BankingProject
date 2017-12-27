@@ -5,23 +5,15 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+
+import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.model.Subject;
-import com.demo.model.Users;
 
 
 public class LoginRepositoryImpl implements UserLoginDao {
-	
 	@PersistenceContext
 	EntityManager entityManager;
-	@Override
-	public Object[] login(Users users) {
-		String hql="select * from users where user_name = '"+users.getUserName()+"' and users_password = '"+users.getUsersPassword()+"' and mobile_phone ='"+users.getMobilePhone()+"'";
-		Query query =entityManager.createNativeQuery(hql);
-		Object[] lists = (Object[]) query.getSingleResult();
-		return lists;
-	}
 	
 	@Override
 	public List<Object[]> inviteRewardsAll(Integer page,Integer size,final String memberName,final String mobilePhone,final String invitationcode,final String invitedcode) {
@@ -112,32 +104,6 @@ public class LoginRepositoryImpl implements UserLoginDao {
 		List<Object[]> list = entityManager.createNativeQuery(sql).getResultList();
 		return list;
 	}
-
-	@Override
-	public List<Object[]> txAll(String memberName,String mobilePhone,String bankCard,Integer status,Integer page,Integer size) {
-		String sql ="select * from (select rownum rid,a.* from (select m.mobile_phone,m.member_name,m.member_identity,mw.amount, "+
-				"mw.bank_name,mw.bank_card,mw.cardaddress,mw.status,mw.create_date from member_withdraw_record mw , members m "+
-				"where  mw.member_id=m.member_id ";
-		if (memberName!=null&&!"".equals(memberName)) {
-			sql +=" and m.member_name like '%"+memberName+"%'";
-		}
-		if (mobilePhone!=null&&!"".equals(mobilePhone)) {
-			sql +=" and m.mobile_phone like '%"+mobilePhone+"%'";
-		}
-		if (bankCard!=null&&!"".equals(bankCard)) {
-			sql +=" and mw.bank_card like '%"+bankCard+"%'";
-		}
-		if (status!=null&&status>-1) {
-			sql +=" and mw.status ="+status;
-		}
-		
-		int maxnum = page*size;
-		int minnum = (page-1)*size;
-		sql+=" )a) aa where 1=1  and aa.rid<=("+maxnum+") and aa.rid >("+minnum+")";
-		List<Object[]> list = entityManager.createNativeQuery(sql).getResultList();
-		return list;
-	}
-
 	@Override
 	public Integer m(String mobilePhone) {
 		String sql="select m.member_id from members m  where m.mobile_phone="+mobilePhone;
@@ -189,26 +155,23 @@ public class LoginRepositoryImpl implements UserLoginDao {
 	}
 
 	@Override
-	public Integer getCounts(String memberName,String mobilePhone,String bankCard,Integer status) {
-		String sql ="select count(*) from (select m.mobile_phone,m.member_name,m.member_identity,mw.amount, "+
-				"mw.bank_name,mw.bank_card,mw.cardaddress,mw.status,mw.create_date from member_withdraw_record mw, members m "+
-				"where mw.member_id=m.member_id  ";
-		if (memberName!=null&&!"".equals(memberName)) {
-			sql +=" and m.member_name like '%"+memberName+"%'";
-		}
-		if (mobilePhone!=null&&!"".equals(mobilePhone)) {
-			sql +=" and m.mobile_phone like '%"+mobilePhone+"%'";
-		}
-		if (bankCard!=null&&!"".equals(bankCard)) {
-			sql +=" and mw.bank_card like '%"+bankCard+"%'";
-		}
-		if (status!=null&&status>=0) {
-			sql +=" and mw.status ="+status;
-		}
-		sql+=")a";
-		Object o = entityManager.createNativeQuery(sql).getSingleResult();
-		Integer count = Integer.parseInt(o.toString());
-		return count;
+	public List<Object[]> login(String userName) {
+		String sql="select * from users u where u.user_name ='"+userName+"'";
+		List<Object[]> o =entityManager.createNativeQuery(sql).getResultList();
+		return o;
 	}
 
+	@Override
+	@Transactional
+	public void updateJd(Float useableBalance, Integer memberId) {
+		String sql ="update member_account ma set ma.imuseale_balance=(ma.imuseale_balance-"+useableBalance+") where ma.member_id= "+memberId+"";
+		entityManager.createNativeQuery(sql).executeUpdate();
+	}
+
+	@Override
+	@Transactional
+	public void updatedk(Float sum, Integer memberId) {
+		String sql ="update member_account ma set ma.useable_balance=(ma.useable_balance+"+sum+") where ma.member_id= "+memberId+"";
+		entityManager.createNativeQuery(sql).executeUpdate();
+	}
 }

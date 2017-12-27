@@ -1,6 +1,7 @@
 package com.demo.controller.lq;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,8 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.demo.dao.lq.login.LoginRepository;
-import com.demo.model.Users;
 import com.demo.service.lq.LoginService;
 
 @Controller
@@ -31,55 +30,51 @@ public class LoginHandlers {
 	public Map<String,Object> sendCode(HttpServletRequest request,HttpSession session) throws Exception {
 		Map<String,Object> map = new HashMap<>();
 		String mobilePhone = request.getParameter("mobilePhone");
-		Integer rand=null;//loginService.dxjk(mobilePhone);
+		Integer rand=1234;//loginService.dxjk(mobilePhone);
 		session.setAttribute("rands", rand);
+		session.setMaxInactiveInterval(10);
 		return map;
 	}
 	
 	@RequestMapping("logins")
 	@ResponseBody   //返回json格式（字符串）
 	public Map<String,Object> toIndex(HttpServletRequest request,HttpSession session){
-		Map<String,Object> map = new HashMap<>(); 
+		Map<String,Object> map = new HashMap<>();  
 		String userName=request.getParameter("userName");
 		String password=request.getParameter("password");
 		String mobilePhone=request.getParameter("mobilePhone");
-		String rand=request.getParameter("rand");
-		Users users = new Users();
-		users.setUserName(userName);
-		users.setUsersPassword(password);
-		users.setMobilePhone(mobilePhone);
-		String rends =request.getAttribute("rands").toString();
-		Object[] o= loginService.login(users);
-		if (o==null) {
-			if (o[1]==null) {
+		String rand=request.getParameter("rand");//输入的验证码
+		String rands=null;//随机生成的
+		if (session.getAttribute("rands")==null) {
+			map.put("msg","验证码失效！");
+		}else {
+			rands=session.getAttribute("rands").toString();
+		}
+		List<Object[]> o= loginService.login(userName);
+			if(o.size()==0) {
 				map.put("msg","用户名错误！");
+			}else{
+				if (!o.get(0)[3].equals(password)){
+					map.put("msg","密码错误！");
+				}
+				if (!o.get(0)[5].equals(mobilePhone)){
+					map.put("msg","手机号错误！");
+				} 
 			}
-			if (o[3]==null) {
-				map.put("msg","密码错误！");
-			}
-			if (o[5]==null) {
-				map.put("msg","手机号错误！");
-			}
-			if (rand.equals(rends)) {
+			if(rands!=null&&!rand.equals(rands)){
 				map.put("msg","验证码错误！");
 			}
-				
-		}
-		if(o!=null){
-			if (rand.equals(rends)) {
-				Integer identity = Integer.parseInt(o[8].toString());
-				session.setAttribute("identity",identity);
-				session.setAttribute("name", o[1]);
-				map.put("code",0);
-				return map;
+			if(rands!=null) {
+				if(rand.equals(rands)){
+					Integer identity = Integer.parseInt(o.get(0)[8].toString());
+					session.setAttribute("identity",identity);
+					session.setAttribute("name",o.get(0)[1]);
+				}
 			}
-		}
+			if (o.get(0)[3].equals(password)&&o.get(0)[5].equals(mobilePhone)&&rand.equals(rands)) {
+				map.put("code",0);
+			}
 		return map;
-		
-//		session.setAttribute(arg0, arg1);
-		
-		
-		
 	}
 	
 	/**

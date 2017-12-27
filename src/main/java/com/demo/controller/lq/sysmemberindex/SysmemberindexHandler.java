@@ -2,6 +2,7 @@ package com.demo.controller.lq.sysmemberindex;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,14 +12,18 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.demo.model.FinancialPlanner;
 import com.demo.model.MemberAccount;
 import com.demo.model.MemberBankcards;
 import com.demo.model.MemberDepositRecord;
+import com.demo.model.Member_profit_record;
 import com.demo.model.Members;
 import com.demo.model.Subject;
+import com.demo.model.SubjectPurchaseRecord;
 import com.demo.service.lq.LoginService;
 import com.demo.service.lq.MembersService;
 
@@ -63,7 +68,7 @@ public class SysmemberindexHandler {
 		if(page2==null){
 			page2=1;
 		}
-		Integer size=2;
+		Integer size=5;
 		//充值记录
 		Page memberDepositRecord = membersService.memberDepositRecord(memberId, page, size);
 		//钱包记录
@@ -202,21 +207,14 @@ public class SysmemberindexHandler {
 		return "Backstage/sysmember/paymentContent";
 	}
 	@RequestMapping("WithdrawManage")
-	public String WithdrawManage(String memberName,String mobilePhone,String bankCard,Integer status,Integer page,Map<String,Object> map){
+	public String WithdrawManage(Integer page,SubjectPurchaseRecord subjectPurchaseRecord,Map<String,Object> map){
 		if(page==null){
 			page=1;
 		}
 		Integer size=5;
-		Integer count = loginservice.getCounts(memberName, mobilePhone, bankCard, status);
-		Integer pages = count%size==0?count/size:count/size+1;
-		List<Object[]> list = loginservice.txAll(memberName, mobilePhone, bankCard, status, page, size);
-		map.put("list", list);
-		map.put("memberName", memberName);
-		map.put("mobilePhone", mobilePhone);
-		map.put("bankCard", bankCard);
-		map.put("status", status);
-		map.put("page", page);
-		map.put("pages", pages);
+		Page list= membersService.txAll(page, size, subjectPurchaseRecord);
+		map.put("list",list);
+		map.put("subjectPurchaseRecord",subjectPurchaseRecord);
 		return "Backstage/sysmember/withdrawManage";
 	}
 	@RequestMapping("selectMemberId")
@@ -243,8 +241,72 @@ public class SysmemberindexHandler {
 		map.put("wr",memberWithdrawRecord);
 		return "Backstage/sysmember/MemberInfo";
 	}
-	
-	
+	@RequestMapping("editSubject/{sprid}/{flag}")
+	public @ResponseBody Map<String, String> editSubject(@PathVariable("sprid") Integer sprid,@PathVariable("flag") String flag){
+		Map<String, String> map = new HashMap<String, String>();
+		String code = "";
+			//根据ID查询当前的这条购买记录
+			SubjectPurchaseRecord  spr = membersService.selectAllSPR(sprid);
+			//购买金额
+			Float amount = spr.getAmount();
+			//利息
+			Float lx = null;
+			//计算收益
+			Subject subject = spr.getSubject();
+			
+			Integer day = this.getDay(spr.getCreateDate());
+			lx = spr.getAmount()*subject.getYearRate()/365*day;
+		try{
+			if(flag.equals("sh")){
+				//得到收益后首先修改SUBJECT_PURCHASE_RECORD表中的interest(利息)，然后往MEMBER_PROFIT_RECORD中保存一条记录
+				String sStatus="2";
+				membersService.updateInterest(lx, sStatus,sprid);
+				//时间搓
+				SimpleDateFormat sim = new SimpleDateFormat("yyyyMMddHHmmSSSSSS");
+				String lsh = sim.format(new Date());
+				//赋值添加
+				Member_profit_record mpr = new Member_profit_record();
+				mpr.setSerialNumber(lsh);
+				mpr.setAmount(lx);
+				mpr.setMemberId(spr.getMembers());
+				mpr.setCreateDate(new Date());
+				mpr.setMprComment(spr.getSubject().getSubjectName()+"收益");
+				mpr.setPurchaseId(spr.getSubject().getSubjectId());
+				mpr.setProfitDay(spr.getPayInterestTimes());
+				//保存记录
+				membersService.saveMPR(mpr);
+			}
+			if(flag.equals("jd")){
+				Integer memberId = spr.getMembers().getMemberId();
+				//根据memberid去修改MEMBER_ACCOUNT里的imuseale_balance（冻结资金）
+				loginservice.updateJd(amount, memberId);
+				String sStatus="3";
+				membersService.updateInterest(lx, sStatus,sprid);
+			}
+			if(flag.equals("dk")){
+				Integer memberId = spr.getMembers().getMemberId();
+				Float sy= amount+lx;
+				System.out.println(sy);
+				//根据memberid去修改MEMBER_ACCOUNT里的useable_balance
+				loginservice.updatedk(sy, memberId);
+				String sStatus="4";
+				membersService.updateInterest(lx, sStatus,sprid);
+			}
+			code="success";
+			
+		}catch(Exception e){
+			code="error";
+		}
+		map.put("code", code);
+		return map;
+	}
+	private Integer getDay(Date cdate){
+		Long day = new Date().getTime();
+		Long cday = cdate.getTime();
+		Long d = (day-cday)/(1000*60*60*24);
+		return Integer.parseInt(d.toString());
+		
+	}
 	
 	@InitBinder    
     public void initBinder(WebDataBinder binder) {    

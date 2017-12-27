@@ -24,6 +24,7 @@ import com.demo.dao.lq.members.MemberBankcardsRepository;
 import com.demo.dao.lq.members.MemberDepositRecordRepository;
 import com.demo.dao.lq.members.MemberTradeRecordRepository;
 import com.demo.dao.lq.members.MemberWithdrawRecordRepository;
+import com.demo.dao.lq.members.Member_profit_recordJpaRepository;
 import com.demo.dao.lq.members.MembersRepository;
 import com.demo.dao.lq.members.SubjectPurchaseRecordJpaRepository;
 import com.demo.model.FinancialPlanner;
@@ -32,7 +33,9 @@ import com.demo.model.MemberBankcards;
 import com.demo.model.MemberDepositRecord;
 import com.demo.model.MemberTradeRecord;
 import com.demo.model.MemberWithdrawRecord;
+import com.demo.model.Member_profit_record;
 import com.demo.model.Members;
+import com.demo.model.SubjectPurchaseRecord;
 
 @Service
 public class MemberServiceImpl implements MembersService {
@@ -65,6 +68,9 @@ public class MemberServiceImpl implements MembersService {
 	
 	@Autowired
 	SubjectPurchaseRecordJpaRepository subjectPurchaseRecordJpaRepository;
+	
+	@Autowired
+	Member_profit_recordJpaRepository member_profit_recordJpaRepository;
 	
 	
 	@Override
@@ -269,7 +275,64 @@ public class MemberServiceImpl implements MembersService {
 	}
 
 	@Override
+	@Transactional
 	public void updatesubject_purchase_record() {
 		subjectPurchaseRecordJpaRepository.updatesubject_purchase_record();
+	}
+
+	@Override
+	public Page<SubjectPurchaseRecord> txAll(Integer page,Integer size,final SubjectPurchaseRecord subjectPurchaseRecord) {
+		
+		Pageable pageable = new PageRequest(page-1,size);
+		
+		Specification<SubjectPurchaseRecord> specification = new Specification<SubjectPurchaseRecord>() {
+			
+			@Override
+			public Predicate toPredicate(Root<SubjectPurchaseRecord> root, CriteriaQuery<?> query,
+					CriteriaBuilder builder) {
+			List<Predicate> plist = new ArrayList<>();
+				if (subjectPurchaseRecord!=null) {
+					 if(subjectPurchaseRecord.getSerialNumber()!=null&&!"".equals(subjectPurchaseRecord.getSerialNumber())){
+							Path mppath = root.get("serialNumber");
+							plist.add(builder.like(mppath,"%"+subjectPurchaseRecord.getSerialNumber()+"%"));
+						}
+				if(subjectPurchaseRecord.getMembers()!=null){
+					if(subjectPurchaseRecord.getMembers().getMemberName()!=null&&!"".equals(subjectPurchaseRecord.getMembers().getMemberName())){
+						Path mppath = root.get("members").get("memberName");
+						plist.add(builder.like(mppath, "%"+subjectPurchaseRecord.getMembers().getMemberName()+"%"));
+					}
+				}
+				if(subjectPurchaseRecord.getSubject()!=null){
+					if(subjectPurchaseRecord.getSubject().getSubjectId()!=null&&subjectPurchaseRecord.getSubject().getSubjectId()>0){
+						Path mnpath = root.get("subject").get("subjectId");
+						plist.add(builder.equal(mnpath,subjectPurchaseRecord.getSubject().getSubjectId()));
+					}
+				  }
+				if (subjectPurchaseRecord.getIspayment()!=null&&subjectPurchaseRecord.getIspayment()>-1) {
+					Path mnpath = root.get("ispayment");
+					plist.add(builder.equal(mnpath,subjectPurchaseRecord.getIspayment()));
+				}
+			}
+				return builder.and(plist.toArray(new Predicate[plist.size()]));
+		}
+	};
+		return subjectPurchaseRecordJpaRepository.findAll(specification, pageable);
+ }
+
+	@Override
+	public SubjectPurchaseRecord selectAllSPR(Integer sprId) {
+		return subjectPurchaseRecordJpaRepository.findOne(sprId);
+	}
+
+	@Override
+	@Transactional
+	public void updateInterest(Float interest,String sStatus,Integer sprId) {
+		subjectPurchaseRecordJpaRepository.updateInterest(interest, sStatus, sprId);;
+	}
+
+	@Override
+	@Transactional
+	public void saveMPR(Member_profit_record member_profit_record) {
+		member_profit_recordJpaRepository.save(member_profit_record);
 	}
 }
