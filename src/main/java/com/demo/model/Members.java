@@ -1,6 +1,5 @@
 package com.demo.model;
 
-
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -33,11 +32,41 @@ public class Members {
 	   private String qqaccount;//QQ账号关联
 	   private String invitedcode;//被邀请码
 	   private String qqnumber;//QQ号码
+	//   private MemberAccount memberaccount;
 	   
 	   
+	
+	
 	@Id
 	public Integer getMemberId() {
 		return memberId;
+	}
+	public Members() {
+		super();
+	}
+	public Members(String memberName, String names, String passwords, String salts, String mobilePhone, Integer status,
+			Integer delFlag, String memberIdentity, Date createDate, Date updateDate, String weiboaccount,
+			String weixinaccount, Integer headid, String invitationcode, String withdrawPassword, String qqaccount,
+			String invitedcode, String qqnumber) {
+		super();
+		this.memberName = memberName;
+		this.names = names;
+		this.passwords = passwords;
+		this.salts = salts;
+		this.mobilePhone = mobilePhone;
+		this.status = status;
+		this.delFlag = delFlag;
+		this.memberIdentity = memberIdentity;
+		this.createDate = createDate;
+		this.updateDate = updateDate;
+		this.weiboaccount = weiboaccount;
+		this.weixinaccount = weixinaccount;
+		this.headid = headid;
+		this.invitationcode = invitationcode;
+		this.withdrawPassword = withdrawPassword;
+		this.qqaccount = qqaccount;
+		this.invitedcode = invitedcode;
+		this.qqnumber = qqnumber;
 	}
 	public String getInvitationcode() {
 		return invitationcode;
@@ -94,7 +123,7 @@ public class Members {
 	public void setMemberId(Integer memberId) {
 		this.memberId = memberId;
 	}
-	public void setMemberName(String memberName) {
+	public void setMemberName(String memberName) { 
 		this.memberName = memberName;
 	}
 	public void setNames(String names) {

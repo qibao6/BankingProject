@@ -1,11 +1,12 @@
 package com.demo.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 /**
  * 标的购买		sql_subject_purchase_record
  * @author LENOVO
@@ -18,19 +19,27 @@ public class SubjectPurchaseRecord {
 	   private String serialNumber;//  varchar2(50) ,-- '流水号',
 	   private Float amount;//  binary_float, -- '购买金额',
 	   private String dealIp;//  varchar2(25) ,-- '交易ip',
-	   private Subject subject;//  number ,-- '标的Id',
-	   private Members members;//  number,
+	   private Integer subjectId;//  number ,-- '标的Id',
+	   private Integer memberId;//  number,
 	   private Integer delflag;//  number,
 	   private Date createDate;//  date,
 	   private Date updateDate;//  date,
-	   private Float interest;//  decimal(16,4) ,-- '结算利息',
+	   private Integer interest;//  decimal(16,4) ,-- '结算利息',
 	   private Integer ispayment;//  number,--'是否还款',
-	   private Integer payInterestTimes;//  number,  
+	   private Integer payInterestTimes;//  number,
 	   private Integer lastProfitDay;//  number,-- '最后计息日',
 	   private String bonusInfo;//  varchar2(200) -- '红包金额信息（app端实际投资额度+红包额度）',
-	   private String sStatus;//状态
+	   private String sStatus;
 	   
+	public String getsStatus() {
+		return sStatus;
+	}
+	public void setsStatus(String sStatus) {
+		this.sStatus = sStatus;
+	}
 	@Id
+	@SequenceGenerator(name="abc",sequenceName="sql_subject_purchase_record",allocationSize=1)
+	@GeneratedValue(generator="abc",strategy=GenerationType.SEQUENCE)
 	public Integer getSprId() {
 		return sprId;
 	}
@@ -43,21 +52,11 @@ public class SubjectPurchaseRecord {
 	public String getDealIp() {
 		return dealIp;
 	}
-	@ManyToOne
-	@JoinColumn(name="subject_id")
-	public Subject getSubject() {
-		return subject;
+	public Integer getSubjectId() {
+		return subjectId;
 	}
-	public void setSubject(Subject subject) {
-		this.subject = subject;
-	}
-	@ManyToOne
-	@JoinColumn(name="member_id")
-	public Members getMembers() {
-		return members;
-	}
-	public void setMembers(Members members) {
-		this.members = members;
+	public Integer getMemberId() {
+		return memberId;
 	}
 	public Integer getDelflag() {
 		return delflag;
@@ -67,6 +66,9 @@ public class SubjectPurchaseRecord {
 	}
 	public Date getUpdateDate() {
 		return updateDate;
+	}
+	public Integer getInterest() {
+		return interest;
 	}
 	public Integer getIspayment() {
 		return ispayment;
@@ -92,7 +94,12 @@ public class SubjectPurchaseRecord {
 	public void setDealIp(String dealIp) {
 		this.dealIp = dealIp;
 	}
-	
+	public void setSubjectId(Integer subjectId) {
+		this.subjectId = subjectId;
+	}
+	public void setMemberId(Integer memberId) {
+		this.memberId = memberId;
+	}
 	public void setDelflag(Integer delflag) {
 		this.delflag = delflag;
 	}
@@ -102,11 +109,7 @@ public class SubjectPurchaseRecord {
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
 	}
-	
-	public Float getInterest() {
-		return interest;
-	}
-	public void setInterest(Float interest) {
+	public void setInterest(Integer interest) {
 		this.interest = interest;
 	}
 	public void setIspayment(Integer ispayment) {
@@ -121,10 +124,28 @@ public class SubjectPurchaseRecord {
 	public void setBonusInfo(String bonusInfo) {
 		this.bonusInfo = bonusInfo;
 	}
-	public String getsStatus() {
-		return sStatus;
+	public SubjectPurchaseRecord() {
+		
 	}
-	public void setsStatus(String sStatus) {
+	public SubjectPurchaseRecord(String serialNumber, Float amount, String dealIp, Integer subjectId, Integer memberId,
+			Integer delflag, Date createDate, Date updateDate, Integer interest, Integer ispayment,
+			Integer payInterestTimes, Integer lastProfitDay, String bonusInfo,String sStatus) {
+	
+		this.serialNumber = serialNumber;
+		this.amount = amount;
+		this.dealIp = dealIp;
+		this.subjectId = subjectId;
+		this.memberId = memberId;
+		this.delflag = delflag;
+		this.createDate = createDate;
+		this.updateDate = updateDate;
+		this.interest = interest;
+		this.ispayment = ispayment;
+		this.payInterestTimes = payInterestTimes;
+		this.lastProfitDay = lastProfitDay;
+		this.bonusInfo = bonusInfo;
 		this.sStatus = sStatus;
 	}
+	
+	
 }

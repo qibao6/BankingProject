@@ -1,11 +1,14 @@
 package com.demo.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 /**
  * 交易记录表		sql_member_trade_record
  * @author LENOVO
@@ -39,6 +42,8 @@ public class MemberTradeRecord {
 			this.members = members;
 		}
 	@Id
+	@SequenceGenerator(name="abc",sequenceName="sql_member_trade_record",allocationSize=1)
+	@GeneratedValue(generator="abc",strategy=GenerationType.SEQUENCE)
 	public Integer getMtrId() {
 		return mtrId;
 	}
@@ -115,6 +120,25 @@ public class MemberTradeRecord {
 		this.createDate = createDate;
 	}
 	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
+
+	public MemberTradeRecord(Members members, String tradeNo, String tradeName, String counterpart, Float amount,
+			String tradeType, Integer fundFlow, Integer tradeStatus, String extFieldA, String extFieldB,
+			String extFieldC, Date createDate, Date updateDate) {
+		super();
+		this.members = members;
+		this.tradeNo = tradeNo;
+		this.tradeName = tradeName;
+		this.counterpart = counterpart;
+		this.amount = amount;
+		this.tradeType = tradeType;
+		this.fundFlow = fundFlow;
+		this.tradeStatus = tradeStatus;
+		this.extFieldA = extFieldA;
+		this.extFieldB = extFieldB;
+		this.extFieldC = extFieldC;
+		this.createDate = createDate;
 		this.updateDate = updateDate;
 	}
 	   

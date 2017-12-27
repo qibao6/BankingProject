@@ -27,7 +27,7 @@ public class AlipayConfig {
     public static String alipay_public_key = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA3V2AeD3Hx+iUtf4OIrCQDMQFR2GFhA2572LkcD8ul4QTlXYLyHuLm/QT8GkeMXtwzspLKHPLNIrcBnWl9SixV8ZJrV1QZtCll4RB/CsSMUWhtdp9e4oeQ/Ah602z8zg/0oNFg4FDT3Ni6GuTAhjHqEWWLOVRhRAxOIo+TyVVxIRAunZRJluFKdNLxWQqzbBeSCy6eiBtD+ZNqH1OOvbv0tnA4/SxCUwZITSKTuQmao+lifUI9MgxAAwK/mr8jaK/PFYmPSl8I5iO5ualTMvlOCkvHG0kP/wjQ785TheRnOwYSuNmsyXMp5abp819T4qGMH/ggQ0tuDaTSmbu4iqmOQIDAQAB";
 
 	// 服务器异步通知页面路径  需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-	public static String notify_url = "http://3e852023.ngrok.io/Book/notify_url.jsp";
+	public static String notify_url = "http://7ad3d84f.ngrok.io/Book/notify_url.jsp";
 
 	// 页面跳转同步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
 	public static String return_url = "http://127.0.0.1:9999/BankingProject/hyzx/upchong";

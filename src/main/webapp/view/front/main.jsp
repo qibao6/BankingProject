@@ -87,7 +87,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<li><a class="item" href="http://www.ying158.com/home/kcenter">
 							网上体验中心 </a></li>
 					<li class="item"><a class="item"
-						href="<%=basePath%>subject/subindex" target="myiframe"> 产品中心 </a>
+						href="<%=basePath%>view/front/main.jsp" target="myiframe"> 产品中心 </a>
 					</li>
 					<li><a class="item"
 						href="http://www.ying158.com/Home/NewsCenter"> 新闻中心 </a></li>
@@ -133,7 +133,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 		<div>
 			<iframe name="myiframe" frameborder="0" scrolling="no"
-				src="<%=basePath%>subject/subindex" width="100%" height="1100px">
+				src="<%=basePath%>subject/like/10/-1/-1/-1" width="100%" height="1100px">
 				
 			</iframe>
 		</div>

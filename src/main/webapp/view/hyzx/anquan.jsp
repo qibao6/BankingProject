@@ -79,7 +79,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                            <td>${members.withdrawPassword==null?"未设置":"已设置" }</td>
 	                            <td><p style="color:#888">保障资金安全，提款需要设置提款密码</p></td>
 	                            <td>设置完成</td>						 
-								<td><a onclick="$('#setWithdrawPWModel').modal(); return false;" href="javascript:;" class="renzheng">修改</a></td>							
+								<!-- <td><a onclick="$('#setWithdrawPWModel').modal(); return false;" href="javascript:;" class="renzheng">修改</a></td> -->							
 							    </tr>
                         </table>
                     </div>
