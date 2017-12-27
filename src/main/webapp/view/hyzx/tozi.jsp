@@ -39,7 +39,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<c:forEach items="${sPage.getContent()}" var="spr">
 			<tr>
 				<td>${spr.serialNumber }</td>
-				<td><font color="#a58b48"></font></td>
+				<td><font color="#a58b48">
+					<c:if test="${spr.subjectId==2 }">理财宝一号11</c:if>
+					<c:if test="${spr.subjectId==3 }">测试车贷123</c:if>
+					<c:if test="${spr.subjectId==4 }">有缘固收类1</c:if>
+				</font></td>
 				<td><font color="#ff503f">￥<f:formatNumber pattern="0.00">${spr.amount }</f:formatNumber></font></td>
 				<td>￥<f:formatNumber pattern="0.00">${spr.interest }</f:formatNumber></td>
 				<td>${spr.ispayment==1?"已还款":"未还款" }</td>
