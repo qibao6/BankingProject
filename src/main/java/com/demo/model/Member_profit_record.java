@@ -1,11 +1,18 @@
 package com.demo.model;
 
-import java.sql.Date;
+
+import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 
 /**
+ * 收益记录表
  * 		sql_member_profit_record
  * @author LENOVO
  *
@@ -16,7 +23,7 @@ public class Member_profit_record {
 	   private String serialNumber;//流水号
 	   private Integer mprType;
 	   private Float amount;//金额
-	   private Integer memberId;//用户id
+	   private Members memberId;//用户id
 	   private Integer delflag;
 	   private Date createDate;
 	   private Date updateDate;
@@ -27,6 +34,8 @@ public class Member_profit_record {
 	   private Integer profitDay;//计息日
 	   
 	@Id
+	@SequenceGenerator(name="mpr",sequenceName="SQL_MEMBER_PROFIT_RECORD",allocationSize=1)
+	@GeneratedValue(generator="mpr",strategy=GenerationType.SEQUENCE)
 	public Integer getMprId() {
 		return mprId;
 	}
@@ -39,8 +48,13 @@ public class Member_profit_record {
 	public Float getAmount() {
 		return amount;
 	}
-	public Integer getMemberId() {
+	@ManyToOne
+	@JoinColumn(name="member_id")
+	public Members getMemberId() {
 		return memberId;
+	}
+	public void setMemberId(Members memberId) {
+		this.memberId = memberId;
 	}
 	public Integer getDelflag() {
 		return delflag;
@@ -77,9 +91,6 @@ public class Member_profit_record {
 	}
 	public void setAmount(Float amount) {
 		this.amount = amount;
-	}
-	public void setMemberId(Integer memberId) {
-		this.memberId = memberId;
 	}
 	public void setDelflag(Integer delflag) {
 		this.delflag = delflag;

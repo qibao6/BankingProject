@@ -29,7 +29,7 @@ public class MemberAccount {
 	   private Date updateDate;//修改时间
 	   private Float bonusAmount;//红包金额
 	   private Float investAmount;//投资总额
-	   private Integer delflag;//注册奖励状态（0：注册未奖励 1：注册已奖励）
+	   private Integer delflag;//注册奖励状态（1：注册未奖励  0：注册已奖励）
 	   private Float bbinAmount;//体验金
 	
 	   @ManyToOne

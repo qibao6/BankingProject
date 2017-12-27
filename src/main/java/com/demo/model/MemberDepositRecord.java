@@ -1,11 +1,14 @@
 package com.demo.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 
 /**
  * 充值记录表		seq_member_deposit_record
@@ -34,7 +37,9 @@ public class MemberDepositRecord {
 	public void setMembers(Members members) {
 		this.members = members;
 	}
-	@Id  
+	@Id
+	@SequenceGenerator(name="abc",sequenceName="seq_member_deposit_record",allocationSize=1)
+	@GeneratedValue(generator="abc",strategy=GenerationType.SEQUENCE)
 	public Integer getMemberDepositRecordId() {
 		return memberDepositRecordId;
 	}

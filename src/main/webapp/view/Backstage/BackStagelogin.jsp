@@ -82,6 +82,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </style>
 <script type="text/javascript" src="<%= basePath%>resources/js/jquery.js"></script>
 <script type="text/javascript" src="<%= basePath%>resources/js/bootstrap.js"></script>
+<script type="text/javascript" src="<%= basePath%>resources/js/adminlogin.js"></script>
 </head>
 <body>
 <img style="position:absolute;width:100%;height:100%;z-Index:-1;position:fixed" src="<%= basePath%>resources/images/login_bg.jpg" />
@@ -116,7 +117,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  </div></td>
   </tr>
 </table>
-<script type="text/javascript" src="<%= basePath%>resources/js/adminlogin.js"></script>
+
 <script language="JavaScript">
 $(function(){
 	var b = "/BankingProject";
@@ -125,7 +126,6 @@ $(function(){
 
     if (window != top)
     top.location.href = location.href;
-  
 </script>
 </body>
 </html>

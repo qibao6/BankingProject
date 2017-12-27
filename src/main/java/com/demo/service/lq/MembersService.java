@@ -1,6 +1,6 @@
 package com.demo.service.lq;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
 
 import com.demo.model.FinancialPlanner;
 import com.demo.model.MemberAccount;
@@ -8,7 +8,9 @@ import com.demo.model.MemberBankcards;
 import com.demo.model.MemberDepositRecord;
 import com.demo.model.MemberTradeRecord;
 import com.demo.model.MemberWithdrawRecord;
+import com.demo.model.Member_profit_record;
 import com.demo.model.Members;
+import com.demo.model.SubjectPurchaseRecord;
 
 public interface MembersService {
 	
@@ -17,7 +19,7 @@ public interface MembersService {
 	 * 账号管理
 	 * @return
 	 */
-	List<Members> findMembers();
+	Page<Members> findMembers(Integer page,Integer size,final Members members);
 	
 	/**
 	 * 账号详情
@@ -46,25 +48,25 @@ public interface MembersService {
 	 * @param memberId
 	 * @return
 	 */
-	List<MemberDepositRecord>  memberDepositRecord(Integer memberId);
+	Page<MemberDepositRecord>  memberDepositRecord(final Integer memberId,Integer page,Integer size);
 	/**
 	 * 钱包记录
 	 * @param memberId
 	 * @return
 	 */
-	List<MemberTradeRecord>  memberTradeRecord(Integer memberId);
+	Page<MemberTradeRecord>  memberTradeRecord(final Integer memberId,Integer page,Integer size);
 	/**
 	 * 提现记录
 	 * @param memberId
 	 * @return
 	 */
-	List<MemberWithdrawRecord>  memberWithdrawRecord(Integer memberId);
+	Page<MemberWithdrawRecord>  memberWithdrawRecord(final Integer memberId,Integer page,Integer size);
 	
 	/**
 	 * 理财师审核查询
 	 * @return
 	 */
-	List<FinancialPlanner> fplist();
+	Page<FinancialPlanner> fplist(Integer page,Integer size,final FinancialPlanner financialPlanner);
 	/**
 	 * 理财师审核
 	 * @param financialPlannerId
@@ -74,16 +76,56 @@ public interface MembersService {
 	 * 绑卡管理
 	 * @return
 	 */
-	List<MemberBankcards> memberBankcards();
+	Page<MemberBankcards> memberBankcards(Integer page,Integer size,final MemberBankcards memberBankcards);
 	/**
 	 * 充值管理
 	 * @return
 	 */
-	List<MemberDepositRecord>  findAllMDR();
+	Page<MemberDepositRecord>  findAllMDR(Integer page,Integer size,final MemberDepositRecord memberDepositRecord);
 	/**
 	 * 解绑银行卡
 	 * @param delflag
 	 * @param memberBankcardsId
 	 */
 	void updateDelflag(Integer delflag,Integer memberBankcardsId);
+	
+	/**
+	 * 注册奖励(修改奖励状态)
+	 * @param isaward
+	 * @param awardRecordsId
+	 */
+	void updateIsaward(Integer isaward,Integer awardRecordsId);
+	/**
+	 * 注册奖励(修改奖金)
+	 * @param useableBalance
+	 * @param memberAccountId
+	 */
+	void updateUseableBalance(Float useableBalance,Integer memberAccountId);
+	
+	/**
+	 * 提现审核（定时任务）
+	 */
+	public void updatesubject_purchase_record();
+	/**
+	 * 提现列表
+	 * @return
+	 */
+	Page<SubjectPurchaseRecord> txAll(Integer page,Integer size,final SubjectPurchaseRecord subjectPurchaseRecord);
+	/**
+	 * 根据ID查询当前的这条购买记录
+	 * @param sprId
+	 * @return
+	 */
+	SubjectPurchaseRecord selectAllSPR(Integer sprId);
+	/**
+	 * 审核修改利息,修改状态变成解冻
+	 * @param sprId
+	 * @param interest
+	 */
+	void updateInterest(Float interest,String sStatus,Integer sprId);
+	/**
+	 * 添加记录
+	 * @param member_profit_record
+	 */
+	void saveMPR(Member_profit_record member_profit_record);
 }

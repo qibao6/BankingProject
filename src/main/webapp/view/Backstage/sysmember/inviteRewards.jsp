@@ -32,29 +32,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <h2><span class="glyphicon glyphicon-play" style="margin-right:5px"></span>邀请奖励</h2>
 
                       <div class="tablelist">
-                      	<form action="<%=basePath%>sysmember/inviteRewards" method="post" id="form1">
+                      	<form action="<%=basePath%>sysmember/inviteRewards" method="post" id="form1" name="form1">
+                        	<input type="hidden" name="page" id="page">
                         <table class="table tabletop">
                         <tr>
                          <td style="width:90px;padding-left:20px">姓名：</td>
-                        <td style="width:140px"><input type="text" class="form-control" name="memberName" placeholder="姓名" value=""></td>
+                        <td style="width:140px"><input type="text" class="form-control" name="memberName" placeholder="姓名" value="${memberName}"></td>
                         <td style="width:100px;padding-left:20px">手机号：</td>
-                        <td><input type="text"  name="mobilePhone" class="form-control" placeholder="手机号" value=""></td>
+                        <td><input type="text"  name="mobilePhone" class="form-control" placeholder="手机号" value="${mobilePhone}"></td>
                         <td style="width:90px;padding-left:20px">邀请码：</td>
-                        <td style="width:140px"><input type="text" class="form-control" name="invitationcode" placeholder="邀请码" value=""></td>
+                        <td style="width:140px"><input type="text" class="form-control" name="invitationcode" placeholder="邀请码" value="${invitationcode}"></td>
                          <td style="width:100px;padding-left:20px">被邀请码：</td>
-                        <td><input type="text"  name="invitedcode" class="form-control" placeholder="被邀请码" value=""></td>
-                         <td style="width:140px;padding-left:20px">是否已注册奖励：</td>
-                        <td><select name="status" class="form-control" style="width:100px;height:32px" id="status">
-                        	<option value="">全部</option>
-                        	<option value="0">否</option>
-                        	<option value="1">是</option>
-                        	</select></td>
-                         <td style="width:140px;padding-left:20px">是否已投资奖励：</td>
-                        <td><select name="delFlag" class="form-control" style="width:100px;height:32px" id="delFlag">
-                        	<option value="">全部</option>
-                        	<option value="0">否</option>
-                        	<option value="1">是</option>
-                        	</select></td>
+                        <td><input type="text"  name="invitedcode" class="form-control" placeholder="被邀请码" value="${invitedcode}"></td>
                        <td class="pull-right" style="padding-right:20px">
                          <button type="submit" class="btn btn-primary btn-sm">查询</button></td>
 	                    <td><button type="button" class="btn btn-primary btn-sm" onclick="$('#form1').find(':input').not(':button, :submit, :reset').val('').removeAttr('checked').removeAttr('selected');">重置</button></td>
@@ -74,42 +63,59 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                           <td>注册时间</td>
                           <td>操作</td>
                           </tr>
+                          <c:forEach items="${olist}" var="o">
                           <tr class="text-center">
-                            <td>1</td>
-                            <td>13074607845</td>
-                            <td>张丽珍</td>
-                            <td>W3MN2C</td>
-                            <td>J1Y7JF</td>
-                            <td>0</td>
-                            <td><span style="color: red;">否</span></td>
-                            <td><span style="color: red;">否</span></td>
-                            <td>2016-03-08 14:20:11</td>
+                            <td>${o[1]}</td>
+                            <td>${o[2]}</td>
+                            <td>${o[3]}</td>
+                            <td>${o[4]}</td>
+                            <td>${o[5]}</td>
+                            <td>${o[6]}</td>
                             <td>
-                            			<a class="btn btn-primary btn-sm" href="javascript:" onclick="award('121',0)">注册奖励</a>
-	                            		<span style="color: blue;">投资金额未达到 |</span>
-                            	<a class="btn btn-primary btn-sm" href="<%=basePath%>sysmember/inviteRewardsRecord?id=121">奖励记录</a>
+                            <c:if test="${o[7]==0 && o[8]==0}"><font color="red">否</font></c:if>
+                            <c:if test="${o[7]==0 && o[8]==1}"><font color="blue">是</font></c:if>
+                            <c:if test="${o[7]==1 && o[8]==0}"><font color="red">否</font></c:if>
+                            <c:if test="${o[7]==1 && o[8]==1}"><font color="blue">是</font></c:if>
+                          	</td>
+                          	
+                            <td>
+                            <c:if test="${o[7]==1 && o[8]==0}"><font color="red">否</font></c:if>
+                            <c:if test="${o[7]==1 && o[8]==1}"><font color="blue">是</font></c:if>
+                            <c:if test="${o[7]==0 && o[8]==0}"><font color="red">否</font></c:if>
+                            <c:if test="${o[7]==0 && o[8]==1}"><font color="blue">是</font></c:if>
+							</td>
+							
+                            <td><f:formatDate value="${o[9]}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
+                            
+                            <td>
+                            <c:if test="${o[7]==0 && o[8]==0}"><a class="btn btn-primary btn-sm" href="javascript:" onclick="award(${o[1]},${o[10]},${o[11]})">注册奖励</a></c:if>
+                            <c:if test="${o[7]==0 && o[8]==1}"><font color="blue">注册已奖励</font></c:if>
+                            <c:if test="${o[7]==1}"><font color="blue">注册不能奖励 |</font></c:if>		
+                            <c:if test="${o[7]==0}"><font color="blue">|投资金额未达到 |</font></c:if>	
+                            <a class="btn btn-primary btn-sm" href="<%=basePath%>sysmember/inviteRewardsRecord?awardRecordsId=${o[1]}">奖励记录</a>
                             </td>
                           </tr>
+                          </c:forEach>
+                          
                         </table>
 	
 	
+	<table class="table table-bordered tablebox">
 	<div class="llpage">
 		<div class="in">
 			<nav>
-				<span class="count">第&nbsp;<b>1</b>&nbsp;页，&nbsp;共&nbsp;<b>1</b>&nbsp;页</span>
+				<span class="count">第&nbsp;<b>${page}</b>&nbsp;页，&nbsp;共&nbsp;<b>${pages}</b>&nbsp;页</span>
 				<ul class="pagination">
-
-						<li><a class="prev_page">上页</a></li>
-
-
-							<li><a class="now" >1</a></li>
-
-
-						<li><a class="next_page" rel="next">下页</a></li>
+						<li><a class="prev_page" href="javascript:pagerequest(${page==1?page:page-1})">上页</a></li>
+							<c:forEach begin="1" end="${pages}" var="v">
+							<li><a class="now" href="javascript:pagerequest(${v})" >${v}</a></li>
+							</c:forEach>
+						<li><a class="next_page" rel="next" href="javascript:pagerequest(${page==pages?pages:page+1});">下页</a></li>
 				</ul>
 			</nav>
 		</div>
 	</div>
+ </table>
 
          </div>
 
@@ -120,31 +126,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </body>
 
 <script type="text/javascript">
-$(function(){
-	$("#status").val("");
-	$("#delFlag").val("");
-	
-});
-
-	 function award(tid,type){
-		if(confirm('你确定要奖励吗？')){
-			$.ajax({
-                type: "POST", // 用POST方式传输
-                dataType: "json", // 数据格式:JSON
-                url: '<%=basePath%>sysmember/awards', // 目标地址
-                data: {
-                    id: tid,
-                    type:type
-                },
-                success: function (msg) {
-                	 if (msg.code == 0) {
-                         window.location.href = "<%=basePath%>sysmember/inviteRewards";
-                     } else {
-                        alert(msg.msg);
-                     }
-                }
-            });
-		}
-	} 
+ function award(tid,memberAccountId,amount){
+		location.href="<%=basePath%>sysmember/awards?awardRecordsId="+tid+"&&memberAccountId="+memberAccountId+"&&amount="+amount;
+} 
+function pagerequest(page){
+		document.getElementById("page").value=page;
+		document.form1.submit();
+}
 </script>
 </html>

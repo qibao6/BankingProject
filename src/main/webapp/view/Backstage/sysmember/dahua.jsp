@@ -35,19 +35,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <h2><span class="glyphicon glyphicon-play" style="margin-right:5px"></span>绑卡管理</h2>
 
                       <div class="tablelist">
-                      <form action="<%= basePath%>sysmember/dahua" method="post" id="form1">
+                      <form action="<%= basePath%>sysmember/dahua" method="post" id="form1" name="form1">
+                     		 <input type="hidden" name="page" id="page">
                         <table class="table tabletop">
                         <tr>
                         <td style="width:130px;padding-left:30px">手机号：</td>
-                        <td style="width:180px"><input type="text" class="form-control" name="mobilePhone" placeholder="手机号" value=""></td>
+                        <td style="width:180px"><input type="text" class="form-control" name="members.mobilePhone" placeholder="手机号" value="${mbk.members.mobilePhone }"></td>
                         <td style="width:130px;padding-left:30px">绑卡姓名：</td>
-                        <td style="width:180px"><input type="text" class="form-control" name="memberName" placeholder="绑卡姓名" value=""></td>
+                        <td style="width:180px"><input type="text" class="form-control" name="members.memberName" placeholder="绑卡姓名" value="${mbk.members.memberName }"></td>
                         <td style="width:130px;padding-left:30px">绑卡卡号：</td>
-                        <td style="width:180px"><input type="text" class="form-control" name="cardNo" placeholder="绑卡卡号" value=""></td>
-                         <td style="width:110px;padding-left:30px">注册时间：</td>
-                        <td style="width:180px"><input type="text"  name="createDate" class="form-control time" placeholder="注册时间" readonly="readonly" value=""></td>
-                         <td class="pull-right" style="padding-right:30px">
-                         <button type="submit" class="btn btn-primary btn-sm">查询</button></td>
+                        <td style="width:180px"><input type="text" class="form-control" name="cardNo" placeholder="绑卡卡号" value="${mbk.cardNo}"></td>
+                         <td><button type="submit" class="btn btn-primary btn-sm">查询</button></td>
                          <td><button type="button" class="btn btn-primary btn-sm" onclick="$('#form1').find(':input').not(':button, :submit, :reset').val('').removeAttr('checked').removeAttr('selected');">重置</button></td>
                         </tr>          
                         </table>
@@ -65,7 +63,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                           <td>添加时间</td>
                           <td>操作</td>
                           </tr>
-                         <c:forEach items="${mb}" var="m">
+                         <c:forEach items="${mb.getContent()}" var="m">
                          	<tr class="text-center">
                             <td>${m.memberBankcardsId}</td>
                             <td>${m.members.mobilePhone}</td>
@@ -87,39 +85,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                           </tr>
                          </c:forEach>
                         </table>
-	
-	
+<table class="table table-bordered tablebox">
 	<div class="llpage">
 		<div class="in">
 			<nav>
-				<span class="count">第&nbsp;<b>1</b>&nbsp;页，&nbsp;共&nbsp;<b>1</b>&nbsp;页</span>
+				<span class="count">第&nbsp;<b>${mb.getNumber()+1}</b>&nbsp;页，&nbsp;共&nbsp;<b>${mb.getTotalPages()}</b>&nbsp;页</span>
 				<ul class="pagination">
-
-						<li><a class="prev_page">上页</a></li>
-
-
-							<li><a class="now" >1</a></li>
-
-
-						<li><a class="next_page" rel="next">下页</a></li>
+						<li><a class="prev_page" href="javascript:pagerequest(${mb.getNumber()>1?mb.getNumber():1})">上页</a></li>
+							<c:forEach begin="1" end="${mb.getTotalPages()}" var="v">
+							<li><a class="now" href="javascript:pagerequest(${v})" >${v}</a></li>
+							</c:forEach>
+						<li><a class="next_page" rel="next" href="javascript:pagerequest(${mb.getNumber()+1<mb.getTotalPages()?mb.getNumber()+1+1:mb.getTotalPages()});">下页</a></li>
 				</ul>
 			</nav>
 		</div>
 	</div>
+ </table>
 
          </div>
          <!-- 内容结束 -->
 	</div>
 	<script type="text/javascript">
-	$('.time').datetimepicker({
-		format : 'yyyy-mm-dd',
-		language: 'zh-CN',
-		minView: 2,
-	    todayBtn: 1
-	}).on('changeDate', function(ev) {
-		$('.time').datetimepicker('hide');
-	});
-	
+	function pagerequest(page){
+		document.getElementById("page").value=page;
+		document.form1.submit();
+	}
 	</script> 
 <!-- 容器结束 -->
 </body>

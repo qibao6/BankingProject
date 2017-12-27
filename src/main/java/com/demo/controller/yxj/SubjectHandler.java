@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -184,10 +183,9 @@ public class SubjectHandler {
 //		System.out.println(Float.parseFloat(amount));
 		//System.out.println(amount);
 		//购买记录表中添加一条购买记录
-	
-	
-		SubjectPurchaseRecord subjectPurchaseRecord=new SubjectPurchaseRecord(subject.getSerialNumber(),amount, dealIp, subjectIds, members.getMemberId(), subject.getDelflag(), new Date(), new Date(),(int) (amount*subject.getYearRate()/365*subject.getPeriod()), 1, subject.getPeriod(), 0,"","0");
-		subjectService.insertpurchase(subjectPurchaseRecord);
+		//SubjectPurchaseRecord subjectPurchaseRecord1=new SubjectPurchaseRecord(subject.getSerialNumber(),amount, dealIp,subject, members, subject.getDelflag(), new Date(), new Date(),(amount*subject.getYearRate()/365*subject.getPeriod()), 1, subject.getPeriod(), 0,"","0");
+		//subjectService.insertpurchase(subjectPurchaseRecord1);
+		SubjectPurchaseRecord subjectPurchaseRecord=new SubjectPurchaseRecord(subject.getSerialNumber(), amount, dealIp, subject, members, subject.getDelflag(), new Date(), new Date(), amount*subject.getYearRate()/365*subject.getPeriod(), 1, subject.getPeriod(), 0, "", "0");
 		//修改用户资金，可用余额减少，冻结资金增加，投资金额增加
 		//System.out.println(Integer.parseInt(amount));
 		
@@ -211,5 +209,14 @@ public class SubjectHandler {
 			return sim.format(new Date());
 		}
 		
+
 		
+
+		public Integer getday(Date cdate){
+			Long day=new Date().getTime();
+			Long cday=cdate.getTime();
+			Long tday=(day-cday)/(1000/60/60/24);
+			return Integer.parseInt(tday.toString());
+		}
+
 }

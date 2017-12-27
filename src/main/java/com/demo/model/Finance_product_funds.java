@@ -2,11 +2,15 @@ package com.demo.model;
 
 import java.sql.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  * 理财类基金产品		seq_finance_product_funds
  * @author LENOVO
  *
  */
+@Entity
 public class Finance_product_funds {
 	
 	   private Integer financeProductFundsId;
@@ -38,7 +42,7 @@ public class Finance_product_funds {
 	   private String bankAccount;//银行账户（支行名称|银行账号|户名）
 	
 	   
-	   
+	@Id
 	public Integer getFinanceProductFundsId() {
 		return financeProductFundsId;
 	}

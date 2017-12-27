@@ -108,7 +108,6 @@ public class Subject {
 	public Date getEndDate() {
 		return endDate;
 	}
-
 	public String getSubjectComment() {
 		return subjectComment;
 	}
@@ -185,7 +184,6 @@ public class Subject {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-
 	public void setSubjectComment(String subjectComment) {
 		this.subjectComment = subjectComment;
 	}
@@ -245,17 +243,11 @@ public class Subject {
 	public void setSafetycontrol(String safetycontrol) {
 		this.safetycontrol = safetycontrol;
 	}
-
-
 	public Float getYearRate() {
 		return yearRate;
 	}
-
-
 	public void setYearRate(Float yearRate) {
 		this.yearRate = yearRate;
 	}
 
-	
-	
 }

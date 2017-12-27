@@ -35,19 +35,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <h2><span class="glyphicon glyphicon-play" style="margin-right:5px"></span>账号管理</h2>
 
                       <div class="tablelist">
-                      	<form action="<%= basePath%>sysmember/index" method="post" id="form1">
+                      	<form action="<%= basePath%>sysmember/index" method="post" id="form1" name="form1">
+                      	<input type="hidden" name="page" id="page">
                         <table class="table tabletop">
                         <tr>
                         <td style="width:110px;padding-left:30px">用户名：</td>
-                        <td style="width:180px"><input type="text" class="form-control" name="name" placeholder="用户名" value=""></td>
+                        <td style="width:180px"><input type="text" class="form-control" name="names" placeholder="用户名" value="${members.names}"></td>
                         <td style="width:110px;padding-left:30px">手机号：</td>
-                        <td style="width:180px"><input type="text"  name="mobilePhone" class="form-control" placeholder="手机号" value=""></td>
+                        <td style="width:180px"><input type="text"  name="mobilePhone" class="form-control" placeholder="手机号" value="${members.mobilePhone}"></td>
                         <td style="width:110px;padding-left:30px">姓名：</td>
-                        <td style="width:180px"><input type="text"  name="memberName" class="form-control" placeholder="姓名" value=""></td>
+                        <td style="width:180px"><input type="text"  name="memberName" class="form-control" placeholder="姓名" value="${members.memberName}"></td>
                         <td style="width:110px;padding-left:30px">邀请码：</td>
-                        <td style="width:180px"><input type="text"  name="invitationcode" class="form-control" placeholder="邀请码" value=""></td>
-                        <td style="width:110px;padding-left:30px">注册时间：</td>
-                        <td style="width:180px"><input type="text"  name="createDate" class="form-control time" placeholder="注册时间" readonly="readonly" value=""></td>
+                        <td style="width:180px"><input type="text"  name="invitationcode" class="form-control" placeholder="邀请码" value="${members.invitationcode}"></td>
                         <td class="pull-right" style="padding-right:10px"><button type="submit" class="btn btn-primary btn-sm">查询</button></td>
                         <td><button type="button" class="btn btn-primary btn-sm" onclick="$('#form1').find(':input').not(':button, :submit, :reset').val('').removeAttr('checked').removeAttr('selected');">重置</button></td>
                         </tr>     
@@ -65,7 +64,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                           <td>操作</td>
                           </tr>
                           
-                          <c:forEach items="${mlist}" var="m">
+                          <c:forEach items="${pagemembers.getContent()}" var="m">
                            <tr class="text-center">
                             <td>${m.memberId}</td>
                             <td>${m.mobilePhone}</td>
@@ -82,25 +81,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                          
                         </table>
 	
-	
+<table class="table table-bordered tablebox">
 	<div class="llpage">
 		<div class="in">
 			<nav>
-				<span class="count">第&nbsp;<b>1</b>&nbsp;页，&nbsp;共&nbsp;<b>1</b>&nbsp;页</span>
+				<span class="count">第&nbsp;<b>${pagemembers.getNumber()+1}</b>&nbsp;页，&nbsp;共&nbsp;<b>${pagemembers.getTotalPages()}</b>&nbsp;页</span>
 				<ul class="pagination">
-
-						<li><a class="prev_page">上页</a></li>
-
-
-							<li><a class="now" >1</a></li>
-
-
-						<li><a class="next_page" rel="next">下页</a></li>
+						<li><a class="prev_page" href="javascript:pagerequest(${pagemembers.getNumber()>1?pagemembers.getNumber():1})">上页</a></li>
+							<c:forEach begin="1" end="${pagemembers.getTotalPages()}" var="v">
+							<li><a class="now" href="javascript:pagerequest(${v})" >${v}</a></li>
+							</c:forEach>
+						<li><a class="next_page" rel="next" href="javascript:pagerequest(${pagemembers.getNumber()+1<pagemembers.getTotalPages()?pagemembers.getNumber()+1+1:pagemembers.getTotalPages()});">下页</a></li>
 				</ul>
 			</nav>
 		</div>
 	</div>
-
+ </table>
          </div>
 
          <!-- 内容结束 -->
@@ -108,15 +104,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 <!-- 容器结束 -->
 <script type="text/javascript">
-		$('.time').datetimepicker({
-			format : 'yyyy-mm-dd',
-			language: 'zh-CN',
-			minView: 2,
-		    todayBtn: 1
-		}).on('changeDate', function(ev) {
-			$('.time').datetimepicker('hide');
-		});
-		
+		function pagerequest(page){
+			document.getElementById("page").value=page;
+			document.form1.submit();
+		}
 		</script> 
 </body>
 </html>

@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
 %>
 <html>
 <head>
@@ -37,28 +38,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<th width="20%">金额</th>
 							<th width="20%">备注</th>
 						</tr>
-						<c:forEach items="${mPage.getContent() }" var="mpr"></c:forEach>
-						<tr>
-							<td><f:formatDate value="${mpr.updateDate }" pattern="yyyy-MM-dd HH:mm:ss" /> </td>
-							<td>${mpr.serialNumber }</td>
-							<td><font color="#ff503f">￥${mpr.amount }</font></td>
-							<td>${mpr.mprComment }</td>
-						</tr>
+						<c:forEach items="${mPage.getContent()}" var="mpr">
+							<tr>
+								<td><f:formatDate value="${mpr.updateDate }"
+										pattern="yyyy-MM-dd" /></td>
+								<td>${mpr.serialNumber }</td>
+								<td><font color="#ff503f">￥${mpr.amount }</font></td>
+								<td>${mpr.mprComment }</td>
+							</tr>
+						</c:forEach>
+						<tr><th colspan="4">
+							第${mPage.getNumber()+1}页/共${mPage.getTotalPages()}页
+							<a href="javascript:page(1);">首页</a>
+	                        <a href="javascript:page(${mPage.getNumber()+1>1?mPage.getNumber():1});">上一页</a>
+	                        <a href="javascript:page(${mPage.getNumber()+1<mPage.getTotalPages()?mPage.getNumber()+2:mPage.getTotalPages()});">下一页</a>
+	                        <a href="javascript:page(${mPage.getTotalPages()});">尾页</a>
+						</th></tr>
 					</table>
-
-
-					<div class="llpage">
-						<div class="in">
-
-							<a class="prev_page">上页</a> <a
-								href="javascript:getJsonInfo('<%=basePath%>account/trades/retriveProfitRecordJson?page=2')"
-								class="next_page" rel="next">下页</a>
-						</div>
-					</div>
 				</div>
-
 			</div>
 		</div>
 	</div>
+	<form name="paform" action="<%=basePath %>hyzx/${memberId}/shouyi" method="post">
+		<input type="hidden" id="page" name="page" />
+	</form>
 </body>
+<script type="text/javascript">
+	function page(pa) {
+		$("#page").val(pa);
+		document.paform.submit();
+	}
+</script>
 </html>

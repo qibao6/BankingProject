@@ -42,7 +42,7 @@ public interface SubjectService {
 	
 	//注册时添加用户资金信息到用户资金信息表
 	public void addMemberAccount(MemberAccount memberAccount);
-	
+
 	public MemberBankcards findbankcard(Integer members);
 	
 	
