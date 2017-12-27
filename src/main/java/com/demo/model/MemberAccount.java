@@ -1,11 +1,14 @@
 package com.demo.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 
 /**
  * 		seq_member_account
@@ -40,6 +43,8 @@ public class MemberAccount {
 		}
 	   
 	@Id
+	@SequenceGenerator(name="abc",sequenceName="seq_member_account",allocationSize=1)
+	@GeneratedValue(generator="abc",strategy=GenerationType.SEQUENCE)
 	public Integer getMemberAccountId() {
 		return memberAccountId;
 	}
@@ -100,4 +105,25 @@ public class MemberAccount {
 	public void setBbinAmount(Float bbinAmount) {
 		this.bbinAmount = bbinAmount;
 	}
+
+	public MemberAccount(Members members, Float useableBalance, Float imusealeBalance, Float totalProfit,
+			Date createDate, Date updateDate, Float bonusAmount, Float investAmount, Integer delflag,
+			Float bbinAmount) {
+		super();
+		this.members = members;
+		this.useableBalance = useableBalance;
+		this.imusealeBalance = imusealeBalance;
+		this.totalProfit = totalProfit;
+		this.createDate = createDate;
+		this.updateDate = updateDate;
+		this.bonusAmount = bonusAmount;
+		this.investAmount = investAmount;
+		this.delflag = delflag;
+		this.bbinAmount = bbinAmount;
+	}
+
+	public MemberAccount() {
+		super();
+	}
+	
 }

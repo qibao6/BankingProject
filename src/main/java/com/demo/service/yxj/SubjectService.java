@@ -6,7 +6,9 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 
 import com.demo.model.MemberAccount;
+import com.demo.model.MemberBankcards;
 import com.demo.model.MemberTradeRecord;
+import com.demo.model.Members;
 import com.demo.model.Subject;
 import com.demo.model.SubjectOrderRecord;
 import com.demo.model.SubjectPurchaseRecord;
@@ -38,5 +40,12 @@ public interface SubjectService {
 	//添加记录到交易记录表
 	public void addMemberTradeRecord(MemberTradeRecord memberTradeRecord);
 	
+	//注册时添加用户资金信息到用户资金信息表
+	public void addMemberAccount(MemberAccount memberAccount);
 	
+	public MemberBankcards findbankcard(Integer members);
+	
+	
+	//查询总条数
+	public Integer getcount();
 }

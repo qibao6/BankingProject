@@ -50,7 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="detail">
 
                         <a style="font-size:18px;float:right;margin-top:5px;color:#917739;" href="/winplus/web/login">登录</a>
-                        <a style="font-size:18px;float:right;margin-right:15px;margin-top:5px;color:#917739;" href="/winplus/web/regis">注册</a>
+                        <a style="font-size:18px;float:right;margin-right:15px;margin-top:5px;color:#917739;" href="<%=basePath%>web/regis">注册</a>
                 <br>4000-999-158
             </div>
         </div>
@@ -106,7 +106,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </ul>
         </div>
     </div>
-</div>
+</div> 
 <script type="text/javascript">
     $(function(){
         function showIn(url){
@@ -129,7 +129,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             手机号 
                         </div>
                         <div class="lInput">
-                            <img src="<%=basePath%>resources/web/images/userIcon.png" /><input type="text" placeholder="手机号" id="phone" name="phone" class="form-control phone" value="15558101209"/><span class="errorInfo">用户名不能为空</span>
+                            <img src="<%=basePath%>resources/web/images/userIcon.png" /><input type="text" placeholder="手机号" id="phone" name="phone" class="form-control phone"/><span class="errorInfo">用户名不能为空</span>
                         </div>
                     </div>
                     <div class="item">
@@ -137,12 +137,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             登录密码
                         </div>
                         <div class="lInput">
-                            <img src="<%=basePath%>resources/web/images/passwordIcon.png" /><input type="password" placeholder="密码" id="password" name="password" class="form-control password" value="cg123456" /><span class="errorInfo"></span>
+                            <img src="<%=basePath%>resources/web/images/passwordIcon.png" /><input type="password" placeholder="密码" id="password" name="password" class="form-control password" /><span class="errorInfo"></span>
                         </div>
                     </div>
                     <div class="rest">
                         <p class="error"></p>
-                        <span id="loginError"></span><a class="forgetLink" href="<%=basePath%>web/forget">忘记密码？</a>
+                        <span id="loginError"></span><a class="forgetLink" href="<%=basePath%>web/forget" target="myiframe">忘记密码？</a>
                     </div>
                     <div class="rest">
                         <button class="btn loginBtn submit">立即登录</button>

@@ -24,5 +24,8 @@ public interface SubjectRepository extends JpaRepository<Subject, Integer>,Subje
 //		@Query(value="select * FROM SUBJECT",nativeQuery=true )
 	
 	//public List<Object[]> findsublist(Subject subject,Integer page,Integer size);
+	//查询总条数
 	
+	@Query(value="select count(*) from subject",nativeQuery=true)
+	public Integer getcount();
 }

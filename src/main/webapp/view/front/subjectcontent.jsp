@@ -67,11 +67,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </td>
             <td width="360" rowspan="2" align="center" ; valign="middle" height="320">
                 <div class="tbBox">
+                <c:if test="${memberBankcards==null}">
+                 <input type="hidden" id="bankcard">
                 <c:if test="${members!=null}">
-                    <input type="hidden" id="account" value="${ memberaccount.useableBalance}"></c:if>
+               
+                    <input type="hidden" id="account" value="${ memberaccount.useableBalance}">
+                    
+                    </c:if>
                     
                     <c:if test="${members!=null}">
                    
+                </c:if>
                     <h2>${memberaccount.investAmount}</h2>
                     </c:if>
                      <input type="hidden" name="subjectId" value="${ subject.subjectId}">
@@ -205,11 +211,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         var mytext = $("#mytext");
         var exists = $("#login").val();
        // var acountval = $("#account").val();
-        var authBankCard=false;
+       
         
             $(".submit").click(function () {
             	//alert(exists);
-            	
+           
             	
             	
             		//alert(members.mobilephone);
@@ -219,11 +225,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             			$(".li4").show(100);
             			return false;
             		}
-               // if(authBankCard==false){
-                 	//$("#checkmoney").html("请先绑定银行卡，<a href='/winplus/account/security/memberBankcardView'>绑卡</a>");
-                   // $(".li4").show(100);
-                 	//return false;
-                // }
+            		 
+            		
+					var authBankCard=$("#bankcard").val();
+             		
+                  	if(authBankCard==null){
+                          
+                         	$("#checkmoney").html("请先绑定银行卡，<a href='/winplus/account/security/memberBankcardView'>绑卡</a>");
+                            $(".li4").show(100);
+                         	return false;
+                         }
                 var value = $(":input[name=totalFee]").val();
                 if (value == null || value == '') {
                      $("#checkmoney").html("金额不能为空");
@@ -240,6 +251,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                  var bonusFee = 0;
                  var bbinStatus = 0;
                 if (!(bbinAll.hasClass("active"))) {//未选中体验金
+                	 
                      var acountval = $("#account").val();
                      if (acountval != -1) {
                          if ((acountval - value) < 0) {

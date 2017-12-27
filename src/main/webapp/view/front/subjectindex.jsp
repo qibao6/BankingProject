@@ -156,9 +156,19 @@
 	</form>
 	<div class="llpage">
 		<div class="in">
-			<a href="javascript:pagerequest(1)">首页</a>
-			<a
-			<a href="javascript:pagerequest(1)">尾页</a>
+			<nav>
+				
+				 <ul class="pagination">
+
+						<li><a href="javascript:pagerequest(${page>1?pages-1:1});" >上页</a></li>
+
+
+							 <li><a class="now">${page}</a></li> 
+
+						 <li><a href="javascript:pagerequest(${page==pages?page:page+1});" >下页</a></li>
+				</ul>
+				
+			</nav>
 		</div>
 	</div>
 	

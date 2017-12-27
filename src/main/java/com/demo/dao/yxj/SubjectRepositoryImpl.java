@@ -36,7 +36,7 @@ public class SubjectRepositoryImpl implements SubjectDao{
 		if(subject.getYearRate() == 9) sql=sql+" and s.Year_Rate >8";
 		
 		//项目期限
-		if(subject.getPeriod() == 15) sql=sql+" and s.period =15";
+		if(subject.getPeriod() == 15) sql=sql+" and s.period<15";
 		if(subject.getPeriod() == 30) sql=sql+" and s.period >15 and s.period<=30";
 		if(subject.getPeriod() == 180) sql=sql+" and s.period >30 and s.period<=180";
 		if(subject.getPeriod() == 365) sql=sql+" and s.period >180 and s.period<=365";

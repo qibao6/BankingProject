@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.demo.model.MemberAccount;
+import com.demo.model.MemberBankcards;
 import com.demo.model.MemberTradeRecord;
 import com.demo.model.Members;
 import com.demo.model.Subject;
@@ -70,7 +71,11 @@ public class SubjectHandler {
 		if (page==null) {
 			page=1;
 		}
-		Integer size=3;
+		map.put("page", page);
+		Integer size=2;
+		Integer count=subjectService.getcount();
+		Integer pages=count%size==0?count/size:count/size+1;
+		map.put("pages", pages);
 		List<Object[]> sublist=subjectService.findsubindex(subject, page,size);
 		//Page page1 =subjectService.findpageall(size, page,subject);
 //		System.out.println("当前页"+page1.getNumber());
@@ -86,36 +91,7 @@ public class SubjectHandler {
 		
 		return "front/subjectindex";
 	}
-	//主页面，分页模糊查询
-	@RequestMapping("likeshow/{subjectType}/{year_rate}/{period}/{status}")
-	public String likeshow(Map<String,Object> map, Integer  page,@PathVariable("subjectType")Integer subjectType,@PathVariable("year_rate")Float year_rate,
-			@PathVariable("period")Integer period,@PathVariable("status")Integer status
-			){
-		System.out.println("今年我不要再喜欢裴尚轩");
-		if (subjectType==null)subjectType=10;
-		if (year_rate==null) year_rate=(float) -1;
-		if(period==null)period=-1;
-		if(status==null)status=-1; 
-		Subject subject=new Subject(subjectType,status,period,year_rate);
-		if (page==null) {
-			page=1;
-		}
-		Integer size=2;
-		//List<Object[]> sublist=subjectService.findpageall(size, page, subject);;
-		Page page1 =subjectService.findpageall(size, page,subject);
-//		System.out.println("当前页"+page1.getNumber());
-//		System.out.println("总页数"+page1.getTotalPages());
-//		System.out.println("结果集"+page1.getContent());
-		map.put("page1", page1);
-		map.put("subjectType", subjectType);
-		map.put("year_rate", year_rate);
-		map.put("period", period);
-     	map.put("status", status);
-		//List<Object[]> sublist=subjectService.findsubindex();
-		//map.put("sublist", sublist);
-		return "front/subjectlist";
-	}
-
+	
 	//海外配置
 	@RequestMapping("oversea")
 	public String showoversea(){
@@ -130,7 +106,8 @@ public class SubjectHandler {
 		return "front/finance";
 	}
 
-	//固收类理财购买
+	//固收类理财购买>>在界面上先判断是否登录，登录后才可购买，购买时要先判断是否绑卡，如果没绑卡要先绑定银行卡，跳到会员中心页面，
+	//判断可用余额与购买金额大小，如果余额不足，需要充值，到会员中心，调用支付宝接口进行充值
 	@RequestMapping("purchase/{subjectId}")
 	public String purchase(Map<String,Object> map,@PathVariable Integer subjectId,HttpServletRequest request){
 		System.out.println("再见面时，谈笑风生不动情");
@@ -160,16 +137,24 @@ public class SubjectHandler {
 	@RequestMapping("buy/{subjectId}")
 	
 	public String buy(Map<String,Object> map,HttpServletRequest request,HttpServletResponse reponse,@PathVariable Integer subjectId){
+		
 		Integer amount=Integer.parseInt(request.getParameter("totalFee"));
 		Subject subject=subjectService.getByid(subjectId);
 		
 		map.put("subject",subject);
 		Members members=(Members) request.getSession().getAttribute("members");
-		map.put("members", members);
+		MemberBankcards memberBankcards=subjectService.findbankcard(members.getMemberId());
+		map.put("memberBankcards",memberBankcards);
+		
 		SubjectOrderRecord subjectOrderRecord=new SubjectOrderRecord(subject.getSerialNumber(), subject.getSubjectType(),Float.parseFloat(amount.toString()) , subject.getStatus(), subjectId, members.getMemberId(), subject.getDelflag(), new Date(),  new Date());
 	//	subjectService.add(subjectOrderRecord);
 		map.put("subjectOrderRecord",subjectOrderRecord);
+		System.out.println("三里清风三里路，步步风里步步你");
+		//System.out.println(members.getMemberId());
+		
+		System.out.println(memberBankcards);
 		System.out.println("谈笑风生不动情");
+		map.put("members", members);
 		String stime=getDateFormat();
 		map.put("stime",stime);
 		//System.out.println(getDateFormat());
@@ -199,8 +184,9 @@ public class SubjectHandler {
 //		System.out.println(Float.parseFloat(amount));
 		//System.out.println(amount);
 		//购买记录表中添加一条购买记录
-		Integer day=this.getday(new Date());
-		SubjectPurchaseRecord subjectPurchaseRecord=new SubjectPurchaseRecord(subject.getSerialNumber(),amount, dealIp, subjectIds, members.getMemberId(), subject.getDelflag(), new Date(), new Date(),(int) (amount*subject.getYearRate()/365*day), 1, subject.getPeriod(), 0,"","0");
+	
+	
+		SubjectPurchaseRecord subjectPurchaseRecord=new SubjectPurchaseRecord(subject.getSerialNumber(),amount, dealIp, subjectIds, members.getMemberId(), subject.getDelflag(), new Date(), new Date(),(int) (amount*subject.getYearRate()/365*subject.getPeriod()), 1, subject.getPeriod(), 0,"","0");
 		subjectService.insertpurchase(subjectPurchaseRecord);
 		//修改用户资金，可用余额减少，冻结资金增加，投资金额增加
 		//System.out.println(Integer.parseInt(amount));
@@ -225,10 +211,5 @@ public class SubjectHandler {
 			return sim.format(new Date());
 		}
 		
-		public Integer getday(Date cdate){
-			Long day=new Date().getTime();
-			Long cday=cdate.getTime();
-			Integer tday=(int) ((day-cday)/(1000/60/60/24));
-			return tday;
-		}
+		
 }

@@ -117,6 +117,7 @@ $(function() {
 				password2.next(".errorInfo").html("两次密码不一致").show();
 				return;
 			}
+			
 			if($("#registerRule").attr("checked")!='checked'){
 				alert("本网站服务协议还未加入");
 				return;
@@ -173,6 +174,7 @@ function sendMessage(count) {
 			async : true,
 			url : base + 'web/sendTestValSms', // 目标地址
 			data : {
+				cur : curCount,
 				phone : phone.val(),
 				type:2
 			},

@@ -35,7 +35,7 @@
 		
 			<ul>
 				<li class="first"><a class="active"
-					href="<%=basePath%>subject/likeshow/10/-1/-1/-1" target="myiframe">固收类理财</a></li>
+					href="<%=basePath%>subject/like/10/-1/-1/-1" target="myiframe">固收类理财</a></li>
 				<li class="second"><a href="<%=basePath%>finance/financelist"
 					target="myiframe">私募基金</a></li>
 				<li class="three"><a href="<%=basePath%>subject/oversea"
@@ -49,73 +49,73 @@
 		<ul>
 			<li class="first">标的类型：</li>
 			<li><a
-				href="<%=basePath%>subject/likeshow/10/${year_rate}/${period}/${status}"
+				href="<%=basePath%>subject/like/10/${year_rate}/${period}/${status}"
 				id="11" name="subjectType">全部</a></li>
 			<li><a
-				href="<%=basePath%>subject/likeshow/0/${year_rate}/${period}/${status} "
+				href="<%=basePath%>subject/like/0/${year_rate}/${period}/${status} "
 				id="12" name="subjectType">固收类理财</a></li>
 			<li><a
-				href="<%=basePath%>subject/likeshow/1/${year_rate}/${period}/${status}"
+				href="<%=basePath%>subject/like/1/${year_rate}/${period}/${status}"
 				id="13" name="subjectType">车盈宝</a></li>
 		</ul>
 		<ul>
 			<li class="first">年化收益：</li>
 			<li><a
-				href="<%=basePath%>subject/likeshow/${subjectType}/-1/${period}/${status}"
+				href="<%=basePath%>subject/like/${subjectType}/-1/${period}/${status}"
 				id="21" name="year_rate">全部</a></li>
 			<li><a
-				href="<%=basePath%>subject/likeshow/${subjectType}/6/${period}/${status}"
+				href="<%=basePath%>subject/like/${subjectType}/6/${period}/${status}"
 				id="22" name="year_rate">6.0%</a></li>
 			<li><a
-				href="<%=basePath%>subject/likeshow/${subjectType}/7/${period}/${status}"
+				href="<%=basePath%>subject/like/${subjectType}/7/${period}/${status}"
 				id="23" name="year_rate">7.0%</a></li>
 			<li><a
-				href="<%=basePath%>subject/likeshow/${subjectType}/9/${period}/${status}"
+				href="<%=basePath%>subject/like/${subjectType}/9/${period}/${status}"
 				id="24" name="year_rate">7.5%</a></li>
 			<li><a
-				href="<%=basePath%>subject/likeshow/${subjectType}/8/${ period}/${status}"
+				href="<%=basePath%>subject/like/${subjectType}/8/${ period}/${status}"
 				id="25" name="year_rate">8.0%</a></li>
 			<li><a
-				href="<%=basePath%>subject/likeshow/${subjectType}/10/${period}/${status}"
+				href="<%=basePath%>subject/like/${subjectType}/10/${period}/${status}"
 				id="25" name="year_rate">8.0%以上</a></li>
 		</ul>
 		<ul>
 			<li class="first">项目期限：</li>
 			<li><a
-				href="<%=basePath%>subject/likeshow/${subjectType}/${year_rate}/-1/${status}"
+				href="<%=basePath%>subject/like/${subjectType}/${year_rate}/-1/${status}"
 				id="31">全部</a></li>
 			<li><a
-				href="<%=basePath%>subject/likeshow/${subjectType}/${year_rate}/15/${status}"
+				href="<%=basePath%>subject/like/${subjectType}/${year_rate}/15/${status}"
 				id="32">15天以下</a></li>
 			<li><a
-				href="<%=basePath%>subject/likeshow/${subjectType}/${year_rate}/30/${status}"
+				href="<%=basePath%>subject/like/${subjectType}/${year_rate}/30/${status}"
 				id="33">15-30天</a></li>
 			<li><a
-				href="<%=basePath%>subject/likeshow/${subjectType}/${year_rate}/180/${status}"
+				href="<%=basePath%>subject/like/${subjectType}/${year_rate}/180/${status}"
 				id="34">30-180天</a></li>
 			<li><a
-				href="<%=basePath%>subject/likeshow/${subjectType}/${year_rate}/365/${status}"
+				href="<%=basePath%>subject/like/${subjectType}/${year_rate}/365/${status}"
 				id="35">180-365天</a></li>
 			<li><a
-				href="<%=basePath%>subject/likeshow/${subjectType}/${year_rate}/366/${status}"
+				href="<%=basePath%>subject/like/${subjectType}/${year_rate}/366/${status}"
 				id="36">一年以上</a></li>
 		</ul>
 		<ul>
 			<li class="first">标的状态：</li>
 			<li><a
-				href="<%=basePath%>subject/likeshow/${subjectType}/${year_rate}/${period}/-1"
+				href="<%=basePath%>subject/like/${subjectType}/${year_rate}/${period}/-1"
 				id="41" name="status">全部</a></li>
 			<li><a
-				href="<%=basePath%>subject/likeshow/${subjectType}/${year_rate}/${period}/22"
+				href="<%=basePath%>subject/like/${subjectType}/${year_rate}/${period}/22"
 				id="42" name="status">投标中</a></li>
 			<li><a
-				href="<%=basePath%>subject/likeshow/${subjectType}/${year_rate}/${period}/99"
+				href="<%=basePath%>subject/like/${subjectType}/${year_rate}/${period}/99"
 				id="43" name="status">还款中</a></li>
 			<li><a
-				href="<%=basePath%>subject/likeshow/${subjectType}/${year_rate}/${period}/66"
+				href="<%=basePath%>subject/like/${subjectType}/${year_rate}/${period}/66"
 				id="44" name="status">已完成</a></li>
 		</ul>
-		<form action="<%=basePath%>subject/likeshow/10/-1/-1/-1" method="post" name="empfrm">
+		<form action="<%=basePath%>subject/like/10/-1/-1/-1" method="post" name="empfrm">
 		<input type="hidden" name="page" id="page">
 	</div>
 	<c:forEach items="${page1.getContent()}" var="sub">

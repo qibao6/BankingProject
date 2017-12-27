@@ -57,7 +57,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						style="font-size: 18px; float: right; margin-top: 5px; color: #917739;"
 						href="<%=basePath%>web/login">登录</a> <a
 						style="font-size: 18px; float: right; margin-right: 15px; margin-top: 5px; color: #917739;"
-						href="<%=basePath%>web/regis" target="myiframe">注册</a> <br>4000-999-158
+						href="<%=basePath%>web/regis">注册</a> <br>4000-999-158
 						</c:if>
 						<c:if test="${members!=null}">
 						
@@ -87,7 +87,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<li><a class="item" href="http://www.ying158.com/home/kcenter">
 							网上体验中心 </a></li>
 					<li class="item"><a class="item"
-						href="<%=basePath%>view/front/main.jsp" target="myiframe"> 产品中心 </a>
+						href="<%=basePath%>view/front/main.jsp"> 产品中心 </a>
 					</li>
 					<li><a class="item"
 						href="http://www.ying158.com/Home/NewsCenter"> 新闻中心 </a></li>

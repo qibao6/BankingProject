@@ -26,13 +26,16 @@ import org.springframework.stereotype.Service;
 
 import com.demo.dao.lq.members.MemberTradeRecordRepository;
 import com.demo.dao.yxj.MemberAccountsRepository;
+import com.demo.dao.yxj.MemberBankcardssRepository;
 import com.demo.dao.yxj.MemberTradeRecordsRepository;
 import com.demo.dao.yxj.SubjectDao;
 import com.demo.dao.yxj.SubjectOrderRecordsRepository;
 import com.demo.dao.yxj.SubjectPurchaseRecordsRepository;
 import com.demo.dao.yxj.SubjectRepository;
 import com.demo.model.MemberAccount;
+import com.demo.model.MemberBankcards;
 import com.demo.model.MemberTradeRecord;
+import com.demo.model.Members;
 import com.demo.model.Subject;
 import com.demo.model.SubjectOrderRecord;
 import com.demo.model.SubjectPurchaseRecord;
@@ -51,7 +54,8 @@ public class SubjectServiceImpl implements SubjectService{
 	SubjectPurchaseRecordsRepository subjectPurchaseRecordsRepository;
 	@Autowired
 	MemberTradeRecordsRepository memberTradeRecordsRepository;
-	 
+	@Autowired
+	MemberBankcardssRepository memberBankcardsRepository;
 
 	//EntityManager entityManager;
 	
@@ -186,6 +190,28 @@ public class SubjectServiceImpl implements SubjectService{
 	@Override
 	public void addMemberTradeRecord(MemberTradeRecord memberTradeRecord){
 			memberTradeRecordsRepository.save(memberTradeRecord);
+	}
+
+	//添加数据到用户资金信息表
+	
+	@Transactional
+	@Override
+	public void addMemberAccount(MemberAccount memberAccount) {
+		memberAccountsRepository.save(memberAccount);
+		
+	}
+
+	@Override
+	public MemberBankcards findbankcard(Integer members) {
+		
+		return memberBankcardsRepository.findbankcards(members);
+	}
+
+	//查询总条数
+	@Override
+	public Integer getcount() {
+		
+		return subjectrepository.getcount();
 	}
 
 	

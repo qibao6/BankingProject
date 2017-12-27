@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.dao.yxj.LogingRepository;
+import com.demo.dao.yxj.MemberssRepository;
 import com.demo.model.Members;
 
 @Service
@@ -19,6 +20,8 @@ public class LoginServicesImpl implements LoginServices{
 	@Autowired
 	LogingRepository loginRepository;
 
+	@Autowired
+	MemberssRepository memberssRepository;
 	@Override
 	public Members llist(String mobilePhone, String passwords) {
 		
@@ -32,7 +35,7 @@ public class LoginServicesImpl implements LoginServices{
 		HttpClient client = new HttpClient();
 		PostMethod post = new PostMethod("http://gbk.api.smschinese.cn"); 
 		post.addRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=gbk");//在头文件中设置转码
-		NameValuePair[] data ={ new NameValuePair("Uid", "jiubiechongfeng"),new NameValuePair("Key", "e5ccf26499d3d4bf6f5f"),new NameValuePair("smsMob",phone),new NameValuePair("smsText","验证码"+random)};
+		NameValuePair[] data ={ new NameValuePair("Uid", "jiubiechongfeng"),new NameValuePair("Key", "e5ccf26499d3d4bf6f5f"),new NameValuePair("smsMob",""),new NameValuePair("smsText","验证码"+random)};
 		post.setRequestBody(data);
 
 		client.executeMethod(post);
@@ -56,6 +59,20 @@ public class LoginServicesImpl implements LoginServices{
 	@Transactional
 	public void addmember(Members members) {
 		loginRepository.save(members);
+		
+	}
+
+	//查询members
+	@Override
+	public List<Members> getmembers() {
+		
+		return memberssRepository.findAll();
+	}
+
+	@Transactional
+	@Override
+	public void updatepwd(String passwords, String phone) {
+		memberssRepository.updatememberspwd(passwords, phone);
 		
 	}
 

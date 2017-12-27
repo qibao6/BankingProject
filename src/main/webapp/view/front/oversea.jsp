@@ -32,7 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="hwpzNav">
 			<ul>
 				<li class="first"><a class="active"
-					href="<%=basePath%>subject/subindex" target="myiframe">固收类理财</a></li>
+					href="<%=basePath%>subject/like/10/-1/-1/-1" target="myiframe">固收类理财</a></li>
 				<li class="second"><a href="<%=basePath%>finance/financelist"
 					target="myiframe">私募基金</a></li>
 				<li class="three"><a href="<%=basePath%>subject/oversea"

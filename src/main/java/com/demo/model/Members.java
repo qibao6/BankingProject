@@ -3,7 +3,10 @@ package com.demo.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
 /**
  * 用户基本表 		seq_members
@@ -38,6 +41,8 @@ public class Members {
 	
 	
 	@Id
+	@SequenceGenerator(name="abc",sequenceName="seq_members",allocationSize=1)
+	@GeneratedValue(generator="abc",strategy=GenerationType.SEQUENCE)
 	public Integer getMemberId() {
 		return memberId;
 	}

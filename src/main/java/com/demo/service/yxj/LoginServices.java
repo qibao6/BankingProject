@@ -11,4 +11,10 @@ public interface LoginServices {
 	
 	//注册，添加用户到member表
 		public void addmember(Members members);
+		
+		//查询用户
+		public List<Members> getmembers();
+		
+		//修改密码
+		public void updatepwd(String passwords,String phone);
 }
