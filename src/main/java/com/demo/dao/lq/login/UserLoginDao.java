@@ -2,6 +2,9 @@ package com.demo.dao.lq.login;
 
 import java.util.List;
 
+import com.demo.model.Subject;
+import com.demo.model.Users;
+
 public interface UserLoginDao {
 	
 	/**
@@ -9,13 +12,13 @@ public interface UserLoginDao {
 	 * @param userName
 	 * @return
 	 */
-	Object[] login(String userName);
+	Object[] login(Users users);
 	
 	/**
 	 * 邀请奖励
 	 * @return
 	 */
-	List<Object[]> inviteRewardsAll();
+	List<Object[]> inviteRewardsAll(Integer page,Integer size,final String memberName,final String mobilePhone,final String invitationcode,final String invitedcode);
 	/**
 	 * 奖励记录(邀请手机号，邀请码)
 	 * @return
@@ -31,7 +34,7 @@ public interface UserLoginDao {
 	 * 付息计划
 	 * @return
 	 */
-	List<Object[]> flist();
+	List<Object[]> flist(Subject sub);
 	
 	/**
 	 * 体验金付息计划（标的名称，标的期限，年化收益）
@@ -39,4 +42,48 @@ public interface UserLoginDao {
 	 * @return
 	 */
 	Object[] sub(Integer subjectId);
+	/**
+	 * 体验金付息计划
+	 * @param subjectId
+	 * @return
+	 */
+	List<Object[]> fxjAll(Integer subjectId,Integer page,Integer size);
+	/**
+	 * 付息列表
+	 * @param subjectId
+	 * @return
+	 */
+	List<Object[]> fxAll(Integer subjectId,Integer page,Integer size);
+	/**
+	 * 提现列表
+	 * @return
+	 */
+	List<Object[]> txAll(String memberName,String mobilePhone,String bankCard,Integer status,Integer page,Integer size);
+	/**
+	 * 查询membersId
+	 * @param mobilePhone
+	 * @return
+	 */
+	Integer m(String mobilePhone);
+	/**
+	 * 邀请奖励分页，查询总条数
+	 * @return
+	 */
+	Integer getCount(final String memberName,final String mobilePhone,final String invitationcode,final String invitedcode);
+	/**
+	 * 体验金付息计划总条数
+	 * @return
+	 */
+	Integer getCount(Integer subjectId);
+	/**
+	 * 付息计划总条数
+	 * @return
+	 */
+	Integer getCount();
+	/**
+	 * 提现总条数
+	 * @return
+	 */
+	Integer getCounts(String memberName,String mobilePhone,String bankCard,Integer status);
 }
+ 

@@ -28,26 +28,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <h2><span class="glyphicon glyphicon-play" style="margin-right:5px"></span>付息计划</h2>
 
         <div class="tablelist">
-        <form action="<%=basePath%>sysmember/payment" method="post" id="form1">
+        <form action="<%=basePath%>sysmember/payment" method="post" id="form1" name="form1">
             <table class="table tabletop">
                 <tr>
                     <td style="width:110px;padding-left:30px">名称：</td>
-                    <td style="width:180px"><input type="text" class="form-control" name="name" placeholder="名称" value=""></td>
+                    <td style="width:180px"><input type="text" class="form-control" name="subjectName" placeholder="名称" value="${sub.subjectName }"></td>
                     <td style="width:80px">状态：</td>
-                    <td style="width:180px"><select name="status" class="form-control" style="width:130px;height:32px" id="status">
-                   		<option value="QUAN_BU">全部</option>
-                        <option value="NOT_PUBLISHED">未发布</option>
-                        <option value="RAISING">募集中</option>
-                        <option value="REFUNDING">回款中</option>
-                        <option value="OVER">还款完成</option>
-                    </select></td>
+                    <td style="width:180px">
+                    <select name="status" class="form-control" style="width:130px;height:32px">
+                   		<option value="">全部</option>
+                        <option value="0" ${sub.status=="0"?"selected='selected'":""}>未发布</option>
+                        <option value="1" ${sub.status=="1"?"selected='selected'":""}>募集中</option>
+                        <option value="2" ${sub.status=="2"?"selected='selected'":""}>回款中</option>
+                        <option value="3" ${sub.status=="3"?"selected='selected'":""}>还款完成</option>
+                    </select>
+                    </td>
                     <td style="width:80px">类型：</td>
-                    <td style="width:180px"><select name="type" class="form-control" style="width:130px;height:32px" id="type">
-                    	<option value="QUAN_BU">全部</option>
-                        <option value="GU_SHOU">固收类</option>
-                        <option value="P2P_CHE">P2P车贷</option>
-                        <option value="P2P_FANG">P2P房贷</option>
-                    </select></td>
+                    <td style="width:180px">
+                    <select name="subjectType" class="form-control" style="width:130px;height:32px" id="type">
+                    	<option value="">全部</option>
+                        <option value="0" ${sub.subjectType=="0"?"selected='selected'":""}>固收类</option>
+                        <option value="1" ${sub.subjectType=="1"?"selected='selected'":""}>P2P车贷</option>
+                        <option value="2" ${sub.subjectType=="2"?"selected='selected'":""}>P2P房贷</option>
+                    </select>
+                    </td>
                      <td class="pull-right" style="padding-right:30px">
                          <button type="submit" class="btn btn-primary btn-sm">查询</button></td>
                     <td><button type="button" class="btn btn-primary btn-sm" onclick="$('#form1').find(':input').not(':button, :submit, :reset').val('').removeAttr('checked').removeAttr('selected');">重置</button></td>
@@ -76,9 +80,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <td>
                         	<c:if test="${f[2]==0}">固收类</c:if>
                         	<c:if test="${f[2]==1}">P2P车贷</c:if>
+                        	<c:if test="${f[2]==2}">P2P房贷</c:if>
                         </td>
                         <td>${f[3]}</td>
-                        <td>￥${f[4]==null?0:f[4]}</td>
+                        <td>￥${f[4]==null?0:f[4]}元</td>
                         <td>￥${f[5]==null?0:f[5]}元</td>
                         <td>${f[6]}人</td>
                         <td>${f[7]}天</td>
@@ -86,15 +91,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <td>
                         	<c:if test="${f[9]==0}">未发布</c:if>
                         	<c:if test="${f[9]==1}">募集中</c:if>
-                        	<c:if test="${f[9]==2}">已结束</c:if>
+                        	<c:if test="${f[9]==2}">回款中</c:if>
+                        	<c:if test="${f[9]==3}">还款完成</c:if>
                         </td>
                         <td>
                         	<c:if test="${f[10]==0}">否</c:if>
                         	<c:if test="${f[10]==1}">是</c:if>
                         </td>
                         <td>
-                        	<a href="<%=basePath%>sysmember/paymentBbinContent?subjectId=${f[0]}" class="btn btn-primary btn-sm">体验金付息</a>
-                        	<a href="<%=basePath%>sysmember/paymentContent?id=1638" class="btn btn-primary btn-sm">付息列表</a>	
+                        	<c:if test="${f[10]==1}"><a href="<%=basePath%>sysmember/paymentBbinContent?subjectId=${f[0]}" class="btn btn-primary btn-sm">体验金付息</a></c:if>
+                        	<a href="<%=basePath%>sysmember/paymentContent?subjectId=${f[0]}" class="btn btn-primary btn-sm">付息列表</a>	
                         </td>
                     </tr>
                 </c:forEach>
@@ -102,32 +108,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       
 	
 	
-	<div class="llpage">
-		<div class="in">
-			<nav>
-				<span class="count">第&nbsp;<b>1</b>&nbsp;页，&nbsp;共&nbsp;<b>1</b>&nbsp;页</span>
-				<ul class="pagination">
-
-						<li><a class="prev_page">上页</a></li>
-
-
-							<li><a class="now" >1</a></li>
-
-
-						<li><a class="next_page" rel="next">下页</a></li>
-				</ul>
-			</nav>
-		</div>
-	</div>
         </div>
         <!-- 内容结束 -->
     </div>
     <!-- 容器结束 -->
-    <script type="text/javascript">
-    $(function(){
-		$("#status").val("");
-		$("#type").val("");
-	});
-    </script>
     </body>
 </html>

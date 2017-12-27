@@ -1,8 +1,7 @@
 package com.demo.service.lq;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
 
-import com.demo.model.AwardRecords;
 import com.demo.model.FinancialPlanner;
 import com.demo.model.MemberAccount;
 import com.demo.model.MemberBankcards;
@@ -10,7 +9,6 @@ import com.demo.model.MemberDepositRecord;
 import com.demo.model.MemberTradeRecord;
 import com.demo.model.MemberWithdrawRecord;
 import com.demo.model.Members;
-import com.demo.model.Subject;
 
 public interface MembersService {
 	
@@ -19,7 +17,7 @@ public interface MembersService {
 	 * 账号管理
 	 * @return
 	 */
-	List<Members> findMembers();
+	Page<Members> findMembers(Integer page,Integer size,final Members members);
 	
 	/**
 	 * 账号详情
@@ -48,25 +46,25 @@ public interface MembersService {
 	 * @param memberId
 	 * @return
 	 */
-	List<MemberDepositRecord>  memberDepositRecord(Integer memberId);
+	Page<MemberDepositRecord>  memberDepositRecord(final Integer memberId,Integer page,Integer size);
 	/**
 	 * 钱包记录
 	 * @param memberId
 	 * @return
 	 */
-	List<MemberTradeRecord>  memberTradeRecord(Integer memberId);
+	Page<MemberTradeRecord>  memberTradeRecord(final Integer memberId,Integer page,Integer size);
 	/**
 	 * 提现记录
 	 * @param memberId
 	 * @return
 	 */
-	List<MemberWithdrawRecord>  memberWithdrawRecord(Integer memberId);
+	Page<MemberWithdrawRecord>  memberWithdrawRecord(final Integer memberId,Integer page,Integer size);
 	
 	/**
 	 * 理财师审核查询
 	 * @return
 	 */
-	List<FinancialPlanner> fplist();
+	Page<FinancialPlanner> fplist(Integer page,Integer size,final FinancialPlanner financialPlanner);
 	/**
 	 * 理财师审核
 	 * @param financialPlannerId
@@ -76,12 +74,12 @@ public interface MembersService {
 	 * 绑卡管理
 	 * @return
 	 */
-	List<MemberBankcards> memberBankcards();
+	Page<MemberBankcards> memberBankcards(Integer page,Integer size,final MemberBankcards memberBankcards);
 	/**
 	 * 充值管理
 	 * @return
 	 */
-	List<MemberDepositRecord>  findAllMDR();
+	Page<MemberDepositRecord>  findAllMDR(Integer page,Integer size,final MemberDepositRecord memberDepositRecord);
 	/**
 	 * 解绑银行卡
 	 * @param delflag
@@ -102,4 +100,8 @@ public interface MembersService {
 	 */
 	void updateUseableBalance(Float useableBalance,Integer memberAccountId);
 	
+	/**
+	 * 提现审核（定时任务）
+	 */
+	public void updatesubject_purchase_record();
 }
