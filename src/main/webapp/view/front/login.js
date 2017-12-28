@@ -57,7 +57,7 @@ $(function () {
                 },
                 success: function (msg) {
                     if (msg.code == 0) {
-                        window.location.href = base + "hyzx/logins";
+                        window.location.href = base + "hyzx/0/logins";
                     } else {
                         $(".error").html(msg.msg).show();
                     }

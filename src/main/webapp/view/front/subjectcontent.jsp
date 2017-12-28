@@ -50,6 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <form action="<%=basePath%>subject/buy/${subject.subjectId}">
     <table class="conTable" width="100%" border="0" cellspacing="0" cellpadding="0">
     <input type="hidden" name="subjectId" value="${subject.subjectId}">
+     
         <tr>
             <td class="txtInfo">
                 <div class="txt1">
@@ -92,7 +93,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<c:if test="${members!=null}">
 						<span class="fr">
 						<c:if test="${members!=null}">
-                       ${ memberaccount.useableBalance}元</c:if> &nbsp;&nbsp;<a href="/winplus/account/deposit">充值&nbsp;&nbsp;&nbsp;</a>
+                       ${ memberaccount.useableBalance}元</c:if> &nbsp;&nbsp;
+                       
+                       <a href="<%=basePath%>hyzx/2/logins">充值&nbsp;&nbsp;&nbsp;</a>
+                  
+                      
 						</span>
 						</c:if>
                     	
@@ -187,6 +192,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
 
 </div>
+
 <script type="text/javascript">
 
     $(function () {

@@ -178,7 +178,17 @@ function iframeAutoHeight(){
 	
 </script> -->
         <div class="admin-right">
-        	<iframe width="100%" id="kuangjia" name="rightkj" frameborder=0 scrolling=no src="<%=basePath%>hyzx/${memberAccount.members.memberId }/shouyi" onload="javascript:iframeAutoHeight();"></iframe>
+        	<iframe width="100%" id="kuangjia" name="rightkj" frameborder=0 scrolling=no 
+        	<c:if test="${src==0 }">
+        		src="<%=basePath%>hyzx/${memberAccount.members.memberId }/shouyi"
+        	</c:if>
+        	<c:if test="${src==1 }">
+        		src="<%=basePath%>hyzx/${memberAccount.members.memberId }/ti"
+        	</c:if>
+        	<c:if test="${src==2 }">
+        		src="<%=basePath%>hyzx/${memberAccount.members.memberId }/chong"
+        	</c:if>
+        	 onload="javascript:iframeAutoHeight();"></iframe>
         </div>
     </div>
 <meta charset="UTF-8">

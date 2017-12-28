@@ -211,12 +211,12 @@ public class SubjectHandler {
 		
 
 		
-
-		public Integer getday(Date cdate){
-			Long day=new Date().getTime();
-			Long cday=cdate.getTime();
-			Long tday=(day-cday)/(1000/60/60/24);
-			return Integer.parseInt(tday.toString());
-		}
+//
+//		public Integer getday(Date cdate){
+//			Long day=new Date().getTime();
+//			Long cday=cdate.getTime();
+//			Long tday=(day-cday)/(1000/60/60/24);
+//			return Integer.parseInt(tday.toString());
+//		}
 
 }

@@ -45,12 +45,13 @@ public class HyzxHandler {
 	 * @param map
 	 * @return
 	 */
-	@RequestMapping(value="logins",method=RequestMethod.GET)
-	public String logins(HttpServletRequest request,Map<String, Object> map){
+	@RequestMapping(value="{id}/logins",method=RequestMethod.GET)
+	public String logins(@PathVariable(value="id") Integer id,HttpServletRequest request,Map<String, Object> map){
 		Members members=(Members) request.getSession().getAttribute("members");
 		map.put("members", members);
 		MemberAccount memberAccount=mAccountService.findById(members);
 		map.put("memberAccount", memberAccount);
+		map.put("src", id);
 		return "front/viplist";
 	}
 	/**
