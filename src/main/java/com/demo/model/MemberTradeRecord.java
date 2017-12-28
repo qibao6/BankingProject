@@ -141,6 +141,10 @@ public class MemberTradeRecord {
 		this.createDate = createDate;
 		this.updateDate = updateDate;
 	}
+
+	public MemberTradeRecord() {
+		
+	}
 	   
 	   
 }

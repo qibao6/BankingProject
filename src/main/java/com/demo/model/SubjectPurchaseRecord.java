@@ -3,9 +3,12 @@ package com.demo.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 /**
  * 标的购买		sql_subject_purchase_record
  * @author LENOVO
@@ -31,6 +34,8 @@ public class SubjectPurchaseRecord {
 	   private String sStatus;//状态
 	   
 	@Id
+	@SequenceGenerator(name="spr",sequenceName="SQL_SUBJECT_PURCHASE_RECORD",allocationSize=1)
+	@GeneratedValue(generator="spr",strategy=GenerationType.SEQUENCE)
 	public Integer getSprId() {
 		return sprId;
 	}
@@ -145,4 +150,8 @@ public class SubjectPurchaseRecord {
 		this.bonusInfo = bonusInfo;
 		this.sStatus = sStatus;
 	}
+	public SubjectPurchaseRecord() {
+		
+	}
+	
 }
