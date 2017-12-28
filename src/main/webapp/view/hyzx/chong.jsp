@@ -85,7 +85,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<tr>
 				<td>${mdr.serialNumber}</td>
 				<td><font color="#ff503f">￥${mdr.amount}</font></td>
-				<td>${mdr.status==0?"充值成功":"充值失败" }</td>
+				<td>
+					<c:if test="${mdr.status==0 }">待付款</c:if>
+					<c:if test="${mdr.status==1 }">充值成功</c:if>
+					<c:if test="${mdr.status==2 }">充值失败</c:if>
+				</td>
 				<td><f:formatDate value="${mdr.createDate}" pattern="yyyy-MM-dd" /></td>
 			</tr>
 		</c:forEach>

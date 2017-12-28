@@ -41,6 +41,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <title>Insert title here</title>
 </head>
 <body>
+<input type="hidden" id="bankcards" value="${memberBankcards}">
 <div class="sdbanner probanner"></div>
 <div class="proMain">
     <div class="conTit">
@@ -54,40 +55,39 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <tr>
             <td class="txtInfo">
                 <div class="txt1">
-                    <h2>${subject.bought}</h2>
+                    <h2>${goumai[13]}</h2>
                     <p>已购人数(人)</p>
                 </div>
                 <div class="txt2">
-                    <h2>${subject.yearRate }%</h2>
+                    <h2>${goumai[2]}%</h2>
                     <p>年化收益</p>
                 </div>
                 <div class="txt1">
-                    <h2>${subject.period}</h2>
+                    <h2>${goumai[4]}</h2>
                     <p>投资期限(天)</p>
                 </div>
             </td>
             <td width="360" rowspan="2" align="center" ; valign="middle" height="320">
                 <div class="tbBox">
-                <c:if test="${memberBankcards==null}">
-                 <input type="hidden" id="bankcard">
+                
                 <c:if test="${members!=null}">
                
                     <input type="hidden" id="account" value="${ memberaccount.useableBalance}">
                     
                     </c:if>
                     
-                    <c:if test="${members!=null}">
+                  
                    
-                </c:if>
-                    <h2>${memberaccount.investAmount}</h2>
-                    </c:if>
+                
+                    <h2>${goumai[12]}</h2>
+             
                      <input type="hidden" name="subjectId" value="${ subject.subjectId}">
                     <p>已投金额(元)</p>
                     <div class="li4" style=""><span id="checkmoney" style="color: red;"></span></div>
                     <div class="tit">
                     <c:if test="${members==null}">
                     <span class="fr" id="login">
-                            <a style="color:#2695d5" class="unlogin" href="<%=basePath%>web/login" >登录</a>后可见
+                        <!--  <a style="color:#2695d5" class="unlogin" href="<%=basePath%>web/login" > -->   登录后可见
 						</span>
 						</c:if>
 						<c:if test="${members!=null}">
@@ -95,7 +95,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<c:if test="${members!=null}">
                        ${ memberaccount.useableBalance}元</c:if> &nbsp;&nbsp;
                        
-                       <a href="<%=basePath%>hyzx/2/logins">充值&nbsp;&nbsp;&nbsp;</a>
+                       <a href="<%=basePath%>hyzx/2/loginss">充值&nbsp;&nbsp;&nbsp;</a>
                   
                       
 						</span>
@@ -217,7 +217,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         var mytext = $("#mytext");
         var exists = $("#login").val();
        // var acountval = $("#account").val();
-       
+       	var authBankCard=$("#bankcard");
         
             $(".submit").click(function () {
             	//alert(exists);
@@ -231,16 +231,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             			$(".li4").show(100);
             			return false;
             		}
+            		
+            		//else if(authBankCard.val==null){
+            			
+                             
+                          	//$("#checkmoney").html("请先绑定银行卡，<a href='/winplus/account/security/memberBankcardView'>绑卡</a>");
+                           //  $(".li4").show(100);
+                          //	return false;
+                          
+            			
+            			
+            		//}
             		 
             		
-					var authBankCard=$("#bankcard").val();
+				
              		
-                  	if(authBankCard==null){
-                          
-                         	$("#checkmoney").html("请先绑定银行卡，<a href='/winplus/account/security/memberBankcardView'>绑卡</a>");
-                            $(".li4").show(100);
-                         	return false;
-                         }
+                 
                 var value = $(":input[name=totalFee]").val();
                 if (value == null || value == '') {
                      $("#checkmoney").html("金额不能为空");

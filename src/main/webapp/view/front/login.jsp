@@ -49,7 +49,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <img src="<%=basePath%>resources/web/images/400Icon.png" onmousemove="this.src = '<%=basePath%>resources/web/images/400IconActive.png'" onmouseout="	this.src = '<%=basePath%>resources/web/images/400Icon.png'">
             <div class="detail">
 
-                        <a style="font-size:18px;float:right;margin-top:5px;color:#917739;" href="/winplus/web/login">登录</a>
+                        <a style="font-size:18px;float:right;margin-top:5px;color:#917739;" href="<%=basePath%>web/login">登录</a>
                         <a style="font-size:18px;float:right;margin-right:15px;margin-top:5px;color:#917739;" href="<%=basePath%>web/regis">注册</a>
                 <br>4000-999-158
             </div>

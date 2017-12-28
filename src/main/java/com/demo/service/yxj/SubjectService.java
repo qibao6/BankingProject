@@ -45,7 +45,7 @@ public interface SubjectService {
 
 	public MemberBankcards findbankcard(Integer members);
 	
-	
+	public Object[] goshugoumai(Integer subjectId);
 	//查询总条数
 	public Integer getcount();
 }

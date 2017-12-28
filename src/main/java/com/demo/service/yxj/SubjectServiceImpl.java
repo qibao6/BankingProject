@@ -214,6 +214,12 @@ public class SubjectServiceImpl implements SubjectService{
 		return subjectrepository.getcount();
 	}
 
+	@Override
+	public Object[] goshugoumai(Integer subjectId) {
+		
+		return subjectrepository.getGushouGouMai(subjectId);
+	}
+
 //	@Override
 //	public List<Object[]> findsubindex1() {
 //		// TODO Auto-generated method stub

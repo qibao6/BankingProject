@@ -54,6 +54,16 @@ public class HyzxHandler {
 		map.put("src", id);
 		return "front/viplist";
 	}
+	
+	@RequestMapping(value="{id}/loginss")
+	public String loginss(@PathVariable(value="id") Integer id,HttpServletRequest request,Map<String, Object> map){
+		Members members=(Members) request.getSession().getAttribute("members");
+		map.put("members", members);
+		MemberAccount memberAccount=mAccountService.findById(members);
+		map.put("memberAccount", memberAccount);
+		map.put("src", id);
+		return "front/vip";
+	}
 	/**
 	 * 收益记录
 	 * @param page
@@ -290,7 +300,7 @@ public class HyzxHandler {
 		MemberAccount mAccount=mAccountService.findById(mDepositRecord.getMembers());
 		mAccount.setUseableBalance(mAccount.getUseableBalance()+mDepositRecord.getAmount());
 		mAccountService.saveMAccout(mAccount);
-		return "redirect:/hyzx/logins";
+		return "redirect:/hyzx/2/logins";
 		
 	}
 	//提款判断密码余额
@@ -300,18 +310,23 @@ public class HyzxHandler {
 		Map<String, Object> map=new HashMap<>();
 		Members members=mAccountService.findMember(memberId);
 		MemberAccount mAccount=mAccountService.findById(members);
-		if (members.getWithdrawPassword().equals(pwd)) {
-			if (amount>0) {
-				if (mAccount.getUseableBalance()>=amount) {
-					map.put("code", 0);
+		System.out.println(members.getWithdrawPassword());
+		if(members.getWithdrawPassword()==null||"".equals(members.getWithdrawPassword())) {
+			map.put("msg", "请到安全信息设置提款密码");
+		}else{
+			if (members.getWithdrawPassword().equals(pwd)) {
+				if (amount>0) {
+					if (mAccount.getUseableBalance()>=amount) {
+						map.put("code", 0);
+					}else {
+						map.put("msg", "余额不足");
+					}
 				}else {
-					map.put("msg", "余额不足");
+					map.put("msg", "金额格式不正确");
 				}
 			}else {
-				map.put("msg", "金额格式不正确");
+				map.put("msg", "提款密码错误");
 			}
-		}else {
-			map.put("msg", "提款密码错误");
 		}
 		return map;
 	}
@@ -373,5 +388,21 @@ public class HyzxHandler {
 		fPlanner.setCreateDate(new Date());
 		mAccountService.savefPlanner(fPlanner);
 		return "redirect:/hyzx/"+memberId+"/licaishi";
+	}
+	
+	@RequestMapping(value="timi")
+	@ResponseBody
+	public Map<String, Object> timi(HttpServletRequest request,HttpSession session) {
+		String mima=request.getParameter("password").toString().trim();
+		Members members=(Members) session.getAttribute("members");
+		members.setWithdrawPassword(mima);
+		Map<String, Object> map=new HashMap<>();
+		try {
+			mAccountService.shiming(members);
+			map.put("code", 0);
+		} catch (Exception e) {
+			map.put("code", 1);
+		}
+		return map;
 	}
 }

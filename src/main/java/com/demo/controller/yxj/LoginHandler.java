@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.demo.model.MemberAccount;
+import com.demo.model.MemberBankcards;
 import com.demo.model.Members;
 import com.demo.service.yxj.LoginServices;
 import com.demo.service.yxj.SubjectService;
@@ -53,6 +54,9 @@ public class LoginHandler {
 			return map;
 		}
 		request.getSession().setAttribute("members", members);
+		MemberBankcards memberBankcards=subjectService.findbankcard(members.getMemberId());
+		request.getSession().setAttribute("memberBankcards", memberBankcards);
+		
 		map.put("code", 0);
 
 		return map;

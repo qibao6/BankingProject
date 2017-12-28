@@ -59,4 +59,17 @@ public class SubjectRepositoryImpl implements SubjectDao{
 }
 
 	
+	@Override
+	public Object[] getGushouGouMai(Integer subjectId) {
+		
+		String sql = "SELECT s.subject_id,s.subject_name,s.YEAR_RATE,s.floor_amount,s.period,s.bought,s.create_date,s.status, s.amount,s.SUBJECT_TYPE,s.REFUND_WAY,s.SAFEGUARD_WAY,"
+				+"(COALESCE(SUM(r.amount),0)+ (SELECT COALESCE(SUM(sb.amount),0) FROM subject_bbin_purchase_record sb WHERE s.subject_id=sb.subject_id)) hasSold," 
+				+"(COUNT(r.spr_id)+s.bought+(SELECT COUNT(sb.sbpr_id) FROM subject_bbin_purchase_record sb WHERE s.subject_id=sb.subject_id) ) hasBought ,s.exper_Status "
+				+"FROM SUBJECT s LEFT JOIN subject_purchase_record r ON s.subject_id = r.subject_id where s.status!=0 and s.subject_id ="+subjectId+" "
+				+ " GROUP BY  s.subject_id,s.subject_name,s.YEAR_RATE,s.floor_amount,"
+				+ "s.period,s.bought,s.create_date,s.status, s.amount,s.SUBJECT_TYPE,s.REFUND_WAY,s.SAFEGUARD_WAY ,s.exper_Status order by s.subject_id";
+		Query query=entityManager.createNativeQuery(sql);
+		return (Object[]) query.getSingleResult();
+	}
+	
 	}

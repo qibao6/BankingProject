@@ -156,6 +156,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<form name="paform" action="<%=basePath %>hyzx/${memberId}/ti" method="post">
 		<input type="hidden" id="page" name="page" />
 	</form>
+	<table border="0" height="250px"><tr><td></td></tr></table>
                     </div>
                     <div class="box">                    	
 	<script type="text/javascript">

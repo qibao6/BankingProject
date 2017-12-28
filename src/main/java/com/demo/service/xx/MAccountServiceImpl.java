@@ -93,7 +93,7 @@ public class MAccountServiceImpl implements MAccountService {
 			public Predicate toPredicate(Root<SubjectPurchaseRecord> root, CriteriaQuery<?> query,CriteriaBuilder builder) {
 				List<Predicate> pList=new ArrayList<>();
 				if (memberId!=null) {
-					Path tPath=root.get("memberId");
+					Path tPath=root.get("members").get("memberId");
 					pList.add(builder.equal(tPath, memberId));
 				}
 				return builder.and(pList.toArray(new Predicate[pList.size()]));

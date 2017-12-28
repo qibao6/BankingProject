@@ -43,7 +43,7 @@ public class SubjectHandler {
 	@RequestMapping("subindex")
 	public String findsublist(Map<String,Object> map,HttpServletRequest request,Integer page){
 		Subject subject=new Subject();
-		System.out.println("==============================");
+		//System.out.println("==============================");
 		if (page==null) {
 			page=1;
 		}
@@ -61,7 +61,7 @@ public class SubjectHandler {
 	public String like(Map<String,Object> map, Integer  page,@PathVariable("subjectType")Integer subjectType,@PathVariable("year_rate")Float year_rate,
 			@PathVariable("period")Integer period,@PathVariable("status")Integer status
 			){
-		System.out.println("今年我不要再喜欢裴尚轩");
+		//System.out.println("今年我不要再喜欢裴尚轩");
 		if (subjectType==null)subjectType=10;
 		if (year_rate==null) year_rate=(float) -1;
 		if(period==null)period=-1;
@@ -109,12 +109,14 @@ public class SubjectHandler {
 	//判断可用余额与购买金额大小，如果余额不足，需要充值，到会员中心，调用支付宝接口进行充值
 	@RequestMapping("purchase/{subjectId}")
 	public String purchase(Map<String,Object> map,@PathVariable Integer subjectId,HttpServletRequest request){
-		System.out.println("再见面时，谈笑风生不动情");
+		//System.out.println("再见面时，谈笑风生不动情");
 		Subject subject=subjectService.getByid(subjectId);
 		map.put("subject",subject);
 		Members members=(Members) request.getSession().getAttribute("members");
 		map.put("members", members);
-		
+		Object[] goumai=subjectService.goshugoumai(subjectId);
+		map.put("goumai",goumai);
+		//System.out.println(goumai[12]);
 		//得到会员ID
 //		;Integer member_id=members.getMemberId();
 //		System.out.println(member_id)
@@ -137,22 +139,25 @@ public class SubjectHandler {
 	
 	public String buy(Map<String,Object> map,HttpServletRequest request,HttpServletResponse reponse,@PathVariable Integer subjectId){
 		
+		MemberBankcards memberBankcards=(MemberBankcards) request.getSession().getAttribute("memberBankcards");
 		Integer amount=Integer.parseInt(request.getParameter("totalFee"));
 		Subject subject=subjectService.getByid(subjectId);
 		
 		map.put("subject",subject);
 		Members members=(Members) request.getSession().getAttribute("members");
-		MemberBankcards memberBankcards=subjectService.findbankcard(members.getMemberId());
-		map.put("memberBankcards",memberBankcards);
+		
+		
+		//MemberBankcards memberBankcards=subjectService.findbankcard(members.getMemberId());
+		//map.put("memberBankcards",memberBankcards);
 		
 		SubjectOrderRecord subjectOrderRecord=new SubjectOrderRecord(subject.getSerialNumber(), subject.getSubjectType(),Float.parseFloat(amount.toString()) , subject.getStatus(), subjectId, members.getMemberId(), subject.getDelflag(), new Date(),  new Date());
 	//	subjectService.add(subjectOrderRecord);
 		map.put("subjectOrderRecord",subjectOrderRecord);
-		System.out.println("三里清风三里路，步步风里步步你");
+		//System.out.println("三里清风三里路，步步风里步步你");
 		//System.out.println(members.getMemberId());
 		
-		System.out.println(memberBankcards);
-		System.out.println("谈笑风生不动情");
+		//System.out.println(memberBankcards);
+		//System.out.println("谈笑风生不动情");
 		map.put("members", members);
 		String stime=getDateFormat();
 		map.put("stime",stime);
@@ -176,6 +181,9 @@ public class SubjectHandler {
 		//添加订单到订单表
 		subjectService.add(subjectOrderRecord);
 		map.put("subjectOrderRecord",subjectOrderRecord);
+		SubjectPurchaseRecord subjectPurchaseRecord=new SubjectPurchaseRecord(subject.getSerialNumber(), amount, dealIp, subject, members, subject.getDelflag(), new Date(), new Date(), amount*subject.getYearRate()/365*subject.getPeriod(), 1, subject.getPeriod(), 0, "", "0");
+		subjectService.insertpurchase(subjectPurchaseRecord);
+		
 		MemberTradeRecord memberTradeRecord=new MemberTradeRecord(members, dealIp, subject.getSubjectName(), "", amount, subject.getSubjectType().toString(), 0, 0, "", "", "", new Date(), new Date());
 		//添加到交易记录表
 		subjectService.addMemberTradeRecord(memberTradeRecord);
@@ -184,14 +192,14 @@ public class SubjectHandler {
 		//System.out.println(amount);
 		//购买记录表中添加一条购买记录
 		//SubjectPurchaseRecord subjectPurchaseRecord1=new SubjectPurchaseRecord(subject.getSerialNumber(),amount, dealIp,subject, members, subject.getDelflag(), new Date(), new Date(),(amount*subject.getYearRate()/365*subject.getPeriod()), 1, subject.getPeriod(), 0,"","0");
-		//subjectService.insertpurchase(subjectPurchaseRecord1);
-		SubjectPurchaseRecord subjectPurchaseRecord=new SubjectPurchaseRecord(subject.getSerialNumber(), amount, dealIp, subject, members, subject.getDelflag(), new Date(), new Date(), amount*subject.getYearRate()/365*subject.getPeriod(), 1, subject.getPeriod(), 0, "", "0");
+		
+		
 		//修改用户资金，可用余额减少，冻结资金增加，投资金额增加
 		//System.out.println(Integer.parseInt(amount));
 		
 		subjectService.updatememberaccount(amount, members.getMemberId());
-		System.out.println(amount);
-		System.out.println( members.getMemberId());
+		//System.out.println(amount);
+		//System.out.println( members.getMemberId());
 	
 		return "redirect:/subject/purchase/"+subject.getSubjectId();
 	}

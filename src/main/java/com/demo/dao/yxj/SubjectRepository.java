@@ -28,4 +28,7 @@ public interface SubjectRepository extends JpaRepository<Subject, Integer>,Subje
 	
 	@Query(value="select count(*) from subject",nativeQuery=true)
 	public Integer getcount();
+	
+	//购买页面显示
+	public Object[] getGushouGouMai(Integer subjectId);
 }

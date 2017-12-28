@@ -62,7 +62,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<c:if test="${members!=null}">
 						
 
-                    	<div style="font-size:16px;float:right;margin-top:5px;color:#917739;">  欢迎${members.names },<a href="<%=basePath%>hyzx/logins">[会员中心]</a>,<a href="<%=basePath%>web/logout" target="myiframe">[退出]</a></div>
+                    	<div style="font-size:16px;float:right;margin-top:5px;color:#917739;">  欢迎${members.names },<a href="<%=basePath%>hyzx/0/logins">[会员中心]</a>,<a href="<%=basePath%>web/logout">[退出]</a></div>
                 <br>4000-999-158
 						
 						

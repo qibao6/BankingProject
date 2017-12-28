@@ -9,6 +9,8 @@ import com.demo.model.Subject;
 public interface SubjectDao {
 	//显示 产品列表
 		public List<Object[]> findsublist(Subject subject,Integer page,Integer rowsize);
+
+		public Object[] getGushouGouMai(Integer subjectId);
 	
 //	    @Query(value="select * from member_account",nativeQuery=true)
 //		public List<Object[]> querymoney();
